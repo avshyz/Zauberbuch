@@ -12,7 +12,20 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "all": false,
+      "shell": {
+        "open": true
+      },
+      "fs": {
+        "scope": [
+          "$APPCONFIG",
+          "$APPCONFIG/*"
+        ],
+        "readFile": true,
+        "writeFile": true,
+        "readDir": true,
+        "createDir": true
+      }
     },
     "bundle": {
       "active": true,
@@ -29,7 +42,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "zauberbuch",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
