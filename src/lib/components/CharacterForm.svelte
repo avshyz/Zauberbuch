@@ -10,6 +10,17 @@
 	export let initialValues: CharacterSheet | undefined = undefined;
 	const dispatch = createEventDispatcher<{ submit: CharacterSheet }>();
 
+	const SUPPORTED_CLASSES = ['bard', 'cleric', 'druid', 'sorcerer', 'wizard'];
+
+	const optionsToDisplay = [...CHARACTER_CLASSES].sort((a, b) => {
+		const isASupported = SUPPORTED_CLASSES.includes(a);
+		const isBSupported = SUPPORTED_CLASSES.includes(b);
+
+		if (isASupported && !isBSupported) return -1;
+		if (!isASupported && isBSupported) return 1;
+		else return a.localeCompare(b);
+	});
+
 	const schema = z.object({
 		name: z.string().nonempty(),
 		level: z.number().gt(0).lte(20),
@@ -43,8 +54,10 @@
 	<div>
 		<label for="characterClass">Class</label>
 		<select name="characterClass" required>
-			{#each CHARACTER_CLASSES as characterClass}
-				<option value={characterClass}>{characterClass}</option>
+			{#each optionsToDisplay as characterClass}
+				<option disabled={!SUPPORTED_CLASSES.includes(characterClass)} value={characterClass}>
+					{characterClass}
+				</option>
 			{/each}
 		</select>
 	</div>
