@@ -37,7 +37,7 @@
 	<div>
 		<label for="level">Level</label>
 		<input name="level" required type="number" max="20" min="1" />
-		<ValidationMessage for="name" let:messages>
+		<ValidationMessage for="level" let:messages>
 			{messages?.[0] || ''}
 		</ValidationMessage>
 	</div>
@@ -61,3 +61,34 @@
 
 	<button type="submit">Create</button>
 </form>
+
+<style>
+	form {
+		display: flex;
+		flex-direction: column;
+	}
+
+	div {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 1rem;
+	}
+
+	label {
+		font-weight: bold;
+		margin-bottom: 0.5rem;
+	}
+
+	input,
+	select {
+		padding: 0.5rem;
+		border-radius: 0.25rem;
+		border: 1px solid #ccc;
+	}
+
+	button {
+		padding: 0.5rem;
+		border-radius: 0.25rem;
+		border: 1px solid #ccc;
+	}
+</style>
