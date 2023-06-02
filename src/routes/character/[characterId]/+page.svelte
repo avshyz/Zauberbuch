@@ -13,4 +13,4 @@
 </nav>
 
 <p>hello marie!</p>
-<p>Spell Slots: {FULL_CASTER_SPELL_SLOTS_PER_LEVEL[data.character.level]}</p>
+<p>Spell Slots: {data.spellSlots}</p>
