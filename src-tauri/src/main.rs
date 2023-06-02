@@ -6,10 +6,17 @@ fn main() {
     tauri::Builder::default()
         .setup(|app| {
             let config_dir = app.path_resolver().app_config_dir().unwrap();
-            if !fs::metadata(&config_dir).is_ok() {
+            if !config_dir.exists() {
                 fs::create_dir_all(&config_dir).unwrap();
                 println!("Creating config dir at {:?}", &config_dir.display());
             }
+
+            let characters_dir = config_dir.join("characters");
+            if !characters_dir.exists() {
+                fs::create_dir_all(&characters_dir).unwrap();
+                println!("Creating characters dir at {:?}", &characters_dir.display());
+            }
+
             Ok(())
         })
         .run(tauri::generate_context!())
