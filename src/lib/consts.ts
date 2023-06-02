@@ -12,3 +12,5 @@ export const CHARACTER_CLASSES = [
 	'warlock',
 	'wizard'
 ] as const;
+
+export const CASTER_TYPES = ['full', 'half', 'third'] as const;

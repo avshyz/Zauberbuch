@@ -13,6 +13,6 @@ export const load = (async ({ params }) => {
 	return {
 		character,
 		uuid: characterId.replace(/\.json$/, ''),
-		spellSlots: FULL_CASTER_SPELL_SLOTS_PER_LEVEL[character.level]
+		spellSlots: FULL_CASTER_SPELL_SLOTS_PER_LEVEL[character.level - 1]
 	};
 }) satisfies LayoutLoad;
