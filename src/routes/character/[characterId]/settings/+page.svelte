@@ -1,5 +1,6 @@
 <script lang="ts">
-	// TODO: Add the option to edit the character level
+	import type { PageData } from './$types';
+	export let data: PageData;
 </script>
 
 <h1>Character Settings</h1>
