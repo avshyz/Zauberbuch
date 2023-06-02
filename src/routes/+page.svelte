@@ -9,5 +9,5 @@
 	{#each data.characters as c}
 		<li><a href={`/character/${c.id}`}>{c.name}</a></li>
 	{/each}
-	<li>NEW CHARACTER</li>
+	<li><a href="/character/new">NEW CHARACTER</a></li>
 </ul>
