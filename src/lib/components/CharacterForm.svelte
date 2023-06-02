@@ -4,8 +4,10 @@
 	import { validator } from '@felte/validator-zod';
 	import { z } from 'zod';
 	import { createForm } from 'felte';
+	import { createEventDispatcher } from 'svelte';
 
 	export let initialValues: CharacterSheet | undefined = undefined;
+	const dispatch = createEventDispatcher<{ submit: CharacterSheet }>();
 
 	const schema = z.object({
 		name: z.string().nonempty(),
@@ -17,7 +19,7 @@
 	const { form, errors } = createForm<z.infer<typeof schema>>({
 		extend: validator({ schema }),
 		onSubmit: (value: CharacterSheet) => {
-			// todo: submit to server
+			dispatch('submit', value);
 		},
 		initialValues
 	});
