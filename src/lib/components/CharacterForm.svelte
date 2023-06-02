@@ -1,16 +1,19 @@
 <script lang="ts">
-	import { CASTER_TYPES, CHARACTER_CLASSES } from '$lib/consts';
+	import { CHARACTER_CLASSES } from '$lib/consts';
 	import type { CharacterSheet } from '$lib/types';
 	import { validator } from '@felte/validator-zod';
 	import { z } from 'zod';
 	import { createForm } from 'felte';
 	import { createEventDispatcher } from 'svelte';
 	import { reporter, ValidationMessage } from '@felte/reporter-svelte';
+	import { CASTER_TYPE_TO_SLOT_TABLE } from '$lib/spellSlots';
 
 	export let initialValues: CharacterSheet | undefined = undefined;
 	const dispatch = createEventDispatcher<{ submit: CharacterSheet }>();
 
-	const SUPPORTED_CLASSES = ['bard', 'cleric', 'druid', 'sorcerer', 'wizard'];
+	const SUPPORTED_CLASSES = Object.entries(CASTER_TYPE_TO_SLOT_TABLE)
+		.filter(([pcClass, slots]) => !!slots)
+		.map(([pcClass]) => pcClass);
 
 	const optionsToDisplay = [...CHARACTER_CLASSES].sort((a, b) => {
 		const isASupported = SUPPORTED_CLASSES.includes(a);
@@ -62,7 +65,7 @@
 		</select>
 	</div>
 
-	<button type="submit">Create</button>
+	<button type="submit">{initialValues !== undefined ? 'UPDATE' : 'CREATE'}</button>
 </form>
 
 <style>
