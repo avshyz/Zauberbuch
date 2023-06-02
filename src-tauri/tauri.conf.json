@@ -19,7 +19,7 @@
       "fs": {
         "scope": [
           "$APPCONFIG",
-          "$APPCONFIG/*"
+          "$APPCONFIG/**/*"
         ],
         "readFile": true,
         "writeFile": true,
