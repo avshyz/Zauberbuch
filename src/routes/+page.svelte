@@ -1,7 +1,3 @@
-<script lang="ts" context="module">
-	import { BaseDirectory, createDir, readTextFile, writeTextFile } from '@tauri-apps/api/fs';
-</script>
-
 <script lang="ts">
 	import type { PageData } from './$types';
 	export let data: PageData;
