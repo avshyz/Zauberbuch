@@ -1,18 +1,23 @@
 import type { PageLoad } from './$types';
 import { readTextFile, readDir, BaseDirectory, type FileEntry } from '@tauri-apps/api/fs';
 
+type Character = {
+	name: string;
+};
+
 export const load = (async () => {
 	const entries = await readDir('characters', { dir: BaseDirectory.AppConfig });
 
 	const res = await Promise.all(entries.map(normalizeEntry));
 
 	return {
-		characters: res.map(([fileName, data]) => ({ id: fileName, name: JSON.parse(data).name}))
+		characters: res
+			.filter((entry): entry is [string, Character] => !!entry[0] && !!entry[1])
+			.map(([fileName, data]) => ({ id: fileName, name: data.name }))
 	};
-
 }) satisfies PageLoad;
 
 async function normalizeEntry(entry: FileEntry) {
-	const res = await readTextFile(entry.path, { dir: BaseDirectory.AppConfig })
-	return [entry.name!, res!]
+	const res = await readTextFile(entry.path, { dir: BaseDirectory.AppConfig });
+	return [entry.name, JSON.parse(res) as Character];
 }
