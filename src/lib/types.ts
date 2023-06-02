@@ -5,7 +5,6 @@ export type CharacterClass = (typeof CHARACTER_CLASSES)[number];
 export type CharacterSheet = {
 	name: string;
 	level: number;
-	casterType: 'full' | 'half' | 'third';
 	characterClass: CharacterClass;
 };
 

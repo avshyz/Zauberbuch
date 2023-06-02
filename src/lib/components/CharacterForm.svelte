@@ -13,8 +13,7 @@
 	const schema = z.object({
 		name: z.string().nonempty(),
 		level: z.number().gt(0).lte(20),
-		characterClass: z.enum(CHARACTER_CLASSES),
-		casterType: z.enum(CASTER_TYPES)
+		characterClass: z.enum(CHARACTER_CLASSES)
 	});
 
 	const { form } = createForm<z.infer<typeof schema>>({
@@ -50,15 +49,6 @@
 		</select>
 	</div>
 
-	<div>
-		<label for="casterType">Caster Type</label>
-		<select name="casterType" required>
-			<option value="full">Full Caster</option>
-			<option value="half" disabled>½ Caster</option>
-			<option value="third" disabled>⅓ Caster</option>
-		</select>
-	</div>
-
 	<button type="submit">Create</button>
 </form>
 
@@ -90,5 +80,10 @@
 		padding: 0.5rem;
 		border-radius: 0.25rem;
 		border: 1px solid #ccc;
+	}
+
+	select,
+	select option {
+		text-transform: capitalize;
 	}
 </style>

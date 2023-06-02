@@ -24,7 +24,8 @@
         "readFile": true,
         "writeFile": true,
         "readDir": true,
-        "createDir": true
+        "createDir": true,
+        "removeFile": true
       }
     },
     "bundle": {
