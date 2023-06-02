@@ -5,6 +5,7 @@
 	import { z } from 'zod';
 	import { createForm } from 'felte';
 	import { createEventDispatcher } from 'svelte';
+	import { reporter, ValidationMessage } from '@felte/reporter-svelte';
 
 	export let initialValues: CharacterSheet | undefined = undefined;
 	const dispatch = createEventDispatcher<{ submit: CharacterSheet }>();
@@ -16,8 +17,8 @@
 		casterType: z.enum(CASTER_TYPES)
 	});
 
-	const { form, errors } = createForm<z.infer<typeof schema>>({
-		extend: validator({ schema }),
+	const { form } = createForm<z.infer<typeof schema>>({
+		extend: [validator({ schema }), reporter],
 		onSubmit: (value: CharacterSheet) => {
 			dispatch('submit', value);
 		},
@@ -25,15 +26,20 @@
 	});
 </script>
 
-<p>{JSON.stringify($errors)}</p>
 <form use:form>
 	<div>
 		<label for="name">Name</label>
-		<input name="name" required />
+		<input name="name" />
+		<ValidationMessage for="name" let:messages>
+			{messages?.[0] || ''}
+		</ValidationMessage>
 	</div>
 	<div>
 		<label for="level">Level</label>
 		<input name="level" required type="number" max="20" min="1" />
+		<ValidationMessage for="name" let:messages>
+			{messages?.[0] || ''}
+		</ValidationMessage>
 	</div>
 	<div>
 		<label for="characterClass">Class</label>

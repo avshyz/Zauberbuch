@@ -14,7 +14,6 @@ npm run dev
 
 # TODO
 
-- scheme validation on character config files with [zod](https://github.com/colinhacks/zod)
 - support half and third casters according to [this](https://rpg.stackexchange.com/questions/152448/what-is-the-difference-between-1-3-1-2-and-full-casters)
 - cool icons like [these](https://donjon.bin.sh/5e/quickref/)
 - spell references
