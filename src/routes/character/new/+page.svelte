@@ -1,17 +1,18 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { goto } from '$app/navigation';
 	import type { CharacterSheet } from '$lib/types';
 	import { writeTextFile, BaseDirectory } from '@tauri-apps/api/fs';
 	import { v4 as uuidv4 } from 'uuid';
 
-	type CharacterCreationForm = { name: string; level: string; type: 'full' | 'half' | 'third' };
-
 	async function handleSubmit(e: SubmitEvent) {
 		const rawData = new FormData(e.target as HTMLFormElement);
-		const data = Object.fromEntries(rawData.entries()) as CharacterCreationForm;
+		const data = Object.fromEntries(rawData.entries()) as CharacterSheet;
 		await writeTextFile(`characters/${uuidv4()}.json`, JSON.stringify(data), {
 			dir: BaseDirectory.AppConfig
 		});
+		// TODO: Add a toast to show that the character was created
+		goto('/');
 	}
 </script>
 
