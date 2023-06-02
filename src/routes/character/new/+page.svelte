@@ -1,14 +1,22 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
+	import { CHARACTER_CLASSES } from '$lib/consts';
 	import type { CharacterSheet } from '$lib/types';
 	import { writeTextFile, BaseDirectory } from '@tauri-apps/api/fs';
-	import { v4 as uuidv4 } from 'uuid';
+	import { v4 as uuid } from 'uuid';
+
+	function parseForm(form: HTMLFormElement): CharacterSheet {
+		const rawData = new FormData(form);
+		const data: any = Object.fromEntries(rawData.entries());
+		data['level'] = parseInt(data['level']);
+		return data;
+	}
 
 	async function handleSubmit(e: SubmitEvent) {
-		const rawData = new FormData(e.target as HTMLFormElement);
-		const data = Object.fromEntries(rawData.entries()) as CharacterSheet;
-		await writeTextFile(`characters/${uuidv4()}.json`, JSON.stringify(data), {
+		const data = parseForm(e.target as HTMLFormElement);
+
+		await writeTextFile(`characters/${uuid()}.json`, JSON.stringify(data), {
 			dir: BaseDirectory.AppConfig
 		});
 		// TODO: Add a toast to show that the character was created
@@ -27,6 +35,15 @@
 		<label for="level">Level</label>
 		<input name="level" required type="number" max="20" min="1" />
 	</div>
+	<div>
+		<label for="characterClass">Class</label>
+		<select name="characterClass" required>
+			{#each CHARACTER_CLASSES as characterClass}
+				<option value={characterClass}>{characterClass}</option>
+			{/each}
+		</select>
+	</div>
+
 	<div>
 		<label for="type">Caster Type</label>
 		<select name="type" required>
