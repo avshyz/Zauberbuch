@@ -1,2 +1,1 @@
-<h1>Settings Page</h1>
-<p>hello marie!</p>
+<h2>General Settings</h2>
