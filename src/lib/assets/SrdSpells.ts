@@ -1,7 +1,18 @@
 import type { CharacterClass } from '$lib/types';
 
+type CastingType =
+	| '1 action'
+	| '1 bonus action'
+	| '1 reaction'
+	| '1 minute'
+	| '10 minutes'
+	| '1 hour'
+	| '8 hours'
+	| '12 hours'
+	| '24 hours';
+
 export type Spell = {
-	casting_time: string;
+	casting_time: CastingType | `${CastingType} or ${CastingType}`;
 	classes: CharacterClass[];
 	components: {
 		material: boolean;
@@ -17,6 +28,7 @@ export type Spell = {
 	ritual: boolean;
 	school: string;
 	higher_levels?: string;
+	reaction_trigger?: string;
 	level: string;
 	tags: string[];
 	type: string;
@@ -663,7 +675,8 @@ const spells: Spell[] = [
 		type: '1st-level necromancy'
 	},
 	{
-		casting_time: '1 reaction, which you take when you or a creature within 60 feet of you falls',
+		casting_time: '1 reaction',
+		reaction_trigger: 'when you or a creature within 60 feet of you falls',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -898,8 +911,8 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time:
-			'1 reaction, which you take in response to being damaged by a creature within 60 feet of you that you can see.',
+		casting_time: '1 reaction',
+		reaction_trigger: 'when being damaged by a creature within 60 feet of you that you can see.',
 		classes: ['warlock'],
 		components: {
 			material: false,
@@ -1511,8 +1524,8 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time:
-			'1 reaction, which you take when you are hit by an attack or targeted by the magic missile spell',
+		casting_time: '1 reaction',
+		reaction_trigger: 'when you are hit by an attack or targeted by the magic missile spell',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -2445,8 +2458,9 @@ const spells: Spell[] = [
 		type: '3rd-level conjuration'
 	},
 	{
-		casting_time:
-			'1 reaction, which you take when you see a creature within 60 feet of you casting a spell.',
+		casting_time: '1 reaction',
+		reaction_trigger:
+			'which you take when you see a creature within 60 feet of you casting a spell.',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -7550,8 +7564,8 @@ const spells: Spell[] = [
 		type: 'Transmutation cantrip'
 	},
 	{
-		casting_time:
-			'1 reaction, which you take when you take acid, cold, fire, lightning, or thunder damage',
+		casting_time: '1 reaction',
+		reaction_trigger: 'when you take acid, cold, fire, lightning, or thunder damage',
 		classes: ['druid', 'ranger', 'wizard'],
 		components: {
 			material: false,
