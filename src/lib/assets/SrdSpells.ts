@@ -2522,8 +2522,7 @@ const spells: Spell[] = [
 	},
 	{
 		casting_time: '1 reaction',
-		reaction_trigger:
-			'which you take when you see a creature within 60 feet of you casting a spell.',
+		reaction_trigger: 'when you see a creature within 60 feet of you casting a spell.',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
