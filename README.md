@@ -14,7 +14,12 @@ npm run dev
 
 # TODO
 
-- support half and third casters according to [this](https://rpg.stackexchange.com/questions/152448/what-is-the-difference-between-1-3-1-2-and-full-casters)
+- Support more classes
+  - paladin
+  - fighter
+- normalize spells
+  - concentration nonopitonal
+  - areas as first class column
 - cool icons like [these](https://donjon.bin.sh/5e/quickref/)
 - spell references
   - [donjon](https://donjon.bin.sh/5e/spells/)
