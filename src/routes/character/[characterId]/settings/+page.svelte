@@ -23,6 +23,7 @@
 
 <h1>Character Settings</h1>
 
+<h2>Edit Character</h2>
 <CharacterForm initialValues={data.character} on:submit={handleSubmit} />
 <button on:click={handleDelete}>DELETE</button>
 

@@ -12,3 +12,9 @@
 </nav>
 
 <p>Spell Slots: {data.spellSlots}</p>
+
+<h3>Available Spells</h3>
+
+{#each data.relevantSpells as spell}
+	<p>{spell.name}</p>
+{/each}
