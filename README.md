@@ -14,9 +14,6 @@ npm run dev
 
 # TODO
 
-- Support more classes
-  - paladin
-  - fighter
 - normalize spells
   - concentration nonopitonal
   - areas as first class column
