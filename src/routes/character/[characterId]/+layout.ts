@@ -1,7 +1,7 @@
-import { BaseDirectory, readTextFile } from '@tauri-apps/api/fs';
 import type { CharacterSheet, CharacterClass } from '$lib/types';
 import { CASTER_TYPE_TO_SLOT_TABLE } from '$lib/spellSlots';
 import spells from '$lib/assets/SrdSpells';
+import { loadCharacter } from '$lib/orm/character';
 
 const SPELL_LIST_MAPPER: { [key in CharacterClass]?: CharacterClass } = {
 	rogue: 'wizard',
@@ -10,10 +10,7 @@ const SPELL_LIST_MAPPER: { [key in CharacterClass]?: CharacterClass } = {
 
 export const load = async ({ params }) => {
 	const { characterId } = params;
-	const characterData = await readTextFile(`characters/${characterId}`, {
-		dir: BaseDirectory.AppConfig
-	});
-	const character = JSON.parse(characterData) as CharacterSheet;
+	const character = await loadCharacter(characterId);
 
 	const relevantSpells = spells
 		.filter(
