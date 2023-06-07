@@ -11,6 +11,7 @@
 			<th>Spell</th>
 			<th>Casting Time</th>
 			<th>Range</th>
+			<th>action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -28,6 +29,24 @@
 					{/if}
 				</td>
 				<td>{spell.range}</td>
+				<td>
+					<button
+						type="button"
+						on:click={() => {
+							const learnedSpells = data.character.learnedSpells;
+
+							if (learnedSpells.includes(spell.name)) {
+								data.character.learnedSpells = learnedSpells.filter(
+									(learnedSpell) => learnedSpell !== spell.name
+								);
+							} else {
+								data.character.learnedSpells = [...learnedSpells, spell.name];
+							}
+						}}
+					>
+						{data.character.learnedSpells.includes(spell.name) ? 'UNLEARN' : 'LEARN'}
+					</button>
+				</td>
 			</tr>
 		{/each}
 	</tbody>
