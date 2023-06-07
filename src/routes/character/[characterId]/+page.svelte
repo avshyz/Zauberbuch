@@ -1,15 +1,15 @@
 <script lang="ts">
-	export let data;
+	import { character, availableSpells, spellSlots } from '$lib/stores/characterSheet.js';
 </script>
 
-<h1>{data.character.name}</h1>
-<h2>{data.character.characterClass} - Level {data.character.level}</h2>
+<h1>{$character.name}</h1>
+<h2>{$character.characterClass} - Level {$character.level}</h2>
 
 <nav>
 	<li><a href="settings">Manage Character</a></li>
 </nav>
 
-<p>Spell Slots: {data.spellSlots}</p>
+<p>Spell Slots: {$spellSlots}</p>
 
 <h3>Available Spells</h3>
 
@@ -23,7 +23,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each data.relevantSpells as spell (spell.name)}
+		{#each $availableSpells as spell (spell.name)}
 			<tr>
 				<td>{spell.level}</td>
 				<td>{spell.name}</td>
