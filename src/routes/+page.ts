@@ -1,5 +1,4 @@
 import type { CharacterSheet } from '$lib/types';
-import type { PageLoad } from './$types';
 import { readTextFile, readDir, BaseDirectory, type FileEntry } from '@tauri-apps/api/fs';
 
 export const load = (async () => {
@@ -12,7 +11,7 @@ export const load = (async () => {
 			.filter((entry): entry is [string, CharacterSheet] => !!entry[0] && !!entry[1])
 			.map(([fileName, data]) => ({ id: fileName, name: data.name }))
 	};
-}) satisfies PageLoad;
+});
 
 async function normalizeEntry(entry: FileEntry) {
 	const res = await readTextFile(entry.path, { dir: BaseDirectory.AppConfig });

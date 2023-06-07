@@ -13,6 +13,9 @@
 	}
 
 	async function handleDelete() {
+		const resp = prompt(`You're going to delete ${data.character.name}. Type DELETE to confirm.`);
+		if (resp !== 'DELETE') return;
+
 		await removeFile(`characters/${data.uuid}`, {
 			dir: BaseDirectory.AppConfig
 		});

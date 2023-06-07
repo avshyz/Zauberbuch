@@ -1,5 +1,4 @@
 import { BaseDirectory, readTextFile } from '@tauri-apps/api/fs';
-import type { LayoutLoad } from './$types';
 import type { CharacterSheet, CharacterClass } from '$lib/types';
 import { CASTER_TYPE_TO_SLOT_TABLE } from '$lib/spellSlots';
 import spells from '$lib/assets/SrdSpells';
@@ -9,7 +8,7 @@ const SPELL_LIST_MAPPER: { [key in CharacterClass]?: CharacterClass } = {
 	fighter: 'wizard'
 };
 
-export const load = (async ({ params }) => {
+export const load = async ({ params }) => {
 	const { characterId } = params;
 	const characterData = await readTextFile(`characters/${characterId}`, {
 		dir: BaseDirectory.AppConfig
@@ -31,7 +30,7 @@ export const load = (async ({ params }) => {
 		spellSlots: getCharacterSpellSlots(character),
 		relevantSpells
 	};
-}) satisfies LayoutLoad;
+};
 
 function getCharacterSpellSlots(character: CharacterSheet) {
 	return CASTER_TYPE_TO_SLOT_TABLE[character.characterClass]?.[character.level - 1];
