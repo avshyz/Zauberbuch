@@ -1,10 +1,9 @@
 <script lang="ts">
 	import CharacterForm from '$lib/components/CharacterForm.svelte';
 	import { BaseDirectory, writeTextFile, removeFile } from '@tauri-apps/api/fs';
-	import type { PageData } from './$types';
 	import type { CharacterSheet } from '$lib/types';
 	import { goto } from '$app/navigation';
-	export let data: PageData;
+	export let data;
 
 	async function handleSubmit(e: CustomEvent<CharacterSheet>) {
 		await writeTextFile(`characters/${data.uuid}`, JSON.stringify(e.detail), {
