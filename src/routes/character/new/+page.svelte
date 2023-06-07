@@ -4,8 +4,8 @@
 	import CharacterForm from '$lib/components/CharacterForm.svelte';
 	import type { CharacterSheet } from '$lib/types';
 
-	async function handleSubmit(e: CustomEvent<CharacterSheet>) {
-		await saveCharacter(e.detail);
+	async function handleSubmit(e: CustomEvent<Omit<CharacterSheet, 'learnedSpells'>>) {
+		await saveCharacter({ ...e.detail, learnedSpells: [] });
 		// TODO: Add a toast to show that the character was created
 		goto('/');
 	}

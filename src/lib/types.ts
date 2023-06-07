@@ -6,4 +6,5 @@ export type CharacterSheet = {
 	name: string;
 	level: number;
 	characterClass: CharacterClass;
+	learnedSpells: string[];
 };
