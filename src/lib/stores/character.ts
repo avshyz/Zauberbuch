@@ -10,7 +10,7 @@ import type { CharacterClass, CharacterSheet } from '../types';
 import { v4 as uuid } from 'uuid';
 import { derived, writable } from 'svelte/store';
 import { CASTER_TYPE_TO_SLOT_TABLE } from '$lib/spellSlots';
-import spells from '$lib/assets/SrdSpells';
+import spells, { type Spell } from '$lib/assets/SrdSpells';
 
 const SPELL_LIST_MAPPER: { [key in CharacterClass]?: CharacterClass } = {
 	rogue: 'wizard',
@@ -21,7 +21,7 @@ type CharacterStoreData = CharacterSheet & { id: string };
 
 const EMPTY_SHEET: CharacterStoreData = {
 	characterClass: 'fighter',
-	learnedSpells: [],
+	learnedSpellsIds: [],
 	level: 1,
 	name: '',
 	id: ''
@@ -38,7 +38,10 @@ function createCharacterStore() {
 			proficiencyBonus: Math.floor(2 + ($character.level - 1) / 4),
 			availableSpellSlots,
 			maxAvailableSpellLevel,
-			isSpellLearned: (spell: string) => $character.learnedSpells.includes(spell),
+			isSpellLearned: (spell: string) => $character.learnedSpellsIds.includes(spell),
+			learnedSpells: spells
+				.filter(({ name }) => $character.learnedSpellsIds.includes(name))
+				.sort(spellComperator),
 			availableSpells: spells
 				.filter(
 					({ level, classes }) =>
@@ -46,8 +49,7 @@ function createCharacterStore() {
 							SPELL_LIST_MAPPER[$character.characterClass] ?? $character.characterClass
 						) && level <= maxAvailableSpellLevel
 				)
-				.sort((a, b) => a.name.localeCompare(b.name))
-				.sort((a, b) => a.level - b.level)
+				.sort(spellComperator)
 		};
 	});
 
@@ -87,20 +89,26 @@ function createCharacterStore() {
 			},
 			toggleLearnSpell(spell: string) {
 				persistentUpdate((sheet) => {
-					const learnedSpells = sheet.learnedSpells;
+					const learnedSpells = sheet.learnedSpellsIds;
 
 					if (learnedSpells.includes(spell)) {
 						return {
 							...sheet,
-							learnedSpells: learnedSpells.filter((learnedSpell) => learnedSpell !== spell)
+							learnedSpellsIds: learnedSpells.filter((learnedSpell) => learnedSpell !== spell)
 						};
 					} else {
 						return {
 							...sheet,
-							learnedSpells: [...learnedSpells, spell]
+							learnedSpellsIds: [...learnedSpells, spell]
 						};
 					}
 				});
+			},
+			castSpell(spell: string) {
+				console.log('TODO: Implement Me', spell);
+			},
+			rest() {
+				console.log('TODO: Implement Me');
 			}
 		}
 	};
@@ -117,4 +125,11 @@ export async function saveCharacter(sheet: CharacterSheet, id?: string) {
 async function normalizeEntry(entry: FileEntry) {
 	const res = await readTextFile(entry.path, { dir: BaseDirectory.AppConfig });
 	return [entry.name, JSON.parse(res) as CharacterSheet];
+}
+
+function spellComperator(a: Spell, b: Spell) {
+	if (a.level === b.level) {
+		return a.name.localeCompare(b.name);
+	}
+	return a.level - b.level;
 }

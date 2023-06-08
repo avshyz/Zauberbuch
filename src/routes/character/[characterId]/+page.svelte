@@ -4,6 +4,6 @@
 
 <p>Spell Slots: {$characterSheet.availableSpellSlots}</p>
 
-{#each $characterSheet.learnedSpells as spell}
-	<p>{spell}</p>
+{#each $characterSheet.learnedSpells as spell (spell.name)}
+	<p>{spell.name} {spell.level} <button>Cast</button></p>
 {/each}

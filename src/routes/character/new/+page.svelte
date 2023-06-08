@@ -9,7 +9,7 @@
 
 <CharacterForm
 	on:submit={async (e) => {
-		await saveCharacter({ ...e.detail, learnedSpells: [] });
+		await saveCharacter({ ...e.detail, learnedSpellsIds: [] });
 		// TODO: Add a toast to show that the character was created
 		goto('/');
 	}}

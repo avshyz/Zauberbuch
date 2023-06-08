@@ -6,7 +6,7 @@ export type CharacterSheet = {
 	name: string;
 	level: number;
 	characterClass: CharacterClass;
-	learnedSpells: string[];
+	learnedSpellsIds: string[];
 };
 
 export type CharacterFormResult = Omit<CharacterSheet, 'learnedSpells'>;
