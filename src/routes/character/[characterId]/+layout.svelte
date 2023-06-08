@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	export let data;
+	import { characterSheet } from '$lib/stores/character.js';
 </script>
 
-<h1>{data.character.name}</h1>
-<h2>{data.character.characterClass} - Level {data.character.level}</h2>
+<h1>{$characterSheet.name}</h1>
+<h2>{$characterSheet.characterClass} - Level {$characterSheet.level}</h2>
 <nav>
 	<ul>
 		<li><a href={`/character/${$page.params.characterId}/`}>Play</a></li>

@@ -1,31 +1,32 @@
 <script lang="ts">
 	import CharacterForm from '$lib/components/CharacterForm.svelte';
-	import { BaseDirectory, writeTextFile, removeFile } from '@tauri-apps/api/fs';
 	import type { CharacterSheet } from '$lib/types';
 	import { goto } from '$app/navigation';
-	import { deleteCharacter, saveCharacter } from '$lib/orm/character.js';
-	export let data;
+	import { characterSheet, saveCharacter } from '$lib/stores/character.js';
+	import { page } from '$app/stores';
 
 	async function handleSubmit(e: CustomEvent<Omit<CharacterSheet, 'learnedSpells'>>) {
+		const { characterId } = $page.params;
 		saveCharacter(
 			{
 				...e.detail,
 				// TODO: find non-relevant spells here?
 				learnedSpells:
-					e.detail.characterClass !== data.character.characterClass
+					e.detail.characterClass !== $characterSheet.characterClass
 						? []
-						: data.character.learnedSpells
+						: $characterSheet.learnedSpells
 			},
-			data.uuid
+			characterId
 		);
-		goto(`/character/${data.uuid}`, { invalidateAll: true });
+		goto(`/character/${characterId}`, { invalidateAll: true });
 	}
 
 	async function handleDelete() {
-		const resp = prompt(`You're going to delete ${data.character.name}. Type DELETE to confirm.`);
-		if (resp !== 'DELETE') return;
+		const { characterId } = $page.params;
 
-		await deleteCharacter(data.uuid);
+		const resp = prompt(`You're going to delete ${$characterSheet.name}. Type DELETE to confirm.`);
+		if (resp !== 'DELETE') return;
+		characterSheet.delete(characterId);
 		goto('/');
 	}
 </script>
@@ -33,7 +34,7 @@
 <h1>Character Settings</h1>
 
 <h2>Edit Character</h2>
-<CharacterForm initialValues={data.character} on:submit={handleSubmit} />
+<CharacterForm initialValues={$characterSheet} on:submit={handleSubmit} />
 <button on:click={handleDelete}>DELETE</button>
 
 <style>

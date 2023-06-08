@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { saveCharacter } from '$lib/orm/character';
+	import { saveCharacter } from '$lib/stores/character';
 	import CharacterForm from '$lib/components/CharacterForm.svelte';
 	import type { CharacterSheet } from '$lib/types';
 

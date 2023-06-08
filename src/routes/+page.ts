@@ -1,7 +1,7 @@
-import { listCharacters } from '$lib/orm/character';
+import { characterSheet } from '$lib/stores/character';
 
 export const load = async () => {
 	return {
-		characters: await listCharacters()
+		characters: await characterSheet.listAllCharacters()
 	};
 };

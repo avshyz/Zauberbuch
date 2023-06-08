@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let data;
+	import { availableSpells, characterSheet, isSpellLearned } from '$lib/stores/character.js';
 </script>
 
 <h3>Available Spells</h3>
@@ -15,7 +15,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each data.relevantSpells as spell (spell.name)}
+		{#each $availableSpells as spell (spell.name)}
 			<tr>
 				<td>{spell.level}</td>
 				<td>{spell.name}</td>
@@ -30,21 +30,8 @@
 				</td>
 				<td>{spell.range}</td>
 				<td>
-					<button
-						type="button"
-						on:click={() => {
-							const learnedSpells = data.character.learnedSpells;
-
-							if (learnedSpells.includes(spell.name)) {
-								data.character.learnedSpells = learnedSpells.filter(
-									(learnedSpell) => learnedSpell !== spell.name
-								);
-							} else {
-								data.character.learnedSpells = [...learnedSpells, spell.name];
-							}
-						}}
-					>
-						{data.character.learnedSpells.includes(spell.name) ? 'UNLEARN' : 'LEARN'}
+					<button type="button" on:click={() => characterSheet.toggleLearnSpell(spell.name)}>
+						{$isSpellLearned(spell.name) ? 'UNLEARN' : 'LEARN'}
 					</button>
 				</td>
 			</tr>

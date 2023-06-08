@@ -1,9 +1,9 @@
 <script lang="ts">
-	export let data;
+	import { availableSpellSlots, characterSheet } from '$lib/stores/character.js';
 </script>
 
-<p>Spell Slots: {data.spellSlots}</p>
+<p>Spell Slots: {$availableSpellSlots}</p>
 
-{#each data.character.learnedSpells as spell}
+{#each $characterSheet.learnedSpells as spell}
 	<p>{spell}</p>
 {/each}
