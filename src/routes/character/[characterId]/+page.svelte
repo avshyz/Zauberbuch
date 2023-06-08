@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { availableSpellSlots, characterSheet } from '$lib/stores/character.js';
+	import { characterSheet } from '$lib/stores/character.js';
 </script>
 
-<p>Spell Slots: {$availableSpellSlots}</p>
+<p>Spell Slots: {$characterSheet.availableSpellSlots}</p>
 
 {#each $characterSheet.learnedSpells as spell}
 	<p>{spell}</p>

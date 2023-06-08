@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { availableSpells, characterSheet, isSpellLearned } from '$lib/stores/character.js';
+	import { characterSheet } from '$lib/stores/character.js';
 </script>
 
 <h3>Available Spells</h3>
@@ -15,7 +15,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each $availableSpells as spell (spell.name)}
+		{#each $characterSheet.availableSpells as spell (spell.name)}
 			<tr>
 				<td>{spell.level}</td>
 				<td>{spell.name}</td>
@@ -31,7 +31,7 @@
 				<td>{spell.range}</td>
 				<td>
 					<button type="button" on:click={() => characterSheet.toggleLearnSpell(spell.name)}>
-						{$isSpellLearned(spell.name) ? 'UNLEARN' : 'LEARN'}
+						{$characterSheet.isSpellLearned(spell.name) ? 'UNLEARN' : 'LEARN'}
 					</button>
 				</td>
 			</tr>

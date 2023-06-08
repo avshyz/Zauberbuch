@@ -4,7 +4,9 @@
 </script>
 
 <h1>{$characterSheet.name}</h1>
-<h2>{$characterSheet.characterClass} - Level {$characterSheet.level}</h2>
+<h2>
+	{$characterSheet.characterClass} - Level {$characterSheet.level}
+</h2>
 <nav>
 	<ul>
 		<li><a href={`/character/${$page.params.characterId}/`}>Play</a></li>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import CharacterForm from '$lib/components/CharacterForm.svelte';
-	import type { CharacterSheet } from '$lib/types';
 	import { goto } from '$app/navigation';
 	import { characterSheet, saveCharacter } from '$lib/stores/character.js';
 	import { page } from '$app/stores';

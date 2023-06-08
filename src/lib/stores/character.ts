@@ -17,17 +17,6 @@ const SPELL_LIST_MAPPER: { [key in CharacterClass]?: CharacterClass } = {
 	fighter: 'wizard'
 };
 
-export async function saveCharacter(sheet: CharacterSheet, id?: string) {
-	return writeTextFile(`characters/${id ?? uuid()}`, JSON.stringify(sheet), {
-		dir: BaseDirectory.AppConfig
-	});
-}
-
-async function normalizeEntry(entry: FileEntry) {
-	const res = await readTextFile(entry.path, { dir: BaseDirectory.AppConfig });
-	return [entry.name, JSON.parse(res) as CharacterSheet];
-}
-
 const EMPTY_SHEET: CharacterSheet = {
 	characterClass: 'fighter',
 	learnedSpells: [],
@@ -35,10 +24,33 @@ const EMPTY_SHEET: CharacterSheet = {
 	name: ''
 };
 function createCharacterStore() {
-	const { subscribe, set, update } = writable<CharacterSheet>(EMPTY_SHEET);
+	const store = writable<CharacterSheet>(EMPTY_SHEET);
+	const derivedStore = derived(store, ($character) => {
+		const availableSpellSlots =
+			CASTER_TYPE_TO_SLOT_TABLE[$character.characterClass]?.[$character.level - 1];
+		const maxAvailableSpellLevel = availableSpellSlots?.findLastIndex((slot) => slot > 0) ?? 0;
+		return {
+			...$character,
+			proficiencyBonus: Math.floor(2 + ($character.level - 1) / 4),
+			availableSpellSlots,
+			maxAvailableSpellLevel,
+			isSpellLearned: (spell: string) => $character.learnedSpells.includes(spell),
+			availableSpells: spells
+				.filter(
+					({ level, classes }) =>
+						classes.includes(
+							SPELL_LIST_MAPPER[$character.characterClass] ?? $character.characterClass
+						) && level <= maxAvailableSpellLevel
+				)
+				.sort((a, b) => a.name.localeCompare(b.name))
+				.sort((a, b) => a.level - b.level)
+		};
+	});
+
+	const { set, update } = store;
 
 	return {
-		subscribe,
+		subscribe: derivedStore.subscribe,
 		async listAllCharacters() {
 			const entries = await readDir('characters', { dir: BaseDirectory.AppConfig });
 			const res = await Promise.all(entries.map(normalizeEntry));
@@ -82,34 +94,13 @@ function createCharacterStore() {
 
 export const characterSheet = createCharacterStore();
 
-export const proficiencyBonus = derived(characterSheet, ($character) =>
-	Math.floor(2 + ($character.level - 1) / 4)
-);
+export async function saveCharacter(sheet: CharacterSheet, id?: string) {
+	return writeTextFile(`characters/${id ?? uuid()}`, JSON.stringify(sheet), {
+		dir: BaseDirectory.AppConfig
+	});
+}
 
-export const availableSpellSlots = derived(
-	characterSheet,
-	($character) => CASTER_TYPE_TO_SLOT_TABLE[$character.characterClass]?.[$character.level - 1]
-);
-
-export const maxAvailableSpellLevel = derived(
-	availableSpellSlots,
-	($slots) => $slots?.findLastIndex((slot) => slot > 0) ?? 0
-);
-
-export const isSpellLearned = derived(characterSheet, ($character) => {
-	return (spell: string) => $character.learnedSpells.includes(spell);
-});
-
-export const availableSpells = derived(
-	[characterSheet, maxAvailableSpellLevel],
-	([$character, $maxLevel]) =>
-		spells
-			.filter(
-				({ level, classes }) =>
-					classes.includes(
-						SPELL_LIST_MAPPER[$character.characterClass] ?? $character.characterClass
-					) && level <= $maxLevel
-			)
-			.sort((a, b) => a.name.localeCompare(b.name))
-			.sort((a, b) => a.level - b.level)
-);
+async function normalizeEntry(entry: FileEntry) {
+	const res = await readTextFile(entry.path, { dir: BaseDirectory.AppConfig });
+	return [entry.name, JSON.parse(res) as CharacterSheet];
+}
