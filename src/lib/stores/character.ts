@@ -17,14 +17,18 @@ const SPELL_LIST_MAPPER: { [key in CharacterClass]?: CharacterClass } = {
 	fighter: 'wizard'
 };
 
-const EMPTY_SHEET: CharacterSheet = {
+type CharacterStoreData = CharacterSheet & { id: string };
+
+const EMPTY_SHEET: CharacterStoreData = {
 	characterClass: 'fighter',
 	learnedSpells: [],
 	level: 1,
-	name: ''
+	name: '',
+	id: ''
 };
 function createCharacterStore() {
-	const store = writable<CharacterSheet>(EMPTY_SHEET);
+	const store = writable<CharacterStoreData>(EMPTY_SHEET);
+	const { set, update } = store;
 	const derivedStore = derived(store, ($character) => {
 		const availableSpellSlots =
 			CASTER_TYPE_TO_SLOT_TABLE[$character.characterClass]?.[$character.level - 1];
@@ -47,11 +51,18 @@ function createCharacterStore() {
 		};
 	});
 
-	const { set, update } = store;
+	function persistentUpdate(fn: (sheet: CharacterStoreData) => CharacterStoreData) {
+		update((sheet) => {
+			const res = fn(sheet);
+			const { id, ...character } = res;
+			saveCharacter(character, id);
+			return res;
+		});
+	}
 
 	return {
 		subscribe: derivedStore.subscribe,
-		update,
+		update: persistentUpdate,
 		actions: {
 			async listAllCharacters() {
 				const entries = await readDir('characters', { dir: BaseDirectory.AppConfig });
@@ -72,10 +83,10 @@ function createCharacterStore() {
 					dir: BaseDirectory.AppConfig
 				});
 				const res = JSON.parse(characterData) as CharacterSheet;
-				set(res);
+				set({ ...res, id });
 			},
 			toggleLearnSpell(spell: string) {
-				update((sheet) => {
+				persistentUpdate((sheet) => {
 					const learnedSpells = sheet.learnedSpells;
 
 					if (learnedSpells.includes(spell)) {

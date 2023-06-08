@@ -1,7 +1,7 @@
 <script lang="ts">
 	import CharacterForm from '$lib/components/CharacterForm.svelte';
 	import { goto } from '$app/navigation';
-	import { characterSheet, saveCharacter } from '$lib/stores/character.js';
+	import { characterSheet } from '$lib/stores/character.js';
 	import { page } from '$app/stores';
 
 	async function handleDelete() {
@@ -21,7 +21,7 @@
 	initialValues={$characterSheet}
 	on:submit={(e) => {
 		const { characterId } = $page.params;
-		saveCharacter({ ...e.detail, learnedSpells: $characterSheet.learnedSpells }, characterId);
+		characterSheet.update((c) => ({ ...c, ...e.detail }));
 		goto(`/character/${characterId}`, { invalidateAll: true });
 	}}
 />
