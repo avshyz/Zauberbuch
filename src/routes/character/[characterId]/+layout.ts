@@ -29,6 +29,10 @@ export const load = async ({ params }) => {
 	};
 };
 
+function getCharacterProficiencyBonus(character: CharacterSheet) {
+	return Math.floor(2 + (character.level - 1) / 4);
+}
+
 function getCharacterSpellSlots(character: CharacterSheet) {
 	return CASTER_TYPE_TO_SLOT_TABLE[character.characterClass]?.[character.level - 1];
 }

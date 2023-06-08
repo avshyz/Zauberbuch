@@ -3,12 +3,21 @@
 	import { BaseDirectory, writeTextFile, removeFile } from '@tauri-apps/api/fs';
 	import type { CharacterSheet } from '$lib/types';
 	import { goto } from '$app/navigation';
+	import { deleteCharacter, saveCharacter } from '$lib/orm/character.js';
 	export let data;
 
-	async function handleSubmit(e: CustomEvent<CharacterSheet>) {
-		await writeTextFile(`characters/${data.uuid}`, JSON.stringify(e.detail), {
-			dir: BaseDirectory.AppConfig
-		});
+	async function handleSubmit(e: CustomEvent<Omit<CharacterSheet, 'learnedSpells'>>) {
+		saveCharacter(
+			{
+				...e.detail,
+				// TODO: find non-relevant spells here?
+				learnedSpells:
+					e.detail.characterClass !== data.character.characterClass
+						? []
+						: data.character.learnedSpells
+			},
+			data.uuid
+		);
 		goto(`/character/${data.uuid}`, { invalidateAll: true });
 	}
 
@@ -16,9 +25,7 @@
 		const resp = prompt(`You're going to delete ${data.character.name}. Type DELETE to confirm.`);
 		if (resp !== 'DELETE') return;
 
-		await removeFile(`characters/${data.uuid}`, {
-			dir: BaseDirectory.AppConfig
-		});
+		await deleteCharacter(data.uuid);
 		goto('/');
 	}
 </script>
