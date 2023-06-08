@@ -8,3 +8,5 @@ export type CharacterSheet = {
 	characterClass: CharacterClass;
 	learnedSpells: string[];
 };
+
+export type CharacterFormResult = Omit<CharacterSheet, 'learnedSpells'>;

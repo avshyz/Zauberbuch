@@ -3,14 +3,14 @@
 	import { saveCharacter } from '$lib/stores/character';
 	import CharacterForm from '$lib/components/CharacterForm.svelte';
 	import type { CharacterSheet } from '$lib/types';
-
-	async function handleSubmit(e: CustomEvent<Omit<CharacterSheet, 'learnedSpells'>>) {
-		await saveCharacter({ ...e.detail, learnedSpells: [] });
-		// TODO: Add a toast to show that the character was created
-		goto('/');
-	}
 </script>
 
 <h1>Character creation screen!</h1>
 
-<CharacterForm on:submit={handleSubmit} />
+<CharacterForm
+	on:submit={async (e) => {
+		await saveCharacter({ ...e.detail, learnedSpells: [] });
+		// TODO: Add a toast to show that the character was created
+		goto('/');
+	}}
+/>

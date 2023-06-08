@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { CHARACTER_CLASSES } from '$lib/consts';
-	import type { CharacterSheet } from '$lib/types';
+	import type { CharacterFormResult, CharacterSheet } from '$lib/types';
 	import { validator } from '@felte/validator-zod';
 	import { z } from 'zod';
 	import { createForm } from 'felte';
@@ -8,8 +8,8 @@
 	import { reporter, ValidationMessage } from '@felte/reporter-svelte';
 	import { CASTER_TYPE_TO_SLOT_TABLE } from '$lib/spellSlots';
 
-	export let initialValues: CharacterSheet | undefined = undefined;
-	const dispatch = createEventDispatcher<{ submit: CharacterSheet }>();
+	export let initialValues: CharacterFormResult | undefined = undefined;
+	const dispatch = createEventDispatcher<{ submit: CharacterFormResult }>();
 
 	const SUPPORTED_CLASSES = Object.entries(CASTER_TYPE_TO_SLOT_TABLE)
 		.filter(([pcClass, slots]) => !!slots)
@@ -32,7 +32,7 @@
 
 	const { form } = createForm<z.infer<typeof schema>>({
 		extend: [validator({ schema }), reporter],
-		onSubmit: (value: CharacterSheet) => {
+		onSubmit: (value: CharacterFormResult) => {
 			dispatch('submit', value);
 		},
 		initialValues

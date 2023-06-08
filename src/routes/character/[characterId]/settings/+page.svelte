@@ -5,22 +5,6 @@
 	import { characterSheet, saveCharacter } from '$lib/stores/character.js';
 	import { page } from '$app/stores';
 
-	async function handleSubmit(e: CustomEvent<Omit<CharacterSheet, 'learnedSpells'>>) {
-		const { characterId } = $page.params;
-		saveCharacter(
-			{
-				...e.detail,
-				// TODO: find non-relevant spells here?
-				learnedSpells:
-					e.detail.characterClass !== $characterSheet.characterClass
-						? []
-						: $characterSheet.learnedSpells
-			},
-			characterId
-		);
-		goto(`/character/${characterId}`, { invalidateAll: true });
-	}
-
 	async function handleDelete() {
 		const { characterId } = $page.params;
 
@@ -34,7 +18,14 @@
 <h1>Character Settings</h1>
 
 <h2>Edit Character</h2>
-<CharacterForm initialValues={$characterSheet} on:submit={handleSubmit} />
+<CharacterForm
+	initialValues={$characterSheet}
+	on:submit={(e) => {
+		const { characterId } = $page.params;
+		saveCharacter({ ...e.detail, learnedSpells: $characterSheet.learnedSpells }, characterId);
+		goto(`/character/${characterId}`, { invalidateAll: true });
+	}}
+/>
 <button on:click={handleDelete}>DELETE</button>
 
 <style>
