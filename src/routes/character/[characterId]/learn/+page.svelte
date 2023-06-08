@@ -30,7 +30,10 @@
 				</td>
 				<td>{spell.range}</td>
 				<td>
-					<button type="button" on:click={() => characterSheet.toggleLearnSpell(spell.name)}>
+					<button
+						type="button"
+						on:click={() => characterSheet.actions.toggleLearnSpell(spell.name)}
+					>
 						{$characterSheet.isSpellLearned(spell.name) ? 'UNLEARN' : 'LEARN'}
 					</button>
 				</td>

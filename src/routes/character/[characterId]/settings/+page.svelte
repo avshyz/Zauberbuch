@@ -9,7 +9,7 @@
 
 		const resp = prompt(`You're going to delete ${$characterSheet.name}. Type DELETE to confirm.`);
 		if (resp !== 'DELETE') return;
-		characterSheet.delete(characterId);
+		characterSheet.actions.delete(characterId);
 		goto('/');
 	}
 </script>

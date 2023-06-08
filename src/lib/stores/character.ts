@@ -51,43 +51,46 @@ function createCharacterStore() {
 
 	return {
 		subscribe: derivedStore.subscribe,
-		async listAllCharacters() {
-			const entries = await readDir('characters', { dir: BaseDirectory.AppConfig });
-			const res = await Promise.all(entries.map(normalizeEntry));
+		update,
+		actions: {
+			async listAllCharacters() {
+				const entries = await readDir('characters', { dir: BaseDirectory.AppConfig });
+				const res = await Promise.all(entries.map(normalizeEntry));
 
-			return res
-				.filter((entry): entry is [string, CharacterSheet] => !!entry[0] && !!entry[1])
-				.map(([fileName, data]) => ({ id: fileName, name: data.name }));
-		},
-		async delete(id: string) {
-			await removeFile(`characters/${id}`, {
-				dir: BaseDirectory.AppConfig
-			});
-			set(EMPTY_SHEET);
-		},
-		async load(id: string) {
-			const characterData = await readTextFile(`characters/${id}`, {
-				dir: BaseDirectory.AppConfig
-			});
-			const res = JSON.parse(characterData) as CharacterSheet;
-			set(res);
-		},
-		toggleLearnSpell(spell: string) {
-			update((sheet) => {
-				const learnedSpells = sheet.learnedSpells;
+				return res
+					.filter((entry): entry is [string, CharacterSheet] => !!entry[0] && !!entry[1])
+					.map(([fileName, data]) => ({ id: fileName, name: data.name }));
+			},
+			async delete(id: string) {
+				await removeFile(`characters/${id}`, {
+					dir: BaseDirectory.AppConfig
+				});
+				set(EMPTY_SHEET);
+			},
+			async load(id: string) {
+				const characterData = await readTextFile(`characters/${id}`, {
+					dir: BaseDirectory.AppConfig
+				});
+				const res = JSON.parse(characterData) as CharacterSheet;
+				set(res);
+			},
+			toggleLearnSpell(spell: string) {
+				update((sheet) => {
+					const learnedSpells = sheet.learnedSpells;
 
-				if (learnedSpells.includes(spell)) {
-					return {
-						...sheet,
-						learnedSpells: learnedSpells.filter((learnedSpell) => learnedSpell !== spell)
-					};
-				} else {
-					return {
-						...sheet,
-						learnedSpells: [...learnedSpells, spell]
-					};
-				}
-			});
+					if (learnedSpells.includes(spell)) {
+						return {
+							...sheet,
+							learnedSpells: learnedSpells.filter((learnedSpell) => learnedSpell !== spell)
+						};
+					} else {
+						return {
+							...sheet,
+							learnedSpells: [...learnedSpells, spell]
+						};
+					}
+				});
+			}
 		}
 	};
 }
