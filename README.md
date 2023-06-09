@@ -17,6 +17,13 @@ npm run dev
 - normalize spells
   - concentration nonopitonal
   - areas as first class column
+- fix cantrips
+- links should be active when in page
+- character portraits
+- empty screens
+  - "Llearn Spells"
+  - "Create Character"
+
 - cool icons like [these](https://donjon.bin.sh/5e/quickref/)
 - spell references
   - [donjon](https://donjon.bin.sh/5e/spells/)

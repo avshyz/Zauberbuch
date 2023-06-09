@@ -2,9 +2,8 @@
 	import { Navbar } from 'spaper';
 </script>
 
-<h1 class="margin-small">Settings</h1>
-
-<Navbar class="margin-small padding-none" split={false} border={false}>
+<Navbar class="flex-middle" border={false}>
+	<h1 slot="brand">Settings</h1>
 	<ul class="inline">
 		<li><a href="/settings/">General</a></li>
 		<li><a href="/settings/keyboard/">Keyboard Short</a></li>

@@ -1,13 +1,30 @@
 <script lang="ts">
 	export let data;
 	import 'papercss/dist/paper.min.css';
+	import { Button, Card } from 'spaper';
 </script>
 
-<h1 class="margin-small">Character selection screen!</h1>
+<h1 class="margin-small">Select Character</h1>
 
-<ul>
+<Button size="large" type="primary" class="margin" href="/character/new">NEW CHARACTER</Button>
+
+<div class="wrapper margin">
 	{#each data.characters as c}
-		<li><a href={`/character/${c.id}`}>{c.name}</a></li>
+		<Card
+			class="border container container-xs margin-bottom-large"
+			title={c.name}
+			subTitle={`${c.characterClass} Level ${c.level}`}
+		>
+			<Button type="primary" href={`/character/${c.id}`}>Play</Button>
+			<Button type="secondary" href={`/character/${c.id}/settings`}>Edit</Button>
+		</Card>
 	{/each}
-	<li><a href="/character/new">NEW CHARACTER</a></li>
-</ul>
+</div>
+
+<style>
+	.wrapper {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0 20px;
+	}
+</style>

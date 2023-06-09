@@ -8,6 +8,7 @@
 	import { reporter, ValidationMessage } from '@felte/reporter-svelte';
 	import { CASTER_TYPE_TO_SLOT_TABLE } from '$lib/spellSlots';
 
+	export let title = 'New Character';
 	export let initialValues: CharacterFormResult | undefined = undefined;
 	const dispatch = createEventDispatcher<{ submit: CharacterFormResult }>();
 
@@ -39,31 +40,45 @@
 	});
 </script>
 
-<form use:form>
-	<div>
-		<label for="name">Name</label>
-		<input name="name" />
-		<ValidationMessage for="name" let:messages>
-			{messages?.[0] || ''}
-		</ValidationMessage>
-	</div>
-	<div>
-		<label for="level">Level</label>
-		<input name="level" required type="number" max="20" min="1" />
-		<ValidationMessage for="level" let:messages>
-			{messages?.[0] || ''}
-		</ValidationMessage>
-	</div>
-	<div>
-		<label for="characterClass">Class</label>
-		<select name="characterClass" required>
-			{#each optionsToDisplay as characterClass}
-				<option disabled={!SUPPORTED_CLASSES.includes(characterClass)} value={characterClass}>
-					{characterClass}
-				</option>
-			{/each}
-		</select>
-	</div>
+<div class="border paper container container-sm margin-bottom-large margin-top-large">
+	<h4 class="margin-bottom-small margin-top-none">{title}</h4>
+	<form use:form>
+		<div class="form-group">
+			<label for="name">Name</label>
+			<input name="name" />
+			<ValidationMessage for="name" let:messages>
+				{messages?.[0] || ''}
+			</ValidationMessage>
+		</div>
+		<div class="form-group">
+			<label for="level">Level</label>
+			<input name="level" required type="number" max="20" min="1" />
+			<ValidationMessage for="level" let:messages>
+				{messages?.[0] || ''}
+			</ValidationMessage>
+		</div>
+		<div class="form-group">
+			<label for="characterClass">Class</label>
+			<select name="characterClass" required>
+				{#each optionsToDisplay as characterClass}
+					<option disabled={!SUPPORTED_CLASSES.includes(characterClass)} value={characterClass}>
+						{characterClass}
+					</option>
+				{/each}
+			</select>
+		</div>
 
-	<button type="submit">{initialValues !== undefined ? 'UPDATE' : 'CREATE'}</button>
-</form>
+		<button type="submit">{initialValues !== undefined ? 'UPDATE' : 'CREATE'}</button>
+	</form>
+</div>
+
+<style>
+	form {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+	select,
+	select option {
+		text-transform: capitalize;
+	}
+</style>

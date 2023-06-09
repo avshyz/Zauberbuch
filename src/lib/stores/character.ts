@@ -72,7 +72,12 @@ function createCharacterStore() {
 
 				return res
 					.filter((entry): entry is [string, CharacterSheet] => !!entry[0] && !!entry[1])
-					.map(([fileName, data]) => ({ id: fileName, name: data.name }));
+					.map(([fileName, data]) => ({
+						id: fileName,
+						name: data.name,
+						characterClass: data.characterClass,
+						level: data.level
+					}));
 			},
 			async delete(id: string) {
 				await removeFile(`characters/${id}`, {

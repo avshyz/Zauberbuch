@@ -3,9 +3,9 @@
 	import { Button } from 'spaper';
 </script>
 
-<h3>Available Spells</h3>
+<h3 class="margin">Available Spells</h3>
 
-<table class="table-hover">
+<table class="table-hover margin">
 	<thead>
 		<tr>
 			<th>Level</th>

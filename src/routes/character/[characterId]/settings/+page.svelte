@@ -15,11 +15,9 @@
 	}
 </script>
 
-<h1>Character Settings</h1>
-
-<h2>Edit Character</h2>
 <CharacterForm
 	initialValues={$characterSheet}
+	title="Edit Character"
 	on:submit={(e) => {
 		const { characterId } = $page.params;
 		characterSheet.update((c) => {
@@ -35,4 +33,6 @@
 	}}
 />
 
-<button class="btn-danger" on:click={handleDelete}>DELETE</button>
+<div class="row flex-center">
+	<button class="btn-danger" on:click={handleDelete}>DELETE CHARACTER</button>
+</div>
