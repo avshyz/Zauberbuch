@@ -13,8 +13,12 @@ npm run dev
 ```
 
 # TODO
+- confeti when cast is made
 - creating character should redirect to character learn spells
 - expandable spell row
+- character additional info page
+  - proficiency
+  - spell slots
 - normalize spells
   - concentration nonopitonal
   - areas as first class column
