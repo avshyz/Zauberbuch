@@ -17,9 +17,13 @@ npm run dev
 - normalize spells
   - concentration nonopitonal
   - areas as first class column
+  - sight-only
 - fix cantrips
+- show current concentration
+- filters
 - links should be active when in page
 - character portraits
+- available spells
 - empty screens
   - "Llearn Spells"
   - "Create Character"
