@@ -24,7 +24,13 @@
 <style>
 	.wrapper {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr;
 		gap: 0 20px;
+	}
+
+	@media only screen and (max-width: 1000px) {
+		.wrapper {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
 </style>
