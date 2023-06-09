@@ -13,7 +13,7 @@ npm run dev
 ```
 
 # TODO
-
+- creating character should redirect to character learn spells
 - normalize spells
   - concentration nonopitonal
   - areas as first class column
