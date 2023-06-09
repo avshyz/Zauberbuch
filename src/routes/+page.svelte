@@ -1,8 +1,9 @@
 <script lang="ts">
 	export let data;
+	import 'papercss/dist/paper.min.css';
 </script>
 
-<h1>Character selection screen!</h1>
+<h1 class="margin-small">Character selection screen!</h1>
 
 <ul>
 	{#each data.characters as c}

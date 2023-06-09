@@ -11,4 +11,4 @@ export type CharacterSheet = {
 	spellSlots: SpellSlots;
 };
 
-export type CharacterFormResult = Omit<CharacterSheet, 'learnedSpells' | 'spellSlots'>;
+export type CharacterFormResult = Pick<CharacterSheet, 'name' | 'level' | 'characterClass'>;

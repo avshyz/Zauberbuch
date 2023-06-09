@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { characterSheet } from '$lib/stores/character.js';
+	import { Button } from 'spaper';
 </script>
 
 <h3>Available Spells</h3>
 
-<table>
+<table class="table-hover">
 	<thead>
 		<tr>
 			<th>Level</th>
@@ -30,12 +31,9 @@
 				</td>
 				<td>{spell.range}</td>
 				<td>
-					<button
-						type="button"
-						on:click={() => characterSheet.actions.toggleLearnSpell(spell.name)}
-					>
+					<Button size="small" on:click={() => characterSheet.actions.toggleLearnSpell(spell.name)}>
 						{$characterSheet.isSpellLearned(spell.name) ? 'UNLEARN' : 'LEARN'}
-					</button>
+					</Button>
 				</td>
 			</tr>
 		{/each}

@@ -67,39 +67,3 @@
 
 	<button type="submit">{initialValues !== undefined ? 'UPDATE' : 'CREATE'}</button>
 </form>
-
-<style>
-	form {
-		display: flex;
-		flex-direction: column;
-	}
-
-	div {
-		display: flex;
-		flex-direction: column;
-		margin-bottom: 1rem;
-	}
-
-	label {
-		font-weight: bold;
-		margin-bottom: 0.5rem;
-	}
-
-	input,
-	select {
-		padding: 0.5rem;
-		border-radius: 0.25rem;
-		border: 1px solid #ccc;
-	}
-
-	button {
-		padding: 0.5rem;
-		border-radius: 0.25rem;
-		border: 1px solid #ccc;
-	}
-
-	select,
-	select option {
-		text-transform: capitalize;
-	}
-</style>

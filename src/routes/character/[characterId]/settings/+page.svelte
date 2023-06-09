@@ -34,15 +34,5 @@
 		goto(`/character/${characterId}`, { invalidateAll: true });
 	}}
 />
-<button on:click={handleDelete}>DELETE</button>
 
-<style>
-	button {
-		background: red;
-		color: white;
-		border: none;
-		padding: 0.5rem;
-		border-radius: 0.5rem;
-		margin-top: 1rem;
-	}
-</style>
+<button class="btn-danger" on:click={handleDelete}>DELETE</button>
