@@ -2,10 +2,21 @@ import type { CharacterClass } from './types';
 
 type Tuple<TItem, TLength extends number> = readonly [TItem, ...TItem[]] & { length: TLength };
 
-export type SpellSlots = Tuple<number, 10>;
+export type SpellSlots = [
+	number,
+	number,
+	number,
+	number,
+	number,
+	number,
+	number,
+	number,
+	number,
+	number
+];
 type SlotTable = Tuple<SpellSlots, 20>;
 
-const NO_SPELL_SLOTS: SpellSlots = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+export const NO_SPELL_SLOTS: SpellSlots = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 // TODO: handle cantrips the way they're meant to be
 const FULL_CASTER: SlotTable = [
@@ -32,7 +43,7 @@ const FULL_CASTER: SlotTable = [
 	[5, 4, 3, 3, 3, 3, 1, 1, 1, 1],
 	[5, 4, 3, 3, 3, 3, 2, 1, 1, 1],
 	[5, 4, 3, 3, 3, 3, 2, 2, 1, 1]
-] as const;
+];
 
 const ROGUE: SlotTable = [
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -55,7 +66,7 @@ const ROGUE: SlotTable = [
 	[4, 4, 3, 3, 0, 0, 0, 0, 0, 0],
 	[4, 4, 3, 3, 1, 0, 0, 0, 0, 0],
 	[4, 4, 3, 3, 1, 0, 0, 0, 0, 0]
-] as const;
+];
 
 const RANGER: SlotTable = [
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -78,7 +89,7 @@ const RANGER: SlotTable = [
 	[4, 3, 3, 3, 1, 0, 0, 0, 0, 0],
 	[4, 3, 3, 3, 2, 0, 0, 0, 0, 0],
 	[4, 3, 3, 3, 2, 0, 0, 0, 0, 0]
-] as const;
+];
 
 const PALADIN: SlotTable = [
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -141,6 +152,6 @@ export const CASTER_TYPE_TO_SLOT_TABLE: Record<CharacterClass, SlotTable | undef
 	wizard: FULL_CASTER
 };
 
-export function getSpellSlots(characterClass: CharacterClass, level: number) {
+export function getSpellSlots(characterClass: CharacterClass, level: number): SpellSlots {
 	return CASTER_TYPE_TO_SLOT_TABLE[characterClass]?.[level - 1] ?? NO_SPELL_SLOTS;
 }

@@ -9,7 +9,7 @@ import {
 import type { CharacterClass, CharacterSheet } from '../types';
 import { v4 as uuid } from 'uuid';
 import { derived, writable } from 'svelte/store';
-import { CASTER_TYPE_TO_SLOT_TABLE, getSpellSlots } from '$lib/spellSlots';
+import { NO_SPELL_SLOTS, getSpellSlots, type SpellSlots } from '$lib/spellSlots';
 import spells, { type Spell } from '$lib/assets/SrdSpells';
 
 const SPELL_LIST_MAPPER: { [key in CharacterClass]?: CharacterClass } = {
@@ -22,6 +22,7 @@ type CharacterStoreData = CharacterSheet & { id: string };
 const EMPTY_SHEET: CharacterStoreData = {
 	characterClass: 'fighter',
 	learnedSpellsIds: [],
+	spellSlots: NO_SPELL_SLOTS,
 	level: 1,
 	name: '',
 	id: ''
@@ -103,11 +104,18 @@ function createCharacterStore() {
 					}
 				});
 			},
-			castSpell(spell: string) {
-				console.log('TODO: Implement Me', spell);
+			castSpell(spell: Spell) {
+				persistentUpdate((sheet) => {
+					const newSlots: SpellSlots = [...sheet.spellSlots];
+					newSlots[spell.level] -= 1;
+					return { ...sheet, spellSlots: newSlots };
+				});
 			},
 			rest() {
-				console.log('TODO: Implement Me');
+				persistentUpdate((sheet) => ({
+					...sheet,
+					spellSlots: getSpellSlots(sheet.characterClass, sheet.level)
+				}));
 			}
 		}
 	};
