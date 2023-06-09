@@ -2,8 +2,12 @@ import type { CharacterClass } from './types';
 
 type Tuple<TItem, TLength extends number> = readonly [TItem, ...TItem[]] & { length: TLength };
 
-type SlotTable = Tuple<Tuple<number, 10>, 20>;
+export type SpellSlots = Tuple<number, 10>;
+type SlotTable = Tuple<SpellSlots, 20>;
 
+const NO_SPELL_SLOTS: SpellSlots = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+// TODO: handle cantrips the way they're meant to be
 const FULL_CASTER: SlotTable = [
 	[3, 2, 0, 0, 0, 0, 0, 0, 0, 0],
 	[3, 3, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -136,3 +140,7 @@ export const CASTER_TYPE_TO_SLOT_TABLE: Record<CharacterClass, SlotTable | undef
 	warlock: undefined,
 	wizard: FULL_CASTER
 };
+
+export function getSpellSlots(characterClass: CharacterClass, level: number) {
+	return CASTER_TYPE_TO_SLOT_TABLE[characterClass]?.[level - 1] ?? NO_SPELL_SLOTS;
+}

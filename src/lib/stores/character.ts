@@ -9,7 +9,7 @@ import {
 import type { CharacterClass, CharacterSheet } from '../types';
 import { v4 as uuid } from 'uuid';
 import { derived, writable } from 'svelte/store';
-import { CASTER_TYPE_TO_SLOT_TABLE } from '$lib/spellSlots';
+import { CASTER_TYPE_TO_SLOT_TABLE, getSpellSlots } from '$lib/spellSlots';
 import spells, { type Spell } from '$lib/assets/SrdSpells';
 
 const SPELL_LIST_MAPPER: { [key in CharacterClass]?: CharacterClass } = {
@@ -30,8 +30,7 @@ function createCharacterStore() {
 	const store = writable<CharacterStoreData>(EMPTY_SHEET);
 	const { set, update } = store;
 	const derivedStore = derived(store, ($character) => {
-		const availableSpellSlots =
-			CASTER_TYPE_TO_SLOT_TABLE[$character.characterClass]?.[$character.level - 1];
+		const availableSpellSlots = getSpellSlots($character.characterClass, $character.level);
 		const maxAvailableSpellLevel = availableSpellSlots?.findLastIndex((slot) => slot > 0) ?? 0;
 		return {
 			...$character,

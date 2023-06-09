@@ -3,6 +3,7 @@
 	import { goto } from '$app/navigation';
 	import { characterSheet } from '$lib/stores/character.js';
 	import { page } from '$app/stores';
+	import { getSpellSlots } from '$lib/spellSlots';
 
 	async function handleDelete() {
 		const { characterId } = $page.params;
@@ -21,7 +22,15 @@
 	initialValues={$characterSheet}
 	on:submit={(e) => {
 		const { characterId } = $page.params;
-		characterSheet.update((c) => ({ ...c, ...e.detail }));
+		characterSheet.update((c) => {
+			// TODO - make this prettier somehow?
+			const res = { ...c, ...e.detail };
+			const { characterClass, level } = e.detail;
+			if (c.characterClass !== characterClass || c.level !== level) {
+				res.spellSlots = getSpellSlots(characterClass, level);
+			}
+			return res;
+		});
 		goto(`/character/${characterId}`, { invalidateAll: true });
 	}}
 />

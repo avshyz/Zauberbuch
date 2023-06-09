@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { CHARACTER_CLASSES } from '$lib/consts';
-	import type { CharacterFormResult, CharacterSheet } from '$lib/types';
+	import type { CharacterFormResult } from '$lib/types';
 	import { validator } from '@felte/validator-zod';
 	import { z } from 'zod';
 	import { createForm } from 'felte';
