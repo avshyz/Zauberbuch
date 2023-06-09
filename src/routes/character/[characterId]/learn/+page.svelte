@@ -3,7 +3,9 @@
 	import { Button } from 'spaper';
 </script>
 
-<h3 class="margin">Available Spells</h3>
+<h3 class="margin">
+	Available Spells <span class="badge secondary">{$characterSheet.learnedSpells.length}/XXX</span>
+</h3>
 
 <table class="table-hover margin">
 	<thead>
