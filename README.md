@@ -14,6 +14,7 @@ npm run dev
 
 # TODO
 - creating character should redirect to character learn spells
+- expandable spell row
 - normalize spells
   - concentration nonopitonal
   - areas as first class column
@@ -23,6 +24,13 @@ npm run dev
 - filters
 - links should be active when in page
 - character portraits
+- edit spells
+- spell description should enrich with elements
+  - dice roller (threejs)
+  - icons for status effects
+  - bold for things like
+    - enemy that you see
+- keyboard shortcuts
 - available spells
 - empty screens
   - "Llearn Spells"
