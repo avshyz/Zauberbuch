@@ -13,8 +13,6 @@ npm run dev
 ```
 
 # TODO
-- confeti when cast is made
-- creating character should redirect to character learn spells
 - expandable spell row
 - character additional info page
   - proficiency
@@ -26,9 +24,9 @@ npm run dev
 - fix cantrips
 - show current concentration
 - filters
-- links should be active when in page
 - character portraits
 - edit spells
+  - Introduce [rough annotations](https://roughnotation.com/)
 - spell description should enrich with elements
   - dice roller (threejs)
   - icons for status effects
@@ -37,11 +35,16 @@ npm run dev
 - keyboard shortcuts
 - available spells
 - empty screens
-  - "Llearn Spells"
+  - "Learn Spells"
   - "Create Character"
-
+- confeti when cast is made
 - cool icons like [these](https://donjon.bin.sh/5e/quickref/)
+  - status icons
+  - range area indicators
 - spell references
   - [donjon](https://donjon.bin.sh/5e/spells/)
-  - [vorpalhex](https://github.com/vorpalhex/srd_spells)
   - [grimoire](https://raw.githubusercontent.com/avshyz/grimoire/main/src/data.ts?token=GHSAT0AAAAAACCMZTMJSYHEFD2U2FCMAZFMZDZ2QWA)
+
+# On the shoulder of giants
+- [PaperCSS](https://www.getpapercss.com/docs/content/typography/) and [SPaper](https://oli8.github.io/spaper/?ref=madewithsvelte.com#/components/Checkbox)
+- SRD Spells from [here](https://github.com/vorpalhex/srd_spells)
