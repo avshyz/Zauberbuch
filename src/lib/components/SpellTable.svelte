@@ -2,6 +2,7 @@
 	import type { Spell } from '$lib/assets/SrdSpells';
 
 	export let spells: Spell[];
+	let rowExpansion: Record<string, boolean> = {};
 </script>
 
 <table class="table-hover margin">
@@ -16,7 +17,7 @@
 	</thead>
 	<tbody>
 		{#each spells as spell (spell.name)}
-			<tr>
+			<tr on:click={() => (rowExpansion[spell.name] = !rowExpansion[spell.name])}>
 				<td>{spell.level}</td>
 				<td>{spell.name}</td>
 				<td>
@@ -33,6 +34,15 @@
 					<slot name="action" {spell} />
 				</td>
 			</tr>
+			{#if rowExpansion[spell.name]}
+				<tr>
+					<td colspan="5">
+						<div class="spell-description padding">
+							{spell.description}
+						</div>
+					</td>
+				</tr>
+			{/if}
 		{/each}
 	</tbody>
 </table>
@@ -44,5 +54,13 @@
 
 	[title] {
 		cursor: help;
+	}
+
+	tr {
+		cursor: pointer;
+	}
+
+	.spell-description {
+		white-space: pre-wrap;
 	}
 </style>
