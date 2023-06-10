@@ -1,7 +1,8 @@
 <script lang="ts">
 	import SpellTable from '$lib/components/SpellTable.svelte';
 	import { characterSheet } from '$lib/stores/character.js';
-	import { Button, Table } from 'spaper';
+	import { Button } from 'spaper';
+	import CastButton from './CastButton.svelte';
 </script>
 
 <h3 class="margin">Spellbook</h3>
@@ -21,16 +22,4 @@
 	</div>
 </div>
 
-<SpellTable spells={$characterSheet.learnedSpells}>
-	<Button
-		slot="action"
-		let:spell
-		disabled={$characterSheet.spellSlots[spell.level] <= 0}
-		size="small"
-		on:click={() => {
-			characterSheet.actions.castSpell(spell);
-		}}
-	>
-		Cast
-	</Button>
-</SpellTable>
+<SpellTable spells={$characterSheet.learnedSpells} Action={CastButton} />
