@@ -13,7 +13,6 @@ npm run dev
 ```
 
 # TODO
-- expandable spell row
 - character additional info page
   - proficiency
   - spell slots
@@ -37,7 +36,10 @@ npm run dev
 - empty screens
   - "Learn Spells"
   - "Create Character"
-- confeti when cast is made
+- gamification
+  - animations
+    - cool hovers
+    - confeti when cast is made (tsParticles)
 - cool icons like [these](https://donjon.bin.sh/5e/quickref/)
   - status icons
   - range area indicators

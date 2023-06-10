@@ -32,7 +32,8 @@
 					{/if}
 				</td>
 				<td>{spell.range}</td>
-				<td>
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<td on:click|stopPropagation>
 					<slot name="action" {spell} />
 				</td>
 			</tr>
