@@ -9,14 +9,14 @@
 <Button size="large" type="primary" class="margin" href="/character/new">NEW CHARACTER</Button>
 
 <div class="wrapper margin">
-	{#each data.characters as c}
+	{#each data.characters as character, i}
 		<Card
-			class="border container container-xs margin-bottom-large"
-			title={c.name}
-			subTitle={`${c.characterClass} Level ${c.level}`}
+			class={`border-${(i % 6) + 1} container container-xs margin-bottom-large`}
+			title={character.name}
+			subTitle={`${character.characterClass} Level ${character.level}`}
 		>
-			<Button type="primary" href={`/character/${c.id}`}>Play</Button>
-			<Button type="secondary" href={`/character/${c.id}/settings`}>Edit</Button>
+			<Button type="primary" href={`/character/${character.id}`}>Play</Button>
+			<Button type="secondary" href={`/character/${character.id}/settings`}>Edit</Button>
 		</Card>
 	{/each}
 </div>
