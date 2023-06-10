@@ -1,5 +1,7 @@
 <script lang="ts">
 	import type { Spell } from '$lib/assets/SrdSpells';
+	import { fade } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
 
 	export let spells: Spell[];
 	let rowExpansion: Record<string, boolean> = {};
@@ -35,7 +37,7 @@
 				</td>
 			</tr>
 			{#if rowExpansion[spell.name]}
-				<tr>
+				<tr transition:fade>
 					<td colspan="5">
 						<div class="spell-description padding">
 							{spell.description}
