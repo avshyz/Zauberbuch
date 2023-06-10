@@ -129,9 +129,11 @@ function createCharacterStore() {
 export const characterSheet = createCharacterStore();
 
 export async function saveCharacter(sheet: CharacterSheet, id?: string) {
-	return writeTextFile(`characters/${id ?? uuid()}`, JSON.stringify(sheet), {
+	const characterId = id ?? uuid();
+	await writeTextFile(`characters/${characterId}`, JSON.stringify(sheet), {
 		dir: BaseDirectory.AppConfig
 	});
+	return characterId;
 }
 
 async function normalizeEntry(entry: FileEntry) {

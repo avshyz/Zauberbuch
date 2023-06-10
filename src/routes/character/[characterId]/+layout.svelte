@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import NavLink from '$lib/components/NavLink.svelte';
 	import { characterSheet } from '$lib/stores/character.js';
 	import { Navbar } from 'spaper';
 </script>
@@ -11,9 +12,9 @@
 		{$characterSheet.characterClass} - Level {$characterSheet.level}
 	</h3>
 	<ul class="inline">
-		<li><a href={`/character/${$page.params.characterId}/`}>Play</a></li>
-		<li><a href={`/character/${$page.params.characterId}/learn`}>Learn Spells</a></li>
-		<li><a href={`/character/${$page.params.characterId}/settings`}>Manage</a></li>
+		<li><NavLink href={`/character/${$page.params.characterId}/`} exact>Play</NavLink></li>
+		<li><NavLink href={`/character/${$page.params.characterId}/learn`}>Learn Spells</NavLink></li>
+		<li><NavLink href={`/character/${$page.params.characterId}/settings`}>Manage</NavLink></li>
 	</ul>
 </Navbar>
 
