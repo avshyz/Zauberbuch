@@ -1,5 +1,6 @@
 <script>
 	import { Navbar } from 'spaper';
+	import 'papercss/dist/paper.min.css';
 </script>
 
 <Navbar>

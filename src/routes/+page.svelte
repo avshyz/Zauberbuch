@@ -1,6 +1,5 @@
 <script lang="ts">
 	export let data;
-	import 'papercss/dist/paper.min.css';
 	import { Button, Card } from 'spaper';
 </script>
 
