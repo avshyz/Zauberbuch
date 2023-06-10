@@ -13,19 +13,23 @@ npm run dev
 ```
 
 # TODO
-- character additional info page
-  - proficiency
-  - spell slots
+- fix cantrips
 - normalize spells
   - concentration nonopitonal
   - areas as first class column
   - sight-only
-- fix cantrips
 - show current concentration
 - filters
 - character portraits
+- cool icons like [these](https://donjon.bin.sh/5e/quickref/)
+  - status icons
+  - range area indicators
+  - better spell slot indicators
+    - on modal
+    - on button
 - edit spells
   - Introduce [rough annotations](https://roughnotation.com/)
+- add Spellcasting Ability
 - spell description should enrich with elements
   - dice roller (threejs)
   - icons for status effects
@@ -40,9 +44,7 @@ npm run dev
   - animations
     - cool hovers
     - confeti when cast is made (tsParticles)
-- cool icons like [these](https://donjon.bin.sh/5e/quickref/)
-  - status icons
-  - range area indicators
+- Multiclassing support
 - spell references
   - [donjon](https://donjon.bin.sh/5e/spells/)
   - [grimoire](https://raw.githubusercontent.com/avshyz/grimoire/main/src/data.ts?token=GHSAT0AAAAAACCMZTMJSYHEFD2U2FCMAZFMZDZ2QWA)

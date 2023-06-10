@@ -1,14 +1,22 @@
 <script lang="ts">
 	import SpellTable from '$lib/components/SpellTable.svelte';
 	import { characterSheet } from '$lib/stores/character.js';
-	import { Button, Table } from 'spaper';
+	import { Button, Modal } from 'spaper';
+
+	let showCharacterInfo = false;
 </script>
 
-<h3 class="margin">Spellbook</h3>
-
-<div class="row flex-edges flex-middle">
-	<div class="col">Spell Slots: {$characterSheet.spellSlots}</div>
-	<div class="col">
+<div class="padding row flex-edges flex-middle">
+	<h3 class="margin-none">Spellbook</h3>
+	<div class="col padding-none padding-right">
+		<Button
+			size="small"
+			on:click={() => {
+				showCharacterInfo = true;
+			}}
+		>
+			Show Info
+		</Button>
 		<Button
 			size="small"
 			on:click={() => {
@@ -31,6 +39,36 @@
 			characterSheet.actions.castSpell(spell);
 		}}
 	>
-		Cast
+		Cast ({$characterSheet.spellSlots[spell.level]}/{$characterSheet.availableSpellSlots[
+			spell.level
+		]})
 	</Button>
 </SpellTable>
+<Modal bind:active={showCharacterInfo} title="Character Info">
+	<p>
+		<em>Proficiency Bonus:</em>
+		+{$characterSheet.proficiencyBonus}
+	</p>
+	<p>
+		<em>Spellcasting Ability:</em>
+		+XXX
+	</p>
+	<p><em>Spell Slots</em></p>
+	<p>
+		{#each $characterSheet.availableSpellSlots as slot, i}
+			{i}:
+			{#each Array.from({ length: slot }) as spellSlot, j}
+				<input class="slot" type="checkbox" checked={j < $characterSheet.spellSlots[i]} />
+			{/each}
+			<br />
+		{/each}
+	</p>
+</Modal>
+
+<style>
+	.slot {
+		display: inline;
+		margin-inline: 2px;
+		pointer-events: none;
+	}
+</style>
