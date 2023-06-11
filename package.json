@@ -41,6 +41,7 @@
 		"felte": "^1.2.7",
 		"papercss": "^1.9.2",
 		"spaper": "^1.1.1",
+		"svelte-markdown": "^0.2.3",
 		"uuid": "^9.0.0",
 		"zod": "^3.21.4"
 	}

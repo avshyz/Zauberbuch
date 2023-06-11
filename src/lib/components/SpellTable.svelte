@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { Spell } from '$lib/assets/SrdSpells';
 	import { fade } from 'svelte/transition';
-	import { flip } from 'svelte/animate';
+	import SvelteMarkdown from 'svelte-markdown';
+	import LinkStub from './LinkStub.svelte';
 
 	export let spells: Spell[];
 	let rowExpansion: Record<string, boolean> = {};
@@ -20,12 +21,17 @@
 	<tbody>
 		{#each spells as spell (spell.name)}
 			<tr on:click={() => (rowExpansion[spell.name] = !rowExpansion[spell.name])}>
-				<td>{spell.level}</td>
+				<td>
+					{spell.level}
+					{#if spell.higher_levels}
+						<span title="Upcast possible">💪</span>
+					{/if}
+				</td>
 				<td>{spell.name}</td>
 				<td>
 					{spell.casting_time}
 					{#if spell.ritual}
-						<span>(ritual)</span>
+						<span title="Ritual Cast-able">📖</span>
 					{/if}
 					{#if spell.reaction_trigger}
 						<span title={spell.reaction_trigger}>ℹ️</span>
@@ -41,7 +47,12 @@
 				<tr transition:fade>
 					<td colspan="5">
 						<div class="spell-description padding">
-							{spell.description}
+							<SvelteMarkdown source={spell.description} renderers={{ link: LinkStub }} />
+
+							{#if spell.higher_levels}
+								<hr />
+								<SvelteMarkdown source={`**At heigher levels**: ${spell.higher_levels}`} />
+							{/if}
 						</div>
 					</td>
 				</tr>
@@ -63,7 +74,22 @@
 		cursor: pointer;
 	}
 
+	td {
+		vertical-align: bottom;
+	}
+
 	.spell-description {
 		white-space: pre-wrap;
+		color: black;
+		cursor: auto;
+
+		/* READABILITY */
+		font-size: 1.125rem;
+		line-height: 1.6;
+		width: min(65ch, 100% - 4rem);
+		margin-inline: auto;
+	}
+	.spell-description :global(td) {
+		text-align: left !important;
 	}
 </style>

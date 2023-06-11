@@ -40,6 +40,7 @@ npm run dev
 - empty screens
   - "Learn Spells"
   - "Create Character"
+- Learned spells limit
 - gamification
   - animations
     - cool hovers
