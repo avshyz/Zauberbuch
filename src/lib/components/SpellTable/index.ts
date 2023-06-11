@@ -1,3 +1,3 @@
-import SpellTable from './SpellTable.svelte';
+import SpellTable from './Table.svelte';
 
 export default SpellTable;

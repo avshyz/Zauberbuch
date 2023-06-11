@@ -13,23 +13,28 @@ npm run dev
 ```
 
 # TODO
-- fix cantrips
+- Forward Compat
+  - add Spellcasting Ability
+  - fix cantrips
+  - add prepare step
+- Grimoire Reimplementations
+  - show current concentration
+  - filters
 - normalize spells
   - concentration nonopitonal
   - areas as first class column
   - sight-only
-- show current concentration
-- filters
-- character portraits
-- cool icons like [these](https://donjon.bin.sh/5e/quickref/)
-  - status icons
-  - range area indicators
-  - better spell slot indicators
-    - on modal
-    - on button
-- edit spells
-  - Introduce [rough annotations](https://roughnotation.com/)
-- add Spellcasting Ability
+- Spell Control
+  - add spells
+  - edit spells
+- Coolness
+  - cool icons like [these](https://donjon.bin.sh/5e/quickref/)
+    - status icons
+    - range area indicators
+    - better spell slot indicators
+      - on modal
+      - on button
+  - character portraits
 - spell description should enrich with elements
   - dice roller (threejs)
   - icons for status effects
