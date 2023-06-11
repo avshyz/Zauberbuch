@@ -15,7 +15,9 @@
 			<th>Spell</th>
 			<th>Casting Time</th>
 			<th>Range</th>
-			<th>Action</th>
+			{#if $$slots.action}
+				<th>Action</th>
+			{/if}
 		</tr>
 	</thead>
 	<tbody>
@@ -38,10 +40,12 @@
 					{/if}
 				</td>
 				<td>{spell.range}</td>
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<td on:click|stopPropagation>
-					<slot name="action" {spell} />
-				</td>
+				{#if $$slots.action}
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<td on:click|stopPropagation>
+						<slot name="action" {spell} />
+					</td>
+				{/if}
 			</tr>
 			{#if rowExpansion[spell.name]}
 				<tr transition:fade>

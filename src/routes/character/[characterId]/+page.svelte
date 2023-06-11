@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SpellTable from '$lib/components/SpellTable.svelte';
+	import SpellTable from '$lib/components/SpellTable';
 	import { characterSheet } from '$lib/stores/character.js';
 	import { Button, Modal } from 'spaper';
 
