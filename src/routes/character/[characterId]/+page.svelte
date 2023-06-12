@@ -33,15 +33,19 @@
 	<Button
 		slot="action"
 		let:spell
-		disabled={$characterSheet.spellSlots[spell.level] <= 0}
+		disabled={spell.level > 0 && $characterSheet.spellSlots[spell.level - 1] <= 0}
 		size="small"
 		on:click={() => {
 			characterSheet.actions.castSpell(spell);
 		}}
 	>
-		Cast ({$characterSheet.spellSlots[spell.level]}/{$characterSheet.availableSpellSlots[
-			spell.level
-		]})
+		Cast {#if spell.level > 0}
+			({$characterSheet.spellSlots[spell.level - 1]}/{$characterSheet.availableSpellSlots[
+				spell.level - 1
+			]})
+		{:else}
+			Cantrip
+		{/if}
 	</Button>
 </SpellTable>
 <Modal bind:active={showCharacterInfo} title="Character Info">
@@ -55,13 +59,13 @@
 	</p>
 	<p><em>Spell Slots</em></p>
 	<p>
-		{#each $characterSheet.availableSpellSlots as slot, i}
-			{i}:
+		{#each $characterSheet.availableSpellSlots.filter((slot) => slot > 0) as slot, i}
+			{i + 1}:
 			<div class="slot-container">
-        {#each Array.from({ length: slot }) as spellSlot, j}
-				  <input class="slot" type="checkbox" checked={j < $characterSheet.spellSlots[i]} />
-			  {/each}
-      </div>
+				{#each Array.from({ length: slot }) as _spellSlot, j}
+					<input class="slot" type="checkbox" checked={j < $characterSheet.spellSlots[i]} />
+				{/each}
+			</div>
 			<br />
 		{/each}
 	</p>
@@ -73,7 +77,7 @@
 		margin-inline: 2px;
 		pointer-events: none;
 	}
-  .slot-container {
-    display: inline-block;
-  }
+	.slot-container {
+		display: inline-block;
+	}
 </style>
