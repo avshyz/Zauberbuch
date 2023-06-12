@@ -42,6 +42,7 @@
 		"papercss": "^1.9.2",
 		"spaper": "^1.1.1",
 		"svelte-markdown": "^0.2.3",
+		"svelte-rough-notation": "^0.1.4",
 		"uuid": "^9.0.0",
 		"zod": "^3.21.4"
 	}

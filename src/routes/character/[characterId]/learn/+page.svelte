@@ -13,6 +13,7 @@
 		slot="action"
 		let:spell
 		size="small"
+		type={$characterSheet.isSpellLearned(spell.name) ? 'danger' : undefined}
 		on:click={() => characterSheet.actions.toggleLearnSpell(spell.name)}
 	>
 		{$characterSheet.isSpellLearned(spell.name) ? 'UNLEARN' : 'LEARN'}

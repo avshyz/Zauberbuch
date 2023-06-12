@@ -1,11 +1,10 @@
 <script lang="ts">
 	import type { Spell } from '$lib/assets/SrdSpells';
 	import { fade } from 'svelte/transition';
-	import SvelteMarkdown from 'svelte-markdown';
-	import LinkStub from './LinkStub.svelte';
+	import Description from './Description.svelte';
 
 	export let spells: Spell[];
-	let rowExpansion: Record<string, boolean> = {};
+	let rowExpansion: string | null = null;
 </script>
 
 <table class="table-hover margin">
@@ -22,7 +21,10 @@
 	</thead>
 	<tbody>
 		{#each spells as spell (spell.name)}
-			<tr on:click={() => (rowExpansion[spell.name] = !rowExpansion[spell.name])}>
+			<tr
+				on:click={() =>
+					rowExpansion === spell.name ? (rowExpansion = null) : (rowExpansion = spell.name)}
+			>
 				<td>
 					{spell.level}
 					{#if spell.higher_levels}
@@ -47,17 +49,10 @@
 					</td>
 				{/if}
 			</tr>
-			{#if rowExpansion[spell.name]}
-				<tr transition:fade>
+			{#if rowExpansion === spell.name}
+				<tr>
 					<td colspan="5">
-						<div class="spell-description padding">
-							<SvelteMarkdown source={spell.description} renderers={{ link: LinkStub }} />
-
-							{#if spell.higher_levels}
-								<hr />
-								<SvelteMarkdown source={`**At heigher levels**: ${spell.higher_levels}`} />
-							{/if}
-						</div>
+						<Description description={spell.description} upcast={spell.higher_levels} />
 					</td>
 				</tr>
 			{/if}
@@ -80,20 +75,5 @@
 
 	td {
 		vertical-align: bottom;
-	}
-
-	.spell-description {
-		white-space: pre-wrap;
-		color: black;
-		cursor: auto;
-
-		/* READABILITY */
-		font-size: 1.125rem;
-		line-height: 1.6;
-		width: min(65ch, 100% - 4rem);
-		margin-inline: auto;
-	}
-	.spell-description :global(td) {
-		text-align: left !important;
 	}
 </style>

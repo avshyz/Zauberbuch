@@ -57,9 +57,11 @@
 	<p>
 		{#each $characterSheet.availableSpellSlots as slot, i}
 			{i}:
-			{#each Array.from({ length: slot }) as spellSlot, j}
-				<input class="slot" type="checkbox" checked={j < $characterSheet.spellSlots[i]} />
-			{/each}
+			<div class="slot-container">
+        {#each Array.from({ length: slot }) as spellSlot, j}
+				  <input class="slot" type="checkbox" checked={j < $characterSheet.spellSlots[i]} />
+			  {/each}
+      </div>
 			<br />
 		{/each}
 	</p>
@@ -71,4 +73,7 @@
 		margin-inline: 2px;
 		pointer-events: none;
 	}
+  .slot-container {
+    display: inline-block;
+  }
 </style>
