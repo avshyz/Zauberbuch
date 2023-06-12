@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Annotation from 'svelte-rough-notation';
-	import { RESULTS } from './utils';
+	import { RESULTS, renderers } from './utils';
 
 	export let text: string;
 
@@ -13,8 +13,9 @@
 	});
 
 	$: isResult = RESULTS.some((k) => text.toLocaleLowerCase().match(k));
+  const {del, ...normalizedRenderers} = renderers;
 </script>
 
-<Annotation bind:visible multiline type="highlight" color={isResult ? 'magenta' : 'yellow'}>
+<Annotation bind:visible multiline type="highlight" renderers={normalizedRenderers} color={isResult ? 'magenta' : 'yellow'}>
 	{text}
 </Annotation>
