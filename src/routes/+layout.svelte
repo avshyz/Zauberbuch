@@ -1,6 +1,7 @@
 <script>
 	import NavLink from '$lib/components/NavLink.svelte';
 	import { Navbar } from 'spaper';
+	import 'papercss/dist/paper.min.css';
 </script>
 
 <Navbar>
