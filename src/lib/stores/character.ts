@@ -112,7 +112,7 @@ function createCharacterStore() {
 			castSpell(spell: Spell) {
 				persistentUpdate((sheet) => {
 					const newSlots: SpellSlots = [...sheet.spellSlots];
-					newSlots[spell.level - 1] -= 1;
+          if (spell.level > 0) newSlots[spell.level - 1] -= 1;
 					return { ...sheet, spellSlots: newSlots };
 				});
 			},
