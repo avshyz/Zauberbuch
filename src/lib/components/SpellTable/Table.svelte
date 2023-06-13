@@ -13,6 +13,7 @@
 			<th>Level</th>
 			<th>Spell</th>
 			<th>Casting Time</th>
+			<th>Duration</th>
 			<th>Range</th>
 			{#if $$slots.action}
 				<th>Action</th>
@@ -31,7 +32,12 @@
 						<span title="Upcast possible">💪</span>
 					{/if}
 				</td>
-				<td>{spell.name}</td>
+				<td>
+					{spell.name}
+					{#if spell.concentration}
+						<span title="Requires concentration">🤔</span>
+					{/if}
+				</td>
 				<td>
 					{spell.casting_time}
 					{#if spell.ritual}
@@ -41,6 +47,7 @@
 						<span title={spell.reaction_trigger}>ℹ️</span>
 					{/if}
 				</td>
+				<td>{spell.duration}</td>
 				<td>{spell.range}</td>
 				{#if $$slots.action}
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -74,6 +81,6 @@
 	}
 
 	td {
-		vertical-align: bottom;
+		vertical-align: middle;
 	}
 </style>
