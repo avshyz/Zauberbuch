@@ -32,7 +32,10 @@ function createCharacterStore() {
 	const { set, update } = store;
 	const derivedStore = derived(store, ($character) => {
 		const availableSpellSlots = getSpellSlots($character.characterClass, $character.level);
-		const maxAvailableSpellLevel = availableSpellSlots?.findLastIndex((slot) => slot > 0) ?? 0;
+		const maxAvailableSpellLevel = availableSpellSlots
+			? availableSpellSlots.findLastIndex((slot) => slot > 0) + 1
+			: 0;
+
 		return {
 			...$character,
 			proficiencyBonus: Math.floor(2 + ($character.level - 1) / 4),
@@ -110,9 +113,23 @@ function createCharacterStore() {
 				});
 			},
 			castSpell(spell: Spell) {
+				if (spell.level === 0) return;
+
 				persistentUpdate((sheet) => {
 					const newSlots: SpellSlots = [...sheet.spellSlots];
-          if (spell.level > 0) newSlots[spell.level - 1] -= 1;
+					if (newSlots[spell.level - 1] > 0) newSlots[spell.level - 1] -= 1;
+					return { ...sheet, spellSlots: newSlots };
+				});
+			},
+			regainSlot(level: number) {
+				if (level === 0) return;
+
+				persistentUpdate((sheet) => {
+					const newSlots: SpellSlots = [...sheet.spellSlots];
+					const max = getSpellSlots(sheet.characterClass, sheet.level)[level - 1];
+
+					if (newSlots[level - 1] < max) newSlots[level - 1] += 1;
+					console.log('xxxx');
 					return { ...sheet, spellSlots: newSlots };
 				});
 			},
