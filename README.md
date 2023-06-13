@@ -16,6 +16,7 @@ npm run dev
 - Forward Compat
   - add regain spell 
   - add prepare step
+    - Rituals are always prepared
 - Grimoire Reimplementations
   - remove cast column, use badges and icons instead
     - icon for bonus action and reaction
