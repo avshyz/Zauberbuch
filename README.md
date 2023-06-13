@@ -14,11 +14,11 @@ npm run dev
 
 # TODO
 - Forward Compat
-  - add Spellcasting Ability
-  - fix cantrips
+  - add regain spell 
   - add prepare step
 - Grimoire Reimplementations
   - show current concentration
+  - ritual casting (add concentration without spending a slot)
   - filters
 - normalize spells
   - concentration nonopitonal
@@ -28,6 +28,8 @@ npm run dev
   - add spells
   - edit spells
 - Coolness
+  - add brand, somewhere.
+  - add splash screen
   - cool icons like [these](https://donjon.bin.sh/5e/quickref/)
     - status icons
     - range area indicators
@@ -36,6 +38,7 @@ npm run dev
       - on button
   - character portraits
 - spell description should enrich with elements
+  - add Spellcasting Ability
   - dice roller (threejs)
   - icons for status effects
   - bold for things like
@@ -50,6 +53,10 @@ npm run dev
   - animations
     - cool hovers
     - confeti when cast is made (tsParticles)
+- settings
+    - compact vs dense - button sizes?
+    - animation disable
+    - colors?
 - Multiclassing support
 - spell references
   - [donjon](https://donjon.bin.sh/5e/spells/)
