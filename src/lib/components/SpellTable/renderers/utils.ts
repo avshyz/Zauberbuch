@@ -39,8 +39,8 @@ const SECONDARY = [
 	/\b(\d+ \+ (its|your|their) (wisdowm|charisma|intelligence|strength|dexterity|constitution|spellcasting ability) modifier)\b/gi,
 	/\b(((flying )?speed of )?\d+(\scubic\s|\s|\s?-?\s?)(inch|feet|foot|mile)s?([ -]radius)?( (cube|square|sphere|circle|cone))?( in an hour)?( (tall|wide|deep))?)\b/gi,
 	/\b(\d+ (hour|minute|second|round)s?)\b/gi,
-	/\b(\d+ (pound|ton)s?)\b/gi,
-	/\b(\d+\s?gp)\b/gi,
+	/\b(\d+(,\d+)? (pound|ton)s?)\b/gi,
+	/\b(\d+(,\d+)?\s?gp)\b/gi,
 	/\b((wisdom|charisma|intelligence|strength|dexterity|constitution) of \d+)\b/gi,
   /\b(\d+ hit points?)\b/gi,
 ];
