@@ -12,7 +12,7 @@
 		<tr>
 			<th>Level</th>
 			<th>Spell</th>
-			<th>Casting Time</th>
+			<th>Cast</th>
 			<th>Duration</th>
 			<th>Range</th>
 			{#if $$slots.action}
@@ -29,22 +29,24 @@
 				<td>
 					{spell.level}
 					{#if spell.higher_levels}
-						<span title="Upcast possible">💪</span>
+						<span title="Upcast possible" class="badge success">*</span>
 					{/if}
 				</td>
 				<td>
 					{spell.name}
 					{#if spell.concentration}
-						<span title="Requires concentration">🤔</span>
+						<span title="Requires concentration" class="badge danger">C</span>
 					{/if}
 				</td>
 				<td>
-					{spell.casting_time}
+					{#if spell.casting_time !== '1 action'}
+						{spell.casting_time}
+					{/if}
 					{#if spell.ritual}
-						<span title="Ritual Cast-able">📖</span>
+						<span title="Ritual Cast-able" class="badge secondary">Ritual</span>
 					{/if}
 					{#if spell.reaction_trigger}
-						<span title={spell.reaction_trigger}>ℹ️</span>
+						<span title={spell.reaction_trigger} class="badge warning">i</span>
 					{/if}
 				</td>
 				<td>{spell.duration}</td>
@@ -58,7 +60,7 @@
 			</tr>
 			{#if rowExpansion === spell.name}
 				<tr>
-					<td colspan="5">
+					<td colspan={$$slots.action ? 6 : 5}>
 						<Description description={spell.description} upcast={spell.higher_levels} />
 					</td>
 				</tr>
@@ -80,7 +82,11 @@
 		cursor: pointer;
 	}
 
-	td {
-		vertical-align: middle;
-	}
+  td {
+    vertical-align: middle;
+  }
+
+  table {
+    width: 95%;
+  }
 </style>
