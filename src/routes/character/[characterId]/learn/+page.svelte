@@ -5,8 +5,11 @@
 </script>
 
 <h3 class="margin">
-	Available Spells <span class="badge secondary" title="Learned spells">
-		{$characterSheet.learnedSpells.length}
+	Available Spells <span class="badge" title="Learned cantrips">
+		{$characterSheet.learnedSpells.filter((s) => s.level === 0).length}
+	</span>
+	<span class="badge secondary" title="Learned spells">
+		{$characterSheet.learnedSpells.filter((s) => s.level > 0).length}
 	</span>
 </h3>
 

@@ -29,7 +29,7 @@
 	</div>
 </div>
 
-<SpellTable spells={$characterSheet.learnedSpells}>
+<SpellTable spells={$characterSheet.playableSpells}>
 	<Button
 		slot="action"
 		let:spell

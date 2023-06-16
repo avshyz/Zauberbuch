@@ -10,7 +10,7 @@
 	</span>
 </h3>
 
-<SpellTable spells={$characterSheet.learnedSpells}>
+<SpellTable spells={$characterSheet.learnedSpells.filter((s) => s.level !== 0)}>
 	<Button
 		slot="action"
 		let:spell

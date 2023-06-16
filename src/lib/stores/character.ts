@@ -66,7 +66,12 @@ function createCharacterStore() {
 			preparedSpells,
 
 			playableSpells: bothPrepareAndLearnStages($character.characterClass)
-				? preparedSpells
+				? [
+						...new Set([
+							...learnedSpells.filter((s) => s.level === 0 || s.ritual),
+							...preparedSpells
+						])
+				  ]
 				: learnedSpells,
 
 			learnableSpells: spells
