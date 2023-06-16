@@ -1,9 +1,14 @@
 <script lang="ts">
+	import type { Spell } from '$lib/assets/SrdSpells';
 	import SpellTable from '$lib/components/SpellTable';
 	import { characterSheet } from '$lib/stores/character.js';
 	import { Button, Modal } from 'spaper';
 
 	let showCharacterInfo = false;
+
+	function isSpellDisabled(spell: Spell) {
+		return spell.level > 0 && $characterSheet.spellSlots[spell.level - 1] <= 0;
+	}
 </script>
 
 <div class="padding row flex-edges flex-middle">
@@ -30,23 +35,30 @@
 </div>
 
 <SpellTable spells={$characterSheet.learnedSpells}>
-	<Button
+	<div
 		slot="action"
 		let:spell
-		disabled={spell.level > 0 && $characterSheet.spellSlots[spell.level - 1] <= 0}
-		size="small"
-		on:click={() => {
-			characterSheet.actions.castSpell(spell);
-		}}
+		style="position: relative;"
+		on:contextmenu|preventDefault|stopPropagation={() =>
+			characterSheet.actions.regainSlot(spell.level)}
 	>
-		Cast {#if spell.level > 0}
-			({$characterSheet.spellSlots[spell.level - 1]}/{$characterSheet.availableSpellSlots[
-				spell.level - 1
-			]})
-		{:else}
-			Cantrip
-		{/if}
-	</Button>
+		<button
+			class="btn-small"
+			style:pointer-events={isSpellDisabled(spell) ? 'none' : 'all'}
+			disabled={isSpellDisabled(spell)}
+			on:click={() => {
+				characterSheet.actions.castSpell(spell);
+			}}
+		>
+			Cast {#if spell.level > 0}
+				({$characterSheet.spellSlots[spell.level - 1]}/{$characterSheet.availableSpellSlots[
+					spell.level - 1
+				]})
+			{:else}
+				Cantrip
+			{/if}
+		</button>
+	</div>
 </SpellTable>
 <Modal bind:active={showCharacterInfo} title="Character Info">
 	<p>
