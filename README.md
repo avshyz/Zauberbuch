@@ -13,10 +13,6 @@ npm run dev
 ```
 
 # TODO
-- Forward Compat
-  - add prepare step
-    - Rituals are always prepared
-    - cantrips are always playable
 - Grimoire Reimplementations
   - remove cast column, use badges and icons instead
     - icon for bonus action and reaction
