@@ -14,7 +14,6 @@ npm run dev
 
 # TODO
 - Forward Compat
-  - add regain spell 
   - add prepare step
     - Rituals are always prepared
 - Grimoire Reimplementations
@@ -27,6 +26,8 @@ npm run dev
     - nonconcentration
     - blindness
     - components
+    - searchbox
+  - add regain spell 
 - normalize spells
   - concentration nonopitonal
   - areas as first class column
