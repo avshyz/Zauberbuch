@@ -16,6 +16,7 @@ npm run dev
 - Forward Compat
   - add prepare step
     - Rituals are always prepared
+    - cantrips are always playable
 - Grimoire Reimplementations
   - remove cast column, use badges and icons instead
     - icon for bonus action and reaction
@@ -53,11 +54,11 @@ npm run dev
   - bold for things like
     - enemy that you see
 - keyboard shortcuts
-- available spells
 - empty screens
   - "Learn Spells"
   - "Create Character"
-- Learned spells limit
+  - "Prepare spells"
+- Learned spells limit?
 - gamification
   - animations
     - cool hovers
@@ -67,7 +68,10 @@ npm run dev
     - animation disable
     - darkmode
     - colors?
-- Multiclassing support
+- GA
+  - Allowing to take spells from more different lists
+  - Multiclassing support
+  - change phrasing of "learn" tab based on class
 - spell references
   - [donjon](https://donjon.bin.sh/5e/spells/)
   - [grimoire](https://raw.githubusercontent.com/avshyz/grimoire/main/src/data.ts?token=GHSAT0AAAAAACCMZTMJSYHEFD2U2FCMAZFMZDZ2QWA)
