@@ -5,10 +5,12 @@
 </script>
 
 <h3 class="margin">
-	Available Spells <span class="badge secondary">{$characterSheet.learnedSpells.length}/XXX</span>
+	Available Spells <span class="badge secondary" title="Learned spells">
+		{$characterSheet.learnedSpells.length}
+	</span>
 </h3>
 
-<SpellTable spells={$characterSheet.availableSpells}>
+<SpellTable spells={$characterSheet.learnableSpells}>
 	<Button
 		slot="action"
 		let:spell

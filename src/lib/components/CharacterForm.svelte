@@ -6,7 +6,7 @@
 	import { createForm } from 'felte';
 	import { createEventDispatcher } from 'svelte';
 	import { reporter, ValidationMessage } from '@felte/reporter-svelte';
-	import { CASTER_TYPE_TO_SLOT_TABLE } from '$lib/spellSlots';
+	import { CASTER_TYPE_TO_SLOT_TABLE } from '$lib/mechanics';
 
 	export let title = 'New Character';
 	export let initialValues: CharacterFormResult | undefined = undefined;
@@ -28,7 +28,8 @@
 	const schema = z.object({
 		name: z.string().nonempty(),
 		level: z.number().gt(0).lte(20),
-		characterClass: z.enum(CHARACTER_CLASSES)
+		characterClass: z.enum(CHARACTER_CLASSES),
+		spellCastingAbility: z.number().gt(-3).lte(10)
 	});
 
 	const { form } = createForm<z.infer<typeof schema>>({
@@ -68,7 +69,17 @@
 			</select>
 		</div>
 
-		<button type="submit">{initialValues !== undefined ? 'UPDATE' : 'CREATE'}</button>
+		<div class="form-group">
+			<label for="spellCastingAbility">Spell Casting Ability</label>
+			<input name="spellCastingAbility" required type="number" max="10" min="-3" />
+			<ValidationMessage for="level" let:messages>
+				{messages?.[0] || ''}
+			</ValidationMessage>
+		</div>
+
+		<button type="submit">
+			{initialValues !== undefined ? 'UPDATE' : 'CREATE'}
+		</button>
 	</form>
 </div>
 
@@ -76,9 +87,19 @@
 	form {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
+		gap: 20px 40px;
 	}
 	select,
 	select option {
 		text-transform: capitalize;
+	}
+
+	button {
+		grid-column: span 2;
+	}
+
+	input,
+	select {
+		width: 100%;
 	}
 </style>

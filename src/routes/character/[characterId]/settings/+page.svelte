@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation';
 	import { characterSheet } from '$lib/stores/character.js';
 	import { page } from '$app/stores';
-	import { getSpellSlots } from '$lib/spellSlots';
+	import { getSpellSlots } from '$lib/mechanics';
 
 	async function handleDelete() {
 		const { characterId } = $page.params;

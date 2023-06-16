@@ -2,17 +2,7 @@ import type { CharacterClass } from './types';
 
 type Tuple<TItem, TLength extends number> = readonly [TItem, ...TItem[]] & { length: TLength };
 
-export type SpellSlots = [
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-	number,
-];
+export type SpellSlots = [number, number, number, number, number, number, number, number, number];
 type SlotTable = Tuple<SpellSlots, 20>;
 
 export const NO_SPELL_SLOTS: SpellSlots = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -153,4 +143,8 @@ export const CASTER_TYPE_TO_SLOT_TABLE: Record<CharacterClass, SlotTable | undef
 
 export function getSpellSlots(characterClass: CharacterClass, level: number): SpellSlots {
 	return CASTER_TYPE_TO_SLOT_TABLE[characterClass]?.[level - 1] ?? NO_SPELL_SLOTS;
+}
+
+export function bothPrepareAndLearnStages(characterClass: CharacterClass) {
+	return characterClass == 'wizard';
 }

@@ -9,7 +9,12 @@ import {
 import type { CharacterClass, CharacterSheet } from '../types';
 import { v4 as uuid } from 'uuid';
 import { derived, writable } from 'svelte/store';
-import { NO_SPELL_SLOTS, getSpellSlots, type SpellSlots } from '$lib/spellSlots';
+import {
+	NO_SPELL_SLOTS,
+	getSpellSlots,
+	type SpellSlots,
+	bothPrepareAndLearnStages
+} from '$lib/mechanics';
 import spells, { type Spell } from '$lib/assets/SrdSpells';
 
 const SPELL_LIST_MAPPER: { [key in CharacterClass]?: CharacterClass } = {
@@ -22,11 +27,15 @@ type CharacterStoreData = CharacterSheet & { id: string };
 const EMPTY_SHEET: CharacterStoreData = {
 	characterClass: 'fighter',
 	learnedSpellsIds: [],
+	preparedSpellsIds: [],
+	spellCastingAbility: 0,
 	spellSlots: NO_SPELL_SLOTS,
 	level: 1,
 	name: '',
 	id: ''
 };
+
+// TODO SHOULD THIS BE A CLASS??
 function createCharacterStore() {
 	const store = writable<CharacterStoreData>(EMPTY_SHEET);
 	const { set, update } = store;
@@ -36,16 +45,31 @@ function createCharacterStore() {
 			? availableSpellSlots.findLastIndex((slot) => slot > 0) + 1
 			: 0;
 
+		const learnedSpells = spells
+			.filter(({ name }) => $character.learnedSpellsIds.includes(name))
+			.sort(spellComperator);
+
+		const preparedSpells = spells
+			.filter(({ name }) => $character.preparedSpellsIds.includes(name))
+			.sort(spellComperator);
+
 		return {
 			...$character,
 			proficiencyBonus: Math.floor(2 + ($character.level - 1) / 4),
 			availableSpellSlots,
 			maxAvailableSpellLevel,
+
 			isSpellLearned: (spell: string) => $character.learnedSpellsIds.includes(spell),
-			learnedSpells: spells
-				.filter(({ name }) => $character.learnedSpellsIds.includes(name))
-				.sort(spellComperator),
-			availableSpells: spells
+			learnedSpells,
+
+			isSpellPrepared: (spell: string) => $character.preparedSpellsIds.includes(spell),
+			preparedSpells,
+
+			playableSpells: bothPrepareAndLearnStages($character.characterClass)
+				? preparedSpells
+				: learnedSpells,
+
+			learnableSpells: spells
 				.filter(
 					({ level, classes }) =>
 						classes.includes(
@@ -95,6 +119,7 @@ function createCharacterStore() {
 				const res = JSON.parse(characterData) as CharacterSheet;
 				set({ ...res, id });
 			},
+			// TODO DRY LEARN & PREPARE
 			toggleLearnSpell(spell: string) {
 				persistentUpdate((sheet) => {
 					const learnedSpells = sheet.learnedSpellsIds;
@@ -108,6 +133,23 @@ function createCharacterStore() {
 						return {
 							...sheet,
 							learnedSpellsIds: [...learnedSpells, spell]
+						};
+					}
+				});
+			},
+			togglePrepareSpell(spell: string) {
+				persistentUpdate((sheet) => {
+					const preparedSpells = sheet.preparedSpellsIds;
+
+					if (preparedSpells.includes(spell)) {
+						return {
+							...sheet,
+							preparedSpellsIds: preparedSpells.filter((learnedSpell) => learnedSpell !== spell)
+						};
+					} else {
+						return {
+							...sheet,
+							preparedSpellsIds: [...preparedSpells, spell]
 						};
 					}
 				});
