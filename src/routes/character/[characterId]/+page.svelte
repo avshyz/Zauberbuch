@@ -79,7 +79,17 @@
 	</p>
 	<p>
 		<em>Spellcasting Ability:</em>
-		+XXX
+		+{$characterSheet.spellCastingAbility}
+	</p>
+
+	<p>
+		<em>Spell Save DC:</em>
+		DC {8 + $characterSheet.proficiencyBonus + $characterSheet.spellCastingAbility}
+	</p>
+
+	<p>
+		<em>Spell Attack Bonus:</em>
+		+{$characterSheet.proficiencyBonus + $characterSheet.spellCastingAbility}
 	</p>
 	<p><em>Spell Slots</em></p>
 	<p>
