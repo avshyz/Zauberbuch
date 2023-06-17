@@ -2,6 +2,7 @@
 	import type { Spell } from '$lib/assets/SrdSpells';
 	import { trusted } from 'svelte/internal';
 	import Description from './Description.svelte';
+	import SearchInput from './SearchInput.svelte';
 
 	export let spells: Spell[];
 	let rowExpansion: string | null = null;
@@ -21,34 +22,8 @@
 			return false;
 		return true;
 	});
-
-	// TODO - SEPERATE TO DIFFERENT COMPONENT
-	let searchQuery: string = '';
-	let timer: NodeJS.Timeout;
-	let searchBox: HTMLInputElement;
-	$: {
-		if (timer) clearTimeout(timer);
-		timer = setTimeout(() => {
-			if (searchQuery.length > 3) {
-				const arr = Array.from(document.querySelectorAll('.spell-name')).filter((n) => {
-					return (
-						n.textContent?.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase()) ?? false
-					);
-				});
-				if (arr.length === 1) arr[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-			}
-		}, 500);
-	}
 </script>
 
-<svelte:window
-	on:keydown={(e) => {
-		if (e.key === 'f' && e.ctrlKey) {
-			searchBox.focus();
-			searchBox.select();
-		}
-	}}
-/>
 <div class="filter-container">
 	{#each Object.keys(filters) as condition}
 		<div class="field-container">
@@ -58,7 +33,15 @@
 	{/each}
 </div>
 
-<input placeholder="Search spell" bind:value={searchQuery} bind:this={searchBox} />
+<SearchInput
+	on:change={(e) => {
+		const value = e.detail;
+		const arr = Array.from(document.querySelectorAll('.spell-name')).filter((n) => {
+			return n.textContent?.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ?? false;
+		});
+		if (arr.length === 1) arr[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+	}}
+/>
 
 <table class="table-hover margin">
 	<thead>
