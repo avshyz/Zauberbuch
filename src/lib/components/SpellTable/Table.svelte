@@ -6,7 +6,7 @@
 	let rowExpansion: string | null = null;
 
 	let filters = {
-		restrained: true,
+		restrained: false,
 		blind: false,
 		concentration: false,
 		silenced: false
@@ -64,7 +64,7 @@
 						<span title="Ritual Cast-able" class="badge secondary">Ritual</span>
 					{/if}
 					{#if spell.casting_time !== 'action'}
-						<span class="badge sucess">{spell.casting_time}</span>
+						<span title="Casting time" class="badge sucess">{spell.casting_time}</span>
 					{/if}
 					{#if spell.reaction_trigger}
 						<span title={spell.reaction_trigger} class="badge warning">i</span>
