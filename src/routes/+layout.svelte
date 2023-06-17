@@ -3,6 +3,9 @@
 	import { Navbar } from 'spaper';
 	import 'normalize.css';
 	import 'papercss/dist/paper.min.css';
+	import { spellStore } from '$lib/stores/spells';
+
+	spellStore.actions.init();
 </script>
 
 <Navbar>

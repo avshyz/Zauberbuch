@@ -22,7 +22,8 @@
 				"writeFile": true,
 				"readDir": true,
 				"createDir": true,
-				"removeFile": true
+				"removeFile": true,
+        "exists": true
 			}
 		},
 		"bundle": {

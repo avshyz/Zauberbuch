@@ -9,7 +9,6 @@ fn main() {
 
             assert_dir_exists(&config_dir);
             assert_dir_exists(&config_dir.join("characters"));
-            assert_dir_exists(&config_dir.join("spells"));
 
             Ok(())
         })
