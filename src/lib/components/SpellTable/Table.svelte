@@ -1,11 +1,41 @@
 <script lang="ts">
 	import type { Spell } from '$lib/assets/SrdSpells';
-	import { fade } from 'svelte/transition';
 	import Description from './Description.svelte';
 
 	export let spells: Spell[];
 	let rowExpansion: string | null = null;
+
+	let filters = {
+		restrained: true,
+		blind: false,
+		concentration: false,
+		silenced: false
+	} as const;
+
+	$: filteredSpells = spells.filter((s) => {
+		if (filters.restrained && s.components.somatic) return false;
+		if (filters.concentration && s.concentration) return false;
+		if (filters.silenced && s.components.verbal) return false;
+		if (filters.blind && s.description.toLocaleLowerCase().includes('that you can see'))
+			return false;
+		return true;
+	});
 </script>
+
+<div>
+	{#each Object.keys(filters) as condition}
+		<div class="row">
+			<label for={condition}>{condition}</label>
+			<input
+				id={condition}
+				value={condition}
+				name={condition}
+				bind:checked={filters[condition]}
+				type="checkbox"
+			/>
+		</div>
+	{/each}
+</div>
 
 <table class="table-hover margin">
 	<thead>
@@ -20,7 +50,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each spells as spell (spell.name)}
+		{#each filteredSpells as spell (spell.name)}
 			<tr
 				on:click={() =>
 					rowExpansion === spell.name ? (rowExpansion = null) : (rowExpansion = spell.name)}
