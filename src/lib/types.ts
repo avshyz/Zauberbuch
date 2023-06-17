@@ -1,6 +1,19 @@
-import type { CHARACTER_CLASSES } from './consts';
 import type { SpellSlots } from './mechanics';
 
+export const CHARACTER_CLASSES = [
+	'barbarian',
+	'bard',
+	'cleric',
+	'druid',
+	'fighter',
+	'monk',
+	'paladin',
+	'ranger',
+	'rogue',
+	'sorcerer',
+	'warlock',
+	'wizard'
+] as const;
 export type CharacterClass = (typeof CHARACTER_CLASSES)[number];
 
 export type CharacterSheet = {
