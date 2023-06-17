@@ -156,4 +156,7 @@
 	.slot-container {
 		display: inline-block;
 	}
+  .slot-container input {
+    display: inline;
+  }
 </style>
