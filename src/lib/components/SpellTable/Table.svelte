@@ -12,30 +12,31 @@
 	let rowExpansion: string | null = null;
 </script>
 
-<SearchInput
-	on:change={(e) => {
-		const value = e.detail;
-		const arr = Array.from(document.querySelectorAll('.spell-name')).filter((n) => {
-			return n.textContent?.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ?? false;
-		});
-		if (arr.length === 1) arr[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-	}}
-/>
-<Filters
-	on:change={(e) => {
-		const filters = e.detail;
+<div class="search-container" style="position: sticky; top: 0">
+	<Filters
+		on:change={(e) => {
+			const filters = e.detail;
 
-		filteredSpells = spells.filter((s) => {
-			if (filters.restrained && s.components.somatic) return false;
-			if (filters.concentrating && s.concentration) return false;
-			if (filters.silenced && s.components.verbal) return false;
-			if (filters.blinded && s.description.toLocaleLowerCase().includes('that you can see'))
-				return false;
-			return true;
-		});
-	}}
-/>
-
+			filteredSpells = spells.filter((s) => {
+				if (filters.restrained && s.components.somatic) return false;
+				if (filters.concentrating && s.concentration) return false;
+				if (filters.silenced && s.components.verbal) return false;
+				if (filters.blinded && s.description.toLocaleLowerCase().includes('that you can see'))
+					return false;
+				return true;
+			});
+		}}
+	/>
+	<SearchInput
+		on:change={(e) => {
+			const value = e.detail;
+			const arr = Array.from(document.querySelectorAll('.spell-name')).filter((n) => {
+				return n.textContent?.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ?? false;
+			});
+			if (arr.length === 1) arr[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}}
+	/>
+</div>
 <table class="table-hover margin">
 	<thead>
 		<tr>
@@ -114,5 +115,15 @@
 
 	table {
 		width: 95%;
+	}
+	.search-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding-inline: 20px;
+		padding-block: 10px;
+		background: white;
+
+		border-color: transparent transparent gray transparent;
 	}
 </style>
