@@ -188,7 +188,6 @@ function createCharacterStore() {
 					const max = getSpellSlots(sheet.characterClass, sheet.level)[level - 1];
 
 					if (newSlots[level - 1] < max) newSlots[level - 1] += 1;
-					console.log('xxxx');
 					return { ...sheet, spellSlots: newSlots };
 				});
 			},

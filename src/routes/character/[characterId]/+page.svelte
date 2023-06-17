@@ -25,8 +25,8 @@
 <div class="padding row flex-edges flex-middle">
 	<h3 class="margin-none">Spellbook</h3>
 	{#if $characterSheet.currentConcentration}
-		<div class="row">
-			<h4>{$characterSheet.currentConcentration}</h4>
+		<div class="row margin-none" style="gap: 8px">
+			<h4 class="margin-none">{$characterSheet.currentConcentration}</h4>
 			<button
 				class="btn-small btn-warning"
 				on:click={() => characterSheet.actions.breakConcentration()}
