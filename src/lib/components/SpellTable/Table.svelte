@@ -7,16 +7,16 @@
 
 	let filters = {
 		restrained: false,
-		blind: false,
-		concentration: false,
+		blinded: false,
+		concentrating: false,
 		silenced: false
 	} as const;
 
 	$: filteredSpells = spells.filter((s) => {
 		if (filters.restrained && s.components.somatic) return false;
-		if (filters.concentration && s.concentration) return false;
+		if (filters.concentrating && s.concentration) return false;
 		if (filters.silenced && s.components.verbal) return false;
-		if (filters.blind && s.description.toLocaleLowerCase().includes('that you can see'))
+		if (filters.blinded && s.description.toLocaleLowerCase().includes('that you can see'))
 			return false;
 		return true;
 	});
