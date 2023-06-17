@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Spell } from '$lib/assets/SrdSpells';
+	import { trusted } from 'svelte/internal';
 	import Description from './Description.svelte';
 
 	export let spells: Spell[];
@@ -20,8 +21,31 @@
 			return false;
 		return true;
 	});
+
+	// TODO - SEPERATE TO DIFFERENT COMPONENT
+	let searchQuery: string = '';
+	let timer: NodeJS.Timeout;
+	let searchBox: HTMLDivElement;
+	$: {
+		if (timer) clearTimeout(timer);
+		timer = setTimeout(() => {
+			if (searchQuery.length > 3) {
+				const arr = Array.from(document.querySelectorAll('.spell-name')).filter((n) => {
+					return (
+						n.textContent?.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase()) ?? false
+					);
+				});
+				if (arr.length === 1) arr[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+			}
+		}, 500);
+	}
 </script>
 
+<svelte:window
+	on:keydown={(e) => {
+		if (e.keyCode === 65 && e.ctrlKey) searchBox.focus();
+	}}
+/>
 <div class="filter-container">
 	{#each Object.keys(filters) as condition}
 		<div class="field-container">
@@ -30,6 +54,8 @@
 		</div>
 	{/each}
 </div>
+
+<input placeholder="Search spell" bind:value={searchQuery} bind:this={searchBox} />
 
 <table class="table-hover margin">
 	<thead>
@@ -56,7 +82,7 @@
 					{/if}
 				</td>
 				<td>
-					{spell.name}
+					<span class="spell-name">{spell.name}</span>
 					{#if spell.concentration}
 						<span title="Requires concentration" class="badge danger">C</span>
 					{/if}
