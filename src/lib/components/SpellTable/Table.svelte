@@ -1,37 +1,16 @@
 <script lang="ts">
 	import type { Spell } from '$lib/assets/SrdSpells';
-	import { trusted } from 'svelte/internal';
+
 	import Description from './Description.svelte';
+	import Filters from './Filters.svelte';
 	import SearchInput from './SearchInput.svelte';
 
 	export let spells: Spell[];
+
+	let filteredSpells = spells;
+
 	let rowExpansion: string | null = null;
-
-	let filters = {
-		restrained: false,
-		blinded: false,
-		concentrating: false,
-		silenced: false
-	} as const;
-
-	$: filteredSpells = spells.filter((s) => {
-		if (filters.restrained && s.components.somatic) return false;
-		if (filters.concentrating && s.concentration) return false;
-		if (filters.silenced && s.components.verbal) return false;
-		if (filters.blinded && s.description.toLocaleLowerCase().includes('that you can see'))
-			return false;
-		return true;
-	});
 </script>
-
-<div class="filter-container">
-	{#each Object.keys(filters) as condition}
-		<div class="field-container">
-			<input id={condition} name={condition} bind:checked={filters[condition]} type="checkbox" />
-			<label for={condition}>{condition}</label>
-		</div>
-	{/each}
-</div>
 
 <SearchInput
 	on:change={(e) => {
@@ -40,6 +19,20 @@
 			return n.textContent?.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ?? false;
 		});
 		if (arr.length === 1) arr[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+	}}
+/>
+<Filters
+	on:change={(e) => {
+		const filters = e.detail;
+
+		filteredSpells = spells.filter((s) => {
+			if (filters.restrained && s.components.somatic) return false;
+			if (filters.concentrating && s.concentration) return false;
+			if (filters.silenced && s.components.verbal) return false;
+			if (filters.blinded && s.description.toLocaleLowerCase().includes('that you can see'))
+				return false;
+			return true;
+		});
 	}}
 />
 
@@ -121,15 +114,5 @@
 
 	table {
 		width: 95%;
-	}
-
-	.filter-container {
-		display: flex;
-		gap: 16px;
-	}
-	.field-container {
-		display: flex;
-		align-items: center;
-		gap: 5px;
 	}
 </style>
