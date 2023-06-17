@@ -13,7 +13,6 @@ npm run dev
 ```
 
 # TODO
-- searchbox
 - normalize spells
   - areas as first class column
   - uuid instead of names
