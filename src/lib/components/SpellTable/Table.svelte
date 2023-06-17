@@ -25,7 +25,7 @@
 	// TODO - SEPERATE TO DIFFERENT COMPONENT
 	let searchQuery: string = '';
 	let timer: NodeJS.Timeout;
-	let searchBox: HTMLDivElement;
+	let searchBox: HTMLInputElement;
 	$: {
 		if (timer) clearTimeout(timer);
 		timer = setTimeout(() => {
@@ -43,7 +43,10 @@
 
 <svelte:window
 	on:keydown={(e) => {
-		if (e.key === "f" && e.ctrlKey) searchBox.focus();
+		if (e.key === 'f' && e.ctrlKey) {
+			searchBox.focus();
+			searchBox.select();
+		}
 	}}
 />
 <div class="filter-container">
