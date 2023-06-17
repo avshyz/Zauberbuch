@@ -29,7 +29,7 @@
 		name: z.string().nonempty(),
 		level: z.number().gt(0).lte(20),
 		characterClass: z.enum(CHARACTER_CLASSES),
-		spellCastingAbility: z.number().gt(-3).lte(10)
+		spellCastingAbility: z.number().gte(0).lte(10)
 	});
 
 	const { form } = createForm<z.infer<typeof schema>>({
@@ -70,8 +70,9 @@
 		</div>
 
 		<div class="form-group">
-			<label for="spellCastingAbility">Spell Casting Ability</label>
-			<input name="spellCastingAbility" required type="number" max="10" min="-3" />
+			<!-- TODO SWITCH BY CLASS -->
+			<label for="spellCastingAbility">Spell Casting Ability Modifier</label>
+			<input name="spellCastingAbility" required type="number" max="10" min="0" />
 			<ValidationMessage for="level" let:messages>
 				{messages?.[0] || ''}
 			</ValidationMessage>

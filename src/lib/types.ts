@@ -8,9 +8,13 @@ export type CharacterSheet = {
 	level: number;
 	characterClass: CharacterClass;
 	spellCastingAbility: number;
+
 	spellSlots: SpellSlots;
+
 	learnedSpellsIds: string[];
 	preparedSpellsIds: string[];
+
+	currentConcentration: string | undefined;
 };
 
 export type CharacterFormResult = Pick<

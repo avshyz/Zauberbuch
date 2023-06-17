@@ -14,10 +14,6 @@ npm run dev
 
 # TODO
 - Grimoire Reimplementations
-  - remove cast column, use badges and icons instead
-    - icon for bonus action and reaction
-    - badges for irregular times
-  - show current concentration
   - ritual casting (add concentration without spending a slot)
   - filters
     - nonconcentration
@@ -25,6 +21,9 @@ npm run dev
     - components
     - searchbox
   - add regain spell 
+  - remove cast column, use badges and icons instead
+    - icon for bonus action and reaction
+    - badges for irregular times
 - normalize spells
   - concentration nonopitonal
   - areas as first class column

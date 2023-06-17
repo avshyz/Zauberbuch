@@ -24,7 +24,7 @@ const SPELL_LIST_MAPPER: { [key in CharacterClass]?: CharacterClass } = {
 
 type CharacterStoreData = CharacterSheet & { id: string };
 
-const EMPTY_SHEET: CharacterStoreData = {
+export const EMPTY_SHEET: CharacterStoreData = {
 	characterClass: 'fighter',
 	learnedSpellsIds: [],
 	preparedSpellsIds: [],
@@ -32,7 +32,8 @@ const EMPTY_SHEET: CharacterStoreData = {
 	spellSlots: NO_SPELL_SLOTS,
 	level: 1,
 	name: '',
-	id: ''
+	id: '',
+	currentConcentration: undefined
 };
 
 // TODO SHOULD THIS BE A CLASS??
@@ -132,7 +133,9 @@ function createCharacterStore() {
 					if (learnedSpells.includes(spell)) {
 						return {
 							...sheet,
-							learnedSpellsIds: learnedSpells.filter((learnedSpell) => learnedSpell !== spell)
+							learnedSpellsIds: learnedSpells.filter((s) => s !== spell),
+							// if a spell is unlearned - it's also unprepared
+							preparedSpellsIds: sheet.preparedSpellsIds.filter((s) => s !== spell)
 						};
 					} else {
 						return {
@@ -149,7 +152,7 @@ function createCharacterStore() {
 					if (preparedSpells.includes(spell)) {
 						return {
 							...sheet,
-							preparedSpellsIds: preparedSpells.filter((learnedSpell) => learnedSpell !== spell)
+							preparedSpellsIds: preparedSpells.filter((s) => s !== spell)
 						};
 					} else {
 						return {
@@ -160,12 +163,21 @@ function createCharacterStore() {
 				});
 			},
 			castSpell(spell: Spell) {
-				if (spell.level === 0) return;
+				persistentUpdate(({ currentConcentration, spellSlots, ...sheet }) => {
+					const newSlots: SpellSlots = [...spellSlots];
+					if (spell.level > 0 && newSlots[spell.level - 1] > 0) {
+						newSlots[spell.level - 1] -= 1;
+					}
 
+					if (spell.concentration) {
+						currentConcentration = spell.name;
+					}
+					return { ...sheet, spellSlots: newSlots, currentConcentration };
+				});
+			},
+			breakConcentration() {
 				persistentUpdate((sheet) => {
-					const newSlots: SpellSlots = [...sheet.spellSlots];
-					if (newSlots[spell.level - 1] > 0) newSlots[spell.level - 1] -= 1;
-					return { ...sheet, spellSlots: newSlots };
+					return { ...sheet, currentConcentration: undefined };
 				});
 			},
 			regainSlot(level: number) {
@@ -183,7 +195,9 @@ function createCharacterStore() {
 			rest() {
 				persistentUpdate((sheet) => ({
 					...sheet,
-					spellSlots: getSpellSlots(sheet.characterClass, sheet.level)
+					spellSlots: getSpellSlots(sheet.characterClass, sheet.level),
+					// TODO DRY
+					currentConcentration: undefined
 				}));
 			}
 		}

@@ -1,13 +1,33 @@
 <script lang="ts">
+	import type { Spell } from '$lib/assets/SrdSpells';
 	import SpellTable from '$lib/components/SpellTable';
 	import { characterSheet } from '$lib/stores/character.js';
 	import { Button, Modal } from 'spaper';
 
 	let showCharacterInfo = false;
+
+	function getSlotsForSpell(spell: Spell) {
+		return $characterSheet.spellSlots[spell.level - 1];
+	}
+
+	function getMaxAvailableSlotsForSpell(spell: Spell) {
+		return $characterSheet.availableSpellSlots[spell.level - 1];
+	}
 </script>
 
 <div class="padding row flex-edges flex-middle">
 	<h3 class="margin-none">Spellbook</h3>
+	{#if $characterSheet.currentConcentration}
+		<div class="row">
+			<h4>{$characterSheet.currentConcentration}</h4>
+			<button
+				class="btn-small btn-warning"
+				on:click={() => characterSheet.actions.breakConcentration()}
+			>
+				Break
+			</button>
+		</div>
+	{/if}
 	<div class="col padding-none padding-right">
 		<Button
 			size="small"
@@ -30,23 +50,27 @@
 </div>
 
 <SpellTable spells={$characterSheet.playableSpells}>
-	<Button
+	<button
 		slot="action"
 		let:spell
+		class="btn-small"
 		disabled={spell.level > 0 && $characterSheet.spellSlots[spell.level - 1] <= 0}
-		size="small"
+		title={spell.concentration && !!$characterSheet.currentConcentration
+			? `Already concentrating on: ${$characterSheet.currentConcentration}`
+			: null}
+		class:btn-danger={spell.concentration && !!$characterSheet.currentConcentration
+			? 'danger'
+			: undefined}
 		on:click={() => {
 			characterSheet.actions.castSpell(spell);
 		}}
 	>
 		Cast {#if spell.level > 0}
-			({$characterSheet.spellSlots[spell.level - 1]}/{$characterSheet.availableSpellSlots[
-				spell.level - 1
-			]})
+			({getSlotsForSpell(spell)}/{getMaxAvailableSlotsForSpell(spell)})
 		{:else}
 			Cantrip
 		{/if}
-	</Button>
+	</button>
 </SpellTable>
 <Modal bind:active={showCharacterInfo} title="Character Info">
 	<p>
