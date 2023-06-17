@@ -6,6 +6,8 @@
 	import { createEventDispatcher } from 'svelte';
 	import { reporter, ValidationMessage } from '@felte/reporter-svelte';
 	import { CASTER_TYPE_TO_SLOT_TABLE } from '$lib/mechanics';
+	import { Form } from 'spaper';
+	import FormField from './FormField.svelte';
 
 	export let title = 'New Character';
 	export let initialValues: CharacterFormResult | undefined = undefined;
@@ -43,22 +45,13 @@
 <div class="border paper container container-sm margin-bottom-large margin-top-large">
 	<h4 class="margin-bottom-small margin-top-none">{title}</h4>
 	<form use:form>
-		<div class="form-group">
-			<label for="name">Name</label>
+		<FormField name="name" label="Name">
 			<input name="name" />
-			<ValidationMessage for="name" let:messages>
-				{messages?.[0] || ''}
-			</ValidationMessage>
-		</div>
-		<div class="form-group">
-			<label for="level">Level</label>
+		</FormField>
+		<FormField name="level" label="Level">
 			<input name="level" required type="number" max="20" min="1" />
-			<ValidationMessage for="level" let:messages>
-				{messages?.[0] || ''}
-			</ValidationMessage>
-		</div>
-		<div class="form-group">
-			<label for="characterClass">Class</label>
+		</FormField>
+		<FormField name="characterClass" label="Class">
 			<select name="characterClass" required>
 				{#each optionsToDisplay as characterClass}
 					<option disabled={!SUPPORTED_CLASSES.includes(characterClass)} value={characterClass}>
@@ -66,16 +59,10 @@
 					</option>
 				{/each}
 			</select>
-		</div>
-
-		<div class="form-group">
-			<!-- TODO SWITCH BY CLASS -->
-			<label for="spellCastingAbility">Spell Casting Ability Modifier</label>
+		</FormField>
+		<FormField name="spellCastingAbility" label="Spellcasting Ability Modifier">
 			<input name="spellCastingAbility" required type="number" max="10" min="0" />
-			<ValidationMessage for="spellCastingAbility" let:messages>
-				{messages?.[0] || ''}
-			</ValidationMessage>
-		</div>
+		</FormField>
 
 		<button type="submit">
 			{initialValues !== undefined ? 'UPDATE' : 'CREATE'}
