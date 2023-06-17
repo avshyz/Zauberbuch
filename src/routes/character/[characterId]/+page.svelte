@@ -73,36 +73,47 @@
 	</button>
 </SpellTable>
 <Modal bind:active={showCharacterInfo} title="Character Info">
-	<p>
-		<em>Proficiency Bonus:</em>
-		+{$characterSheet.proficiencyBonus}
-	</p>
-	<p>
-		<em>Spellcasting Ability:</em>
-		+{$characterSheet.spellCastingAbility}
-	</p>
+	<table class="table-hover padding">
+		<tbody>
+			<tr>
+				<td>Spell Save DC:</td>
+				<td>
+					DC {8 + $characterSheet.proficiencyBonus + $characterSheet.spellCastingAbility}
+				</td>
+			</tr>
+			<tr>
+				<td>Spell Attack Bonus:</td>
+				<td>
+					+{$characterSheet.proficiencyBonus + $characterSheet.spellCastingAbility}
+				</td>
+			</tr>
+			<tr>
+				<td>Proficiency Bonus:</td>
+				<td>
+					+{$characterSheet.proficiencyBonus}
+				</td>
+			</tr>
+			<tr>
+				<td>Spellcasting Ability:</td>
+				<td>+{$characterSheet.spellCastingAbility}</td>
+			</tr>
+		</tbody>
+	</table>
 
-	<p>
-		<em>Spell Save DC:</em>
-		DC {8 + $characterSheet.proficiencyBonus + $characterSheet.spellCastingAbility}
-	</p>
-
-	<p>
-		<em>Spell Attack Bonus:</em>
-		+{$characterSheet.proficiencyBonus + $characterSheet.spellCastingAbility}
-	</p>
-	<p><em>Spell Slots</em></p>
-	<p>
-		{#each $characterSheet.availableSpellSlots.filter((slot) => slot > 0) as slot, i}
-			{i + 1}:
-			<div class="slot-container">
-				{#each Array.from({ length: slot }) as _spellSlot, j}
-					<input class="slot" type="checkbox" checked={j < $characterSheet.spellSlots[i]} />
-				{/each}
-			</div>
-			<br />
-		{/each}
-	</p>
+	<div class="margin padding-small">
+		<p><em>Spell Slots</em></p>
+		<p>
+			{#each $characterSheet.availableSpellSlots.filter((slot) => slot > 0) as slot, i}
+				{i + 1}:
+				<div class="slot-container">
+					{#each Array.from({ length: slot }) as _spellSlot, j}
+						<input class="slot" type="checkbox" checked={j < $characterSheet.spellSlots[i]} />
+					{/each}
+				</div>
+				<br />
+			{/each}
+		</p>
+	</div>
 </Modal>
 
 <style>
