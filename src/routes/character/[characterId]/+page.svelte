@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Spell } from '$lib/assets/SrdSpells';
+	import type { Spell } from '$lib/types';
 	import SpellTable from '$lib/components/SpellTable';
 	import { characterSheet } from '$lib/stores/character.js';
 	import { Button, Modal } from 'spaper';
@@ -140,7 +140,7 @@
 	.slot-container {
 		display: inline-block;
 	}
-  .slot-container input {
-    display: inline;
-  }
+	.slot-container input {
+		display: inline;
+	}
 </style>

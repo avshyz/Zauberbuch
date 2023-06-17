@@ -1,4 +1,4 @@
-import type { Spell } from '$lib/assets/SrdSpells';
+import type { Spell } from '$lib/types';
 import { BaseDirectory, readTextFile, writeTextFile, exists } from '@tauri-apps/api/fs';
 import { writable } from 'svelte/store';
 
@@ -24,4 +24,3 @@ function createStore() {
 }
 
 export const spellStore = createStore();
-

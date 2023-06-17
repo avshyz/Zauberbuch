@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Spell } from '$lib/assets/SrdSpells';
+	import type { Spell } from '$lib/types';
 
 	import Description from './Description.svelte';
 	import Filters from './Filters.svelte';
