@@ -13,16 +13,10 @@ npm run dev
 ```
 
 # TODO
-- Grimoire Reimplementations
-  - filters
-    - nonconcentration
-    - blindness
-    - components
-    - searchbox
+- searchbox
 - normalize spells
-  - concentration nonopitonal
   - areas as first class column
-  - sight-only
+  - uuid instead of names
 - Spell Control
   - add spells
   - edit spells
