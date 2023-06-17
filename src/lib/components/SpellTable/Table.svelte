@@ -43,7 +43,7 @@
 
 <svelte:window
 	on:keydown={(e) => {
-		if (e.keyCode === 65 && e.ctrlKey) searchBox.focus();
+		if (e.key === "f" && e.ctrlKey) searchBox.focus();
 	}}
 />
 <div class="filter-container">
