@@ -12,6 +12,7 @@
 
 	let rowExpansion: string | null = null;
 
+	let highlightedRow: string | null = null;
 	let spellElements: { [key: string]: HTMLTableRowElement } = {};
 </script>
 
@@ -33,12 +34,14 @@
 	<SearchInput
 		on:change={(e) => {
 			const value = e.detail;
-			const arr = Object.entries(spellElements)
-				.filter(([name]) => {
-					return name.toLocaleLowerCase().includes(value);
-				})
-				.map(([_, elem]) => elem);
-			if (arr.length === 1) arr[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+			const arr = Object.entries(spellElements).filter(([name]) => {
+				return name.toLocaleLowerCase().includes(value);
+			});
+			if (arr.length === 1) {
+				const [name, elem] = arr[0];
+				elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+				highlightedRow = name;
+			}
 		}}
 	/>
 </div>
@@ -58,6 +61,7 @@
 	<tbody>
 		{#each filteredSpells as spell (spell.name)}
 			<tr
+				class:highlight={spell.name === highlightedRow}
 				bind:this={spellElements[spell.name]}
 				on:click={() =>
 					rowExpansion === spell.name ? (rowExpansion = null) : (rowExpansion = spell.name)}
@@ -132,5 +136,16 @@
 		background: white;
 
 		border-color: transparent transparent gray transparent;
+	}
+	.highlight {
+		background-color: yellow;
+		animation: desaturate 0.3s forwards ease-out;
+		animation-delay: 0.5s;
+	}
+
+	@keyframes desaturate {
+		100% {
+			background-color: transparent;
+		}
 	}
 </style>
