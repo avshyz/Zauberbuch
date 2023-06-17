@@ -20,7 +20,6 @@ npm run dev
     - blindness
     - components
     - searchbox
-  - add regain spell 
   - remove cast column, use badges and icons instead
     - icon for bonus action and reaction
     - badges for irregular times

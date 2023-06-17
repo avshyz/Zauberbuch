@@ -13,6 +13,13 @@
 	function getMaxAvailableSlotsForSpell(spell: Spell) {
 		return $characterSheet.availableSpellSlots[spell.level - 1];
 	}
+
+	function isConcentrationBreaking(spell: Spell) {
+		return spell.concentration && !!$characterSheet.currentConcentration;
+	}
+	function isCantrip(spell: Spell) {
+		return spell.level === 0;
+	}
 </script>
 
 <div class="padding row flex-edges flex-middle">
@@ -50,27 +57,34 @@
 </div>
 
 <SpellTable spells={$characterSheet.playableSpells}>
-	<button
-		slot="action"
-		let:spell
-		class="btn-small"
-		disabled={spell.level > 0 && $characterSheet.spellSlots[spell.level - 1] <= 0}
-		title={spell.concentration && !!$characterSheet.currentConcentration
-			? `Already concentrating on: ${$characterSheet.currentConcentration}`
-			: null}
-		class:btn-danger={spell.concentration && !!$characterSheet.currentConcentration
-			? 'danger'
-			: undefined}
-		on:click={() => {
-			characterSheet.actions.castSpell(spell);
-		}}
-	>
-		Cast {#if spell.level > 0}
-			({getSlotsForSpell(spell)}/{getMaxAvailableSlotsForSpell(spell)})
-		{:else}
-			Cantrip
+	<div slot="action" let:spell>
+		<button
+			class="btn-small"
+			disabled={!isCantrip(spell) && $characterSheet.spellSlots[spell.level - 1] <= 0}
+			title={isConcentrationBreaking(spell)
+				? `Already concentrating on: ${$characterSheet.currentConcentration}`
+				: null}
+			class:btn-danger={isConcentrationBreaking(spell) ? 'danger' : undefined}
+			on:click={() => {
+				characterSheet.actions.castSpell(spell);
+			}}
+		>
+			Cast {#if !isCantrip(spell)}
+				({getSlotsForSpell(spell)}/{getMaxAvailableSlotsForSpell(spell)})
+			{:else}
+				Cantrip
+			{/if}
+		</button>
+		{#if !isCantrip(spell) && getSlotsForSpell(spell) < getMaxAvailableSlotsForSpell(spell)}
+			<button
+				title={`Regain spell slot lvl ${spell.level}`}
+				class="btn-small"
+				on:click={() => characterSheet.actions.regainSlot(spell.level)}
+			>
+				⎌
+			</button>
 		{/if}
-	</button>
+	</div>
 </SpellTable>
 <Modal bind:active={showCharacterInfo} title="Character Info">
 	<table class="table-hover padding">
