@@ -28,5 +28,5 @@
 		}
 	}}
 />
-
+<!-- TODO WHEN NO MATCH MAKE BLINK -->
 <input placeholder="Search spell" bind:value bind:this={searchBox} />

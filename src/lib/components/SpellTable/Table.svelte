@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Spell } from '$lib/assets/SrdSpells';
+	import { json } from '@sveltejs/kit';
 
 	import Description from './Description.svelte';
 	import Filters from './Filters.svelte';
@@ -10,6 +11,8 @@
 	let filteredSpells = spells;
 
 	let rowExpansion: string | null = null;
+
+	let spellElements: { [key: string]: HTMLTableRowElement } = {};
 </script>
 
 <div class="search-container" style="position: sticky; top: 0">
@@ -30,13 +33,16 @@
 	<SearchInput
 		on:change={(e) => {
 			const value = e.detail;
-			const arr = Array.from(document.querySelectorAll('.spell-name')).filter((n) => {
-				return n.textContent?.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ?? false;
-			});
+			const arr = Object.entries(spellElements)
+				.filter(([name]) => {
+					return name.toLocaleLowerCase().includes(value);
+				})
+				.map(([_, elem]) => elem);
 			if (arr.length === 1) arr[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
 		}}
 	/>
 </div>
+
 <table class="table-hover margin">
 	<thead>
 		<tr>
@@ -52,6 +58,7 @@
 	<tbody>
 		{#each filteredSpells as spell (spell.name)}
 			<tr
+				bind:this={spellElements[spell.name]}
 				on:click={() =>
 					rowExpansion === spell.name ? (rowExpansion = null) : (rowExpansion = spell.name)}
 			>
