@@ -22,17 +22,11 @@
 	});
 </script>
 
-<div>
+<div class="filter-container">
 	{#each Object.keys(filters) as condition}
-		<div class="row">
+		<div class="field-container">
+			<input id={condition} name={condition} bind:checked={filters[condition]} type="checkbox" />
 			<label for={condition}>{condition}</label>
-			<input
-				id={condition}
-				value={condition}
-				name={condition}
-				bind:checked={filters[condition]}
-				type="checkbox"
-			/>
 		</div>
 	{/each}
 </div>
@@ -115,5 +109,15 @@
 
 	table {
 		width: 95%;
+	}
+
+	.filter-container {
+		display: flex;
+		gap: 16px;
+	}
+	.field-container {
+		display: flex;
+		align-items: center;
+		gap: 5px;
 	}
 </style>
