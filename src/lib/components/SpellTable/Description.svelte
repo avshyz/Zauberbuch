@@ -28,8 +28,8 @@
 		line-height: 1.6;
 		width: min(65ch, 100% - 4rem);
 		margin-inline: auto;
-    pointer-events: none;
-    cursor: auto;
+		pointer-events: none !important;
+		cursor: auto !important;
 	}
 	.spell-description :global(td) {
 		text-align: left !important;
