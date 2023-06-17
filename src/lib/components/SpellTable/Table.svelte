@@ -12,7 +12,6 @@
 		<tr>
 			<th>Level</th>
 			<th>Spell</th>
-			<th>Cast</th>
 			<th>Duration</th>
 			<th>Range</th>
 			{#if $$slots.action}
@@ -37,13 +36,11 @@
 					{#if spell.concentration}
 						<span title="Requires concentration" class="badge danger">C</span>
 					{/if}
-				</td>
-				<td>
-					{#if spell.casting_time !== '1 action'}
-						{spell.casting_time}
-					{/if}
 					{#if spell.ritual}
 						<span title="Ritual Cast-able" class="badge secondary">Ritual</span>
+					{/if}
+					{#if spell.casting_time !== 'action'}
+						<span class="badge sucess">{spell.casting_time}</span>
 					{/if}
 					{#if spell.reaction_trigger}
 						<span title={spell.reaction_trigger} class="badge warning">i</span>
@@ -60,7 +57,7 @@
 			</tr>
 			{#if rowExpansion === spell.name}
 				<tr>
-					<td colspan={$$slots.action ? 6 : 5}>
+					<td colspan={$$slots.action ? 5 : 4}>
 						<Description description={spell.description} upcast={spell.higher_levels} />
 					</td>
 				</tr>

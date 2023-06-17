@@ -3,11 +3,7 @@ import type { CharacterClass } from '$lib/types';
 type TimeUnit = 'minute' | 'hour' | 'day' | 'week' | 'month' | 'year';
 type Pluralize<T extends string> = `${T}${'' | 's'}`;
 
-type CastingType =
-	| '1 action'
-	| '1 bonus action'
-	| '1 reaction'
-	| `${number} ${Pluralize<TimeUnit>}`;
+type CastingType = 'action' | 'bonus action' | 'reaction' | `${number} ${Pluralize<TimeUnit>}`;
 
 type Duration =
 	| 'instant'
@@ -55,7 +51,7 @@ export type Spell = {
 
 const spells: Spell[] = [
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -75,7 +71,7 @@ const spells: Spell[] = [
 		type: 'Conjuration cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['ranger', 'wizard'],
 		components: {
 			material: true,
@@ -96,7 +92,7 @@ const spells: Spell[] = [
 		type: '1st-level abjuration (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'ranger'],
 		components: {
 			material: true,
@@ -119,7 +115,7 @@ const spells: Spell[] = [
 		type: '1st-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric'],
 		components: {
 			material: true,
@@ -143,7 +139,7 @@ const spells: Spell[] = [
 		type: '1st-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -163,7 +159,7 @@ const spells: Spell[] = [
 		type: 'Abjuration cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'paladin'],
 		components: {
 			material: true,
@@ -187,7 +183,7 @@ const spells: Spell[] = [
 		type: '1st-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -209,7 +205,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -231,7 +227,7 @@ const spells: Spell[] = [
 		type: '1st-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -251,7 +247,7 @@ const spells: Spell[] = [
 		type: 'Necromancy cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -274,7 +270,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -297,7 +293,7 @@ const spells: Spell[] = [
 		type: '1st-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'paladin'],
 		components: {
 			material: false,
@@ -319,7 +315,7 @@ const spells: Spell[] = [
 		type: '1st-level enchantment'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -340,7 +336,7 @@ const spells: Spell[] = [
 		type: '1st-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -361,7 +357,7 @@ const spells: Spell[] = [
 		type: '1st-level divination (Ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid'],
 		components: {
 			material: true,
@@ -386,7 +382,7 @@ const spells: Spell[] = [
 		type: '1st-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'druid', 'paladin', 'ranger'],
 		components: {
 			material: false,
@@ -408,7 +404,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -430,7 +426,7 @@ const spells: Spell[] = [
 		type: 'Evocation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'paladin'],
 		components: {
 			material: false,
@@ -451,7 +447,7 @@ const spells: Spell[] = [
 		type: '1st-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'druid', 'paladin', 'ranger', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -472,7 +468,7 @@ const spells: Spell[] = [
 		type: '1st-level divination (Ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid', 'paladin', 'ranger'],
 		components: {
 			material: true,
@@ -494,7 +490,7 @@ const spells: Spell[] = [
 		type: '1st-level divination (Ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -514,7 +510,7 @@ const spells: Spell[] = [
 		type: '1st-level illusion'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -535,7 +531,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard'],
 		components: {
 			material: false,
@@ -557,7 +553,7 @@ const spells: Spell[] = [
 		type: '1st-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: false,
@@ -577,7 +573,7 @@ const spells: Spell[] = [
 		type: 'Transmutation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['warlock'],
 		components: {
 			material: false,
@@ -597,7 +593,7 @@ const spells: Spell[] = [
 		type: 'Evocation cantrip'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['ranger'],
 		components: {
 			material: false,
@@ -620,7 +616,7 @@ const spells: Spell[] = [
 		type: '1st-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: false,
@@ -641,7 +637,7 @@ const spells: Spell[] = [
 		type: '1st-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid'],
 		components: {
 			material: false,
@@ -662,7 +658,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -683,7 +679,7 @@ const spells: Spell[] = [
 		type: '1st-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -706,7 +702,7 @@ const spells: Spell[] = [
 		type: '1st-level necromancy'
 	},
 	{
-		casting_time: '1 reaction',
+		casting_time: 'reaction',
 		reaction_trigger: 'when you or a creature within 60 feet of you falls',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
@@ -751,7 +747,7 @@ const spells: Spell[] = [
 		type: '1st-level conjuration (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -771,7 +767,7 @@ const spells: Spell[] = [
 		type: 'Evocation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -794,7 +790,7 @@ const spells: Spell[] = [
 		type: '1st-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -816,7 +812,7 @@ const spells: Spell[] = [
 		type: 'Enchantment cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger'],
 		components: {
 			material: true,
@@ -837,7 +833,7 @@ const spells: Spell[] = [
 		type: '1st-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -858,7 +854,7 @@ const spells: Spell[] = [
 		type: '1st-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid'],
 		components: {
 			material: false,
@@ -879,7 +875,7 @@ const spells: Spell[] = [
 		type: 'Divination cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -901,7 +897,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['ranger'],
 		components: {
 			material: false,
@@ -924,7 +920,7 @@ const spells: Spell[] = [
 		type: '1st-level conjuration'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['bard', 'cleric', 'druid'],
 		components: {
 			material: false,
@@ -946,7 +942,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 reaction',
+		casting_time: 'reaction',
 		reaction_trigger: 'when being damaged by a creature within 60 feet of you that you can see.',
 		classes: ['warlock'],
 		components: {
@@ -969,7 +965,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['warlock'],
 		components: {
 			material: true,
@@ -993,7 +989,7 @@ const spells: Spell[] = [
 		type: '1st-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'paladin'],
 		components: {
 			material: false,
@@ -1016,7 +1012,7 @@ const spells: Spell[] = [
 		type: '1st-level enchantment'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['ranger'],
 		components: {
 			material: false,
@@ -1081,7 +1077,7 @@ const spells: Spell[] = [
 		type: '1st-level illusion (Ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -1103,7 +1099,7 @@ const spells: Spell[] = [
 		type: '1st-level necromancy'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -1124,7 +1120,7 @@ const spells: Spell[] = [
 		type: '1st-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -1145,7 +1141,7 @@ const spells: Spell[] = [
 		type: 'Evocation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'ranger', 'wizard'],
 		components: {
 			material: true,
@@ -1168,7 +1164,7 @@ const spells: Spell[] = [
 		type: '1st-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -1189,7 +1185,7 @@ const spells: Spell[] = [
 		type: '1st-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -1209,7 +1205,7 @@ const spells: Spell[] = [
 		type: 'Conjuration cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -1252,7 +1248,7 @@ const spells: Spell[] = [
 		type: 'Transmutation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -1273,7 +1269,7 @@ const spells: Spell[] = [
 		type: 'Transmutation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -1294,7 +1290,7 @@ const spells: Spell[] = [
 		type: 'Illusion cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -1314,7 +1310,7 @@ const spells: Spell[] = [
 		type: 'Conjuration cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -1334,7 +1330,7 @@ const spells: Spell[] = [
 		type: 'Transmutation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: false,
@@ -1354,7 +1350,7 @@ const spells: Spell[] = [
 		type: 'Conjuration cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'paladin', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -1376,7 +1372,7 @@ const spells: Spell[] = [
 		type: '1st-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid', 'paladin'],
 		components: {
 			material: false,
@@ -1396,7 +1392,7 @@ const spells: Spell[] = [
 		type: '1st-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -1416,7 +1412,7 @@ const spells: Spell[] = [
 		type: 'Evocation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -1438,7 +1434,7 @@ const spells: Spell[] = [
 		type: '1st-level necromancy'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'paladin', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -1458,7 +1454,7 @@ const spells: Spell[] = [
 		type: '3rd-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid'],
 		components: {
 			material: true,
@@ -1480,7 +1476,7 @@ const spells: Spell[] = [
 		type: 'Abjuration cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -1500,7 +1496,7 @@ const spells: Spell[] = [
 		type: 'Evocation cantrip'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['cleric'],
 		components: {
 			material: true,
@@ -1521,7 +1517,7 @@ const spells: Spell[] = [
 		type: '1st-level abjuration'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['cleric', 'paladin'],
 		components: {
 			material: true,
@@ -1543,7 +1539,7 @@ const spells: Spell[] = [
 		type: '1st-level abjuration'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -1566,7 +1562,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 reaction',
+		casting_time: 'reaction',
 		reaction_trigger: 'when you are hit by an attack or targeted by the magic missile spell',
 		classes: ['sorcerer', 'wizard'],
 		components: {
@@ -1587,7 +1583,7 @@ const spells: Spell[] = [
 		type: '1st-level abjuration'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['druid'],
 		components: {
 			material: true,
@@ -1608,7 +1604,7 @@ const spells: Spell[] = [
 		type: 'Transmutation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -1628,7 +1624,7 @@ const spells: Spell[] = [
 		type: 'Evocation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -1650,7 +1646,7 @@ const spells: Spell[] = [
 		type: '1st-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -1673,7 +1669,7 @@ const spells: Spell[] = [
 		type: '1st-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -1693,7 +1689,7 @@ const spells: Spell[] = [
 		type: 'Necromancy cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'ranger'],
 		components: {
 			material: false,
@@ -1713,7 +1709,7 @@ const spells: Spell[] = [
 		type: '1st-level divination (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -1733,7 +1729,7 @@ const spells: Spell[] = [
 		type: 'Transmutation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: true,
@@ -1754,7 +1750,7 @@ const spells: Spell[] = [
 		type: 'Transmutation cantrip'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -1775,7 +1771,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -1797,7 +1793,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -1818,7 +1814,7 @@ const spells: Spell[] = [
 		type: 'Divination cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -1839,7 +1835,7 @@ const spells: Spell[] = [
 		type: '1st-level conjuration (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard'],
 		components: {
 			material: false,
@@ -1859,7 +1855,7 @@ const spells: Spell[] = [
 		type: 'Enchantment cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -1883,7 +1879,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -1904,7 +1900,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'paladin'],
 		components: {
 			material: true,
@@ -1927,7 +1923,7 @@ const spells: Spell[] = [
 		type: '2nd-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'ranger'],
 		components: {
 			material: true,
@@ -1950,7 +1946,7 @@ const spells: Spell[] = [
 		type: '2nd-level enchantment (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -1993,7 +1989,7 @@ const spells: Spell[] = [
 		type: '2nd-level divination (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric'],
 		components: {
 			material: false,
@@ -2014,7 +2010,7 @@ const spells: Spell[] = [
 		type: '2nd-level Enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'druid', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -2038,7 +2034,7 @@ const spells: Spell[] = [
 		type: '2nd-level enchantment (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'druid', 'paladin', 'ranger'],
 		components: {
 			material: false,
@@ -2080,7 +2076,7 @@ const spells: Spell[] = [
 		type: '2nd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'ranger'],
 		components: {
 			material: false,
@@ -2101,7 +2097,7 @@ const spells: Spell[] = [
 		type: '2nd-level illusion (ritual)'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -2123,7 +2119,7 @@ const spells: Spell[] = [
 		type: '2nd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: true,
@@ -2169,7 +2165,7 @@ const spells: Spell[] = [
 		type: '3rd-level necromancy'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -2191,7 +2187,7 @@ const spells: Spell[] = [
 		type: '4th-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -2212,7 +2208,7 @@ const spells: Spell[] = [
 		type: '4th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -2233,7 +2229,7 @@ const spells: Spell[] = [
 		type: '4th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -2254,7 +2250,7 @@ const spells: Spell[] = [
 		type: '3rd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'paladin', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -2278,7 +2274,7 @@ const spells: Spell[] = [
 		type: '4th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -2299,7 +2295,7 @@ const spells: Spell[] = [
 		type: '3rd-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -2321,7 +2317,7 @@ const spells: Spell[] = [
 		type: '4th-level necromancy'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'wizard'],
 		components: {
 			material: false,
@@ -2344,7 +2340,7 @@ const spells: Spell[] = [
 		type: '3rd-level necromancy'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -2365,7 +2361,7 @@ const spells: Spell[] = [
 		type: '3rd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -2385,7 +2381,7 @@ const spells: Spell[] = [
 		type: '3rd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: false,
@@ -2432,7 +2428,7 @@ const spells: Spell[] = [
 		type: '3rd-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -2456,7 +2452,7 @@ const spells: Spell[] = [
 		type: '2nd-level Conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard'],
 		components: {
 			material: false,
@@ -2477,7 +2473,7 @@ const spells: Spell[] = [
 		type: '4th-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger'],
 		components: {
 			material: false,
@@ -2500,7 +2496,7 @@ const spells: Spell[] = [
 		type: '3rd-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['ranger'],
 		components: {
 			material: true,
@@ -2521,7 +2517,7 @@ const spells: Spell[] = [
 		type: '3rd-level conjuration'
 	},
 	{
-		casting_time: '1 reaction',
+		casting_time: 'reaction',
 		reaction_trigger: 'when you see a creature within 60 feet of you casting a spell.',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
@@ -2544,7 +2540,7 @@ const spells: Spell[] = [
 		type: '3rd-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'paladin'],
 		components: {
 			material: false,
@@ -2564,7 +2560,7 @@ const spells: Spell[] = [
 		type: '3rd-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -2585,7 +2581,7 @@ const spells: Spell[] = [
 		type: '3rd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid', 'paladin', 'ranger', 'sorcerer'],
 		components: {
 			material: false,
@@ -2605,7 +2601,7 @@ const spells: Spell[] = [
 		type: '3rd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'druid', 'paladin', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -2627,7 +2623,7 @@ const spells: Spell[] = [
 		type: '3rd-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -2650,7 +2646,7 @@ const spells: Spell[] = [
 		type: '3rd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -2672,7 +2668,7 @@ const spells: Spell[] = [
 		type: '3rd-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'druid', 'wizard'],
 		components: {
 			material: true,
@@ -2693,7 +2689,7 @@ const spells: Spell[] = [
 		type: '3rd-level necromancy (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -2716,7 +2712,7 @@ const spells: Spell[] = [
 		type: '3rd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -2740,7 +2736,7 @@ const spells: Spell[] = [
 		type: '3rd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -2762,7 +2758,7 @@ const spells: Spell[] = [
 		type: '3rd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -2784,7 +2780,7 @@ const spells: Spell[] = [
 		type: '3rd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -2808,7 +2804,7 @@ const spells: Spell[] = [
 		type: '3rd-level illusion'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['ranger'],
 		components: {
 			material: false,
@@ -2856,7 +2852,7 @@ const spells: Spell[] = [
 		type: '3rd-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -2880,7 +2876,7 @@ const spells: Spell[] = [
 		type: '3rd-level illusion'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -2902,7 +2898,7 @@ const spells: Spell[] = [
 		type: '3rd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -2923,7 +2919,7 @@ const spells: Spell[] = [
 		type: '2nd-Level Transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -2944,7 +2940,7 @@ const spells: Spell[] = [
 		type: '2nd-Level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger'],
 		components: {
 			material: true,
@@ -2966,7 +2962,7 @@ const spells: Spell[] = [
 		type: '2nd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'ranger', 'wizard'],
 		components: {
 			material: true,
@@ -2989,7 +2985,7 @@ const spells: Spell[] = [
 		type: '3rd-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid'],
 		components: {
 			material: false,
@@ -3029,7 +3025,7 @@ const spells: Spell[] = [
 		type: '3rd-level illusion (ritual)'
 	},
 	{
-		casting_time: '1 action or 8 hours',
+		casting_time: 'action or 8 hours',
 		classes: ['bard', 'druid', 'ranger'],
 		components: {
 			material: false,
@@ -3038,7 +3034,7 @@ const spells: Spell[] = [
 			verbal: true
 		},
 		description:
-			'This spell channels vitality into plants within a specific area. There are two possible uses for the spell, granting either immediate or long-term benefits.\n\nIf you cast this spell using 1 action, choose a point within range. All normal plants in a 100-foot radius centered on that point become thick and overgrown. A creature moving through the area must spend 4 feet of movement for every 1 foot it moves.\n\nYou can exclude one or more areas of any size within the spell\u2019s area from being affected.\n\nIf you cast this spell over 8 hours, you enrich the land. All plants in a half-mile radius centered on a point within range become enriched for 1 year. The plants yield twice the normal amount of food when harvested.',
+			'This spell channels vitality into plants within a specific area. There are two possible uses for the spell, granting either immediate or long-term benefits.\n\nIf you cast this spell using action, choose a point within range. All normal plants in a 100-foot radius centered on that point become thick and overgrown. A creature moving through the area must spend 4 feet of movement for every 1 foot it moves.\n\nYou can exclude one or more areas of any size within the spell\u2019s area from being affected.\n\nIf you cast this spell over 8 hours, you enrich the land. All plants in a half-mile radius centered on a point within range become enriched for 1 year. The plants yield twice the normal amount of food when harvested.',
 		duration: 'instant',
 		level: 3,
 		name: 'Plant Growth',
@@ -3049,7 +3045,7 @@ const spells: Spell[] = [
 		type: '3rd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid', 'ranger', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -3070,7 +3066,7 @@ const spells: Spell[] = [
 		type: '3rd-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'paladin'],
 		components: {
 			material: true,
@@ -3091,7 +3087,7 @@ const spells: Spell[] = [
 		type: '3rd-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'wizard'],
 		components: {
 			material: true,
@@ -3112,7 +3108,7 @@ const spells: Spell[] = [
 		type: '3rd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -3134,7 +3130,7 @@ const spells: Spell[] = [
 		type: '3rd-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -3144,7 +3140,7 @@ const spells: Spell[] = [
 			verbal: true
 		},
 		description:
-			'You alter time around up to six creatures of your choice in a 40-foot cube within range. Each target must succeed on a wisdom saving throw or be affected by this spell for the duration.\n\nAn affected target\u2019s speed is halved, it takes a -2 penalty to AC and Dexterity saving throws, and it can\u2019t use reactions. On its turn, it can use either an action or a bonus action, not both. Regardless of the creature\u2019s abilities or magic items, it can\u2019t make more than one melee or ranged attack during its turn.\n\nIf the creature attempts to cast a spell with a casting time of 1 action, roll a d20. On an 11 or higher, the spell doesn\u2019t take effect until the creature\u2019s next turn, and the creature must use its action on that turn to complete the spell. If it can\u2019t, the spell is wasted.\n\nA creature affected by this spell makes another Wisdom saving throw at the end of its turn. On a successful save, the effect ends for it.',
+			'You alter time around up to six creatures of your choice in a 40-foot cube within range. Each target must succeed on a wisdom saving throw or be affected by this spell for the duration.\n\nAn affected target\u2019s speed is halved, it takes a -2 penalty to AC and Dexterity saving throws, and it can\u2019t use reactions. On its turn, it can use either an action or a bonus action, not both. Regardless of the creature\u2019s abilities or magic items, it can\u2019t make more than one melee or ranged attack during its turn.\n\nIf the creature attempts to cast a spell with a casting time of action, roll a d20. On an 11 or higher, the spell doesn\u2019t take effect until the creature\u2019s next turn, and the creature must use its action on that turn to complete the spell. If it can\u2019t, the spell is wasted.\n\nA creature affected by this spell makes another Wisdom saving throw at the end of its turn. On a successful save, the effect ends for it.',
 		duration: 'up to 1 minute',
 		concentration: true,
 		level: 3,
@@ -3156,7 +3152,7 @@ const spells: Spell[] = [
 		type: '3rd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric'],
 		components: {
 			material: true,
@@ -3177,7 +3173,7 @@ const spells: Spell[] = [
 		type: '3rd-level necromancy'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'ranger'],
 		components: {
 			material: false,
@@ -3197,7 +3193,7 @@ const spells: Spell[] = [
 		type: '3rd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: true,
@@ -3221,7 +3217,7 @@ const spells: Spell[] = [
 		type: '3rd-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -3243,7 +3239,7 @@ const spells: Spell[] = [
 		type: '3rd-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -3290,7 +3286,7 @@ const spells: Spell[] = [
 		type: '4th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid', 'wizard'],
 		components: {
 			material: true,
@@ -3312,7 +3308,7 @@ const spells: Spell[] = [
 		type: '4th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger'],
 		components: {
 			material: true,
@@ -3336,7 +3332,7 @@ const spells: Spell[] = [
 		type: '4th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'paladin'],
 		components: {
 			material: false,
@@ -3356,7 +3352,7 @@ const spells: Spell[] = [
 		type: '4th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -3377,7 +3373,7 @@ const spells: Spell[] = [
 		type: '3rd-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger'],
 		components: {
 			material: false,
@@ -3398,7 +3394,7 @@ const spells: Spell[] = [
 		type: '2nd-level divination (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -3419,7 +3415,7 @@ const spells: Spell[] = [
 		type: '2nd-Level illusion'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -3442,7 +3438,7 @@ const spells: Spell[] = [
 		type: '2nd-Level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['ranger'],
 		components: {
 			material: true,
@@ -3465,7 +3461,7 @@ const spells: Spell[] = [
 		type: '2nd-Level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -3486,7 +3482,7 @@ const spells: Spell[] = [
 		type: '2nd-Level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -3508,7 +3504,7 @@ const spells: Spell[] = [
 		type: '2nd-Level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -3529,7 +3525,7 @@ const spells: Spell[] = [
 		type: '2nd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -3551,7 +3547,7 @@ const spells: Spell[] = [
 		type: '2nd-Level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: false,
@@ -3572,7 +3568,7 @@ const spells: Spell[] = [
 		type: '8th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'wizard'],
 		components: {
 			material: true,
@@ -3685,7 +3681,7 @@ const spells: Spell[] = [
 		type: 'Wind'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['warlock', 'wizard'],
 		components: {
 			material: false,
@@ -3705,7 +3701,7 @@ const spells: Spell[] = [
 		type: '8th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -3728,7 +3724,7 @@ const spells: Spell[] = [
 		type: '8th-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid', 'sorcerer'],
 		components: {
 			material: true,
@@ -3750,7 +3746,7 @@ const spells: Spell[] = [
 		type: '8th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -3792,7 +3788,7 @@ const spells: Spell[] = [
 		type: '9th-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -3814,7 +3810,7 @@ const spells: Spell[] = [
 		type: '9th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'warlock'],
 		components: {
 			material: false,
@@ -3834,7 +3830,7 @@ const spells: Spell[] = [
 		type: '8th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: true,
@@ -3881,7 +3877,7 @@ const spells: Spell[] = [
 		type: '9th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -3902,7 +3898,7 @@ const spells: Spell[] = [
 		type: '8th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -3922,7 +3918,7 @@ const spells: Spell[] = [
 		type: '9th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: false,
@@ -3943,7 +3939,7 @@ const spells: Spell[] = [
 		type: '8th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -3963,7 +3959,7 @@ const spells: Spell[] = [
 		type: '9th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'wizard'],
 		components: {
 			material: false,
@@ -3983,7 +3979,7 @@ const spells: Spell[] = [
 		type: '8th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard'],
 		components: {
 			material: false,
@@ -4003,7 +3999,7 @@ const spells: Spell[] = [
 		type: '9th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -4023,7 +4019,7 @@ const spells: Spell[] = [
 		type: '9th-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -4043,7 +4039,7 @@ const spells: Spell[] = [
 		type: '8th-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: false,
@@ -4063,7 +4059,7 @@ const spells: Spell[] = [
 		type: '9th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'wizard'],
 		components: {
 			material: true,
@@ -4087,7 +4083,7 @@ const spells: Spell[] = [
 		type: '9th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: false,
@@ -4108,7 +4104,7 @@ const spells: Spell[] = [
 		type: '9th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -4129,7 +4125,7 @@ const spells: Spell[] = [
 		type: '8th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -4150,7 +4146,7 @@ const spells: Spell[] = [
 		type: '8th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -4170,7 +4166,7 @@ const spells: Spell[] = [
 		type: '9th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -4236,7 +4232,7 @@ const spells: Spell[] = [
 		type: '9th-level necromancy'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: false,
@@ -4257,7 +4253,7 @@ const spells: Spell[] = [
 		type: '9th-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -4300,7 +4296,7 @@ const spells: Spell[] = [
 		type: '7th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -4324,7 +4320,7 @@ const spells: Spell[] = [
 		type: '7th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -4344,7 +4340,7 @@ const spells: Spell[] = [
 		type: '4th-level conjuration'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -4364,7 +4360,7 @@ const spells: Spell[] = [
 		type: '7th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -4386,7 +4382,7 @@ const spells: Spell[] = [
 		type: '7th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -4406,7 +4402,7 @@ const spells: Spell[] = [
 		type: '7th-level necromancy'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid', 'sorcerer'],
 		components: {
 			material: false,
@@ -4426,7 +4422,7 @@ const spells: Spell[] = [
 		type: '7th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -4467,7 +4463,7 @@ const spells: Spell[] = [
 		type: '7th-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -4487,7 +4483,7 @@ const spells: Spell[] = [
 		type: '7th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'wizard'],
 		components: {
 			material: true,
@@ -4509,7 +4505,7 @@ const spells: Spell[] = [
 		type: '7th-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -4574,7 +4570,7 @@ const spells: Spell[] = [
 		type: '7th-level necromancy'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -4596,7 +4592,7 @@ const spells: Spell[] = [
 		type: '7th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -4665,7 +4661,7 @@ const spells: Spell[] = [
 		type: '7th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -4685,7 +4681,7 @@ const spells: Spell[] = [
 		type: '7th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -4707,7 +4703,7 @@ const spells: Spell[] = [
 		type: '2nd-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -4731,7 +4727,7 @@ const spells: Spell[] = [
 		type: '2nd-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -4754,7 +4750,7 @@ const spells: Spell[] = [
 		type: 'ANIMATED OBJECTS STATISTICS'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: false,
@@ -4775,7 +4771,7 @@ const spells: Spell[] = [
 		type: '5th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -4817,7 +4813,7 @@ const spells: Spell[] = [
 		type: '5th-level transmutation'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -4838,7 +4834,7 @@ const spells: Spell[] = [
 		type: '5th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -4863,7 +4859,7 @@ const spells: Spell[] = [
 		type: '6th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -4884,7 +4880,7 @@ const spells: Spell[] = [
 		type: '6th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -4907,7 +4903,7 @@ const spells: Spell[] = [
 		type: '6th-level necromancy'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -4928,7 +4924,7 @@ const spells: Spell[] = [
 		type: '5th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -4992,7 +4988,7 @@ const spells: Spell[] = [
 		type: '5th-level divination (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -5064,7 +5060,7 @@ const spells: Spell[] = [
 		type: '6th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['ranger'],
 		components: {
 			material: true,
@@ -5105,7 +5101,7 @@ const spells: Spell[] = [
 		type: '5th-level divination (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid'],
 		components: {
 			material: false,
@@ -5137,7 +5133,7 @@ const spells: Spell[] = [
 			verbal: true
 		},
 		description:
-			'Choose a spell of 5th level or lower that you can cast, that has a casting time of 1 action, and that can target you. You cast that spell--called the contingent spell--as part of casting *contingency*, expending spell slots for both, but the contingent spell doesn\'t come into effect. Instead, it takes effect when a certain circumstance occurs. You describe that circumstance when you cast the two spells. For example, a *contingency* cast with *[water breathing](../water-breathing/ "water breathing (lvl 3)")* might stipulate that *water breathing* comes into effect when you are engulfed in water or a similar liquid.\n\nThe contingent spell takes effect immediately after the circumstance is met for the first time, whether or not you want it to. and then contingency ends.\n\nThe contingent spell takes effect only on you, even if it can normally target others. You can use only one *contingency* spell at a time. If you cast this spell again, the effect of another *contingency* spell on you ends. Also, *contingency* ends on you if its material component is ever not on your person.',
+			'Choose a spell of 5th level or lower that you can cast, that has a casting time of action, and that can target you. You cast that spell--called the contingent spell--as part of casting *contingency*, expending spell slots for both, but the contingent spell doesn\'t come into effect. Instead, it takes effect when a certain circumstance occurs. You describe that circumstance when you cast the two spells. For example, a *contingency* cast with *[water breathing](../water-breathing/ "water breathing (lvl 3)")* might stipulate that *water breathing* comes into effect when you are engulfed in water or a similar liquid.\n\nThe contingent spell takes effect immediately after the circumstance is met for the first time, whether or not you want it to. and then contingency ends.\n\nThe contingent spell takes effect only on you, even if it can normally target others. You can use only one *contingency* spell at a time. If you cast this spell again, the effect of another *contingency* spell on you ends. Also, *contingency* ends on you if its material component is ever not on your person.',
 		duration: '10 days',
 		level: 6,
 		name: 'Contingency',
@@ -5173,7 +5169,7 @@ const spells: Spell[] = [
 		type: '6th-level necromancy'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'wizard'],
 		components: {
 			material: true,
@@ -5217,7 +5213,7 @@ const spells: Spell[] = [
 		type: '5th-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -5237,7 +5233,7 @@ const spells: Spell[] = [
 		type: '5th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -5260,7 +5256,7 @@ const spells: Spell[] = [
 		type: '6th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: true,
@@ -5283,7 +5279,7 @@ const spells: Spell[] = [
 		type: '4th-level divination (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'paladin'],
 		components: {
 			material: true,
@@ -5305,7 +5301,7 @@ const spells: Spell[] = [
 		type: '5th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer'],
 		components: {
 			material: false,
@@ -5328,7 +5324,7 @@ const spells: Spell[] = [
 		type: '4th-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -5374,7 +5370,7 @@ const spells: Spell[] = [
 		type: '5th-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'druid', 'sorcerer'],
 		components: {
 			material: true,
@@ -5398,7 +5394,7 @@ const spells: Spell[] = [
 		type: '2nd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -5420,7 +5416,7 @@ const spells: Spell[] = [
 		type: '2nd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'warlock'],
 		components: {
 			material: false,
@@ -5460,7 +5456,7 @@ const spells: Spell[] = [
 		type: '4th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -5525,7 +5521,7 @@ const spells: Spell[] = [
 		type: '6th-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid', 'ranger'],
 		components: {
 			material: false,
@@ -5545,7 +5541,7 @@ const spells: Spell[] = [
 		type: '2nd-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -5566,7 +5562,7 @@ const spells: Spell[] = [
 		type: '4th-level evocation'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['druid'],
 		components: {
 			material: true,
@@ -5590,7 +5586,7 @@ const spells: Spell[] = [
 		type: '2nd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: true,
@@ -5613,7 +5609,7 @@ const spells: Spell[] = [
 		type: '5th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'wizard'],
 		components: {
 			material: true,
@@ -5637,7 +5633,7 @@ const spells: Spell[] = [
 		type: '2nd-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['warlock', 'wizard'],
 		components: {
 			material: true,
@@ -5682,7 +5678,7 @@ const spells: Spell[] = [
 		type: '6th-level abjuration (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'druid', 'ranger'],
 		components: {
 			material: true,
@@ -5725,7 +5721,7 @@ const spells: Spell[] = [
 		type: '5th-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'wizard'],
 		components: {
 			material: true,
@@ -5748,7 +5744,7 @@ const spells: Spell[] = [
 		type: '2nd-level necromancy (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: false,
@@ -5769,7 +5765,7 @@ const spells: Spell[] = [
 		type: '4th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -5818,7 +5814,7 @@ const spells: Spell[] = [
 		type: '3rd-level abjuration'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['ranger', 'druid'],
 		components: {
 			material: false,
@@ -5839,7 +5835,7 @@ const spells: Spell[] = [
 		type: '4th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard', 'bard'],
 		components: {
 			material: false,
@@ -5860,7 +5856,7 @@ const spells: Spell[] = [
 		type: '4th-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid', 'bard'],
 		components: {
 			material: true,
@@ -5881,7 +5877,7 @@ const spells: Spell[] = [
 		type: '5th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -5924,7 +5920,7 @@ const spells: Spell[] = [
 		type: '6th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard', 'druid'],
 		components: {
 			material: true,
@@ -5990,7 +5986,7 @@ const spells: Spell[] = [
 		type: '5th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -6010,7 +6006,7 @@ const spells: Spell[] = [
 		type: '6th-level necromancy'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'bard'],
 		components: {
 			material: true,
@@ -6034,7 +6030,7 @@ const spells: Spell[] = [
 		type: '2nd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid'],
 		components: {
 			material: false,
@@ -6077,7 +6073,7 @@ const spells: Spell[] = [
 		type: '6th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -6101,7 +6097,7 @@ const spells: Spell[] = [
 		type: '5th-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -6124,7 +6120,7 @@ const spells: Spell[] = [
 		type: '4th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid', 'sorcerer'],
 		components: {
 			material: true,
@@ -6148,7 +6144,7 @@ const spells: Spell[] = [
 		type: '5th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard', 'bard'],
 		components: {
 			material: false,
@@ -6191,7 +6187,7 @@ const spells: Spell[] = [
 		type: '5th-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -6215,7 +6211,7 @@ const spells: Spell[] = [
 		type: '2nd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'ranger'],
 		components: {
 			material: true,
@@ -6236,7 +6232,7 @@ const spells: Spell[] = [
 		type: '2nd-level divination (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -6259,7 +6255,7 @@ const spells: Spell[] = [
 		type: '3rd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'druid', 'paladin', 'ranger', 'wizard'],
 		components: {
 			material: true,
@@ -6281,7 +6277,7 @@ const spells: Spell[] = [
 		type: '4th-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'druid', 'paladin', 'ranger', 'wizard'],
 		components: {
 			material: true,
@@ -6326,7 +6322,7 @@ const spells: Spell[] = [
 		type: '6th-level necromancy'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['paladin', 'wizard'],
 		components: {
 			material: false,
@@ -6372,7 +6368,7 @@ const spells: Spell[] = [
 		type: '2nd-level illusion (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'druid'],
 		components: {
 			material: false,
@@ -6394,7 +6390,7 @@ const spells: Spell[] = [
 		type: '5th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -6417,7 +6413,7 @@ const spells: Spell[] = [
 		type: '6th-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -6437,7 +6433,7 @@ const spells: Spell[] = [
 		type: '2nd-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'wizard'],
 		components: {
 			material: false,
@@ -6458,7 +6454,7 @@ const spells: Spell[] = [
 		type: '5th-level illusion'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -6478,7 +6474,7 @@ const spells: Spell[] = [
 		type: '2nd-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'wizard'],
 		components: {
 			material: false,
@@ -6501,7 +6497,7 @@ const spells: Spell[] = [
 		type: '5th-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: true,
@@ -6525,7 +6521,7 @@ const spells: Spell[] = [
 		type: '2nd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -6549,7 +6545,7 @@ const spells: Spell[] = [
 		type: '6th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger'],
 		components: {
 			material: true,
@@ -6571,7 +6567,7 @@ const spells: Spell[] = [
 		type: '2nd-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -6592,7 +6588,7 @@ const spells: Spell[] = [
 		type: '5th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: false,
@@ -6615,7 +6611,7 @@ const spells: Spell[] = [
 		type: '4th-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -6680,7 +6676,7 @@ const spells: Spell[] = [
 		type: '5th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -6702,7 +6698,7 @@ const spells: Spell[] = [
 		type: '4th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'wizard'],
 		components: {
 			material: true,
@@ -6744,7 +6740,7 @@ const spells: Spell[] = [
 		type: '5th-level necromancy'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'ranger', 'paladin', 'druid'],
 		components: {
 			material: false,
@@ -6764,7 +6760,7 @@ const spells: Spell[] = [
 		type: '2nd-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['warlock', 'wizard'],
 		components: {
 			material: false,
@@ -6808,7 +6804,7 @@ const spells: Spell[] = [
 		type: '5th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -6829,7 +6825,7 @@ const spells: Spell[] = [
 		type: '2nd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -6875,7 +6871,7 @@ const spells: Spell[] = [
 		type: '5th-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -6895,7 +6891,7 @@ const spells: Spell[] = [
 		type: '5th-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -6916,7 +6912,7 @@ const spells: Spell[] = [
 		type: '2nd-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -6939,7 +6935,7 @@ const spells: Spell[] = [
 		type: '2nd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -6961,7 +6957,7 @@ const spells: Spell[] = [
 		type: '2nd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger'],
 		components: {
 			material: true,
@@ -6983,7 +6979,7 @@ const spells: Spell[] = [
 		type: '2nd-level transmutation'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['paladin'],
 		components: {
 			material: false,
@@ -7004,7 +7000,7 @@ const spells: Spell[] = [
 		type: '4th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid', 'wizard'],
 		components: {
 			material: true,
@@ -7027,7 +7023,7 @@ const spells: Spell[] = [
 		type: '4th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -7049,7 +7045,7 @@ const spells: Spell[] = [
 		type: '6th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'ranger', 'wizard'],
 		components: {
 			material: true,
@@ -7071,7 +7067,7 @@ const spells: Spell[] = [
 		type: '4th-level abjuration'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['ranger'],
 		components: {
 			material: true,
@@ -7093,7 +7089,7 @@ const spells: Spell[] = [
 		type: '5th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -7137,7 +7133,7 @@ const spells: Spell[] = [
 		type: '5th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: false,
@@ -7157,7 +7153,7 @@ const spells: Spell[] = [
 		type: '6th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger'],
 		components: {
 			material: false,
@@ -7178,7 +7174,7 @@ const spells: Spell[] = [
 		type: '5th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: true,
@@ -7201,7 +7197,7 @@ const spells: Spell[] = [
 		type: '6th-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['warlock', 'wizard'],
 		components: {
 			material: false,
@@ -7224,7 +7220,7 @@ const spells: Spell[] = [
 		type: '3rd-level necromancy'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -7248,7 +7244,7 @@ const spells: Spell[] = [
 		type: '4th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -7272,7 +7268,7 @@ const spells: Spell[] = [
 		type: '6th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -7294,7 +7290,7 @@ const spells: Spell[] = [
 		type: '5th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -7316,7 +7312,7 @@ const spells: Spell[] = [
 		type: '5th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: true,
@@ -7340,7 +7336,7 @@ const spells: Spell[] = [
 		type: '6th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -7361,7 +7357,7 @@ const spells: Spell[] = [
 		type: '3rd-level transmutation (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric', 'druid', 'ranger', 'sorcerer'],
 		components: {
 			material: true,
@@ -7382,7 +7378,7 @@ const spells: Spell[] = [
 		type: '3rd-level transmutation (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -7425,7 +7421,7 @@ const spells: Spell[] = [
 		type: '6th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger'],
 		components: {
 			material: true,
@@ -7447,7 +7443,7 @@ const spells: Spell[] = [
 		type: '3rd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['cleric'],
 		components: {
 			material: false,
@@ -7467,7 +7463,7 @@ const spells: Spell[] = [
 		type: '6th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'cleric', 'paladin'],
 		components: {
 			material: false,
@@ -7487,7 +7483,7 @@ const spells: Spell[] = [
 		type: '2nd-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -7509,7 +7505,7 @@ const spells: Spell[] = [
 		type: '1st-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -7529,7 +7525,7 @@ const spells: Spell[] = [
 		type: '2nd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'wizard'],
 		components: {
 			material: false,
@@ -7550,7 +7546,7 @@ const spells: Spell[] = [
 		type: '2nd-level transmutation (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -7570,7 +7566,7 @@ const spells: Spell[] = [
 		type: 'Evocation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['bard', 'druid', 'sorcerer'],
 		components: {
 			material: false,
@@ -7591,7 +7587,7 @@ const spells: Spell[] = [
 		type: '2nd level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -7611,7 +7607,7 @@ const spells: Spell[] = [
 		type: 'Transmutation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -7632,7 +7628,7 @@ const spells: Spell[] = [
 		type: 'Conjuration cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -7652,7 +7648,7 @@ const spells: Spell[] = [
 		type: 'Evocation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -7672,7 +7668,7 @@ const spells: Spell[] = [
 		type: 'Transmutation cantrip'
 	},
 	{
-		casting_time: '1 bonus action',
+		casting_time: 'bonus action',
 		classes: ['druid', 'warlock'],
 		components: {
 			material: false,
@@ -7692,7 +7688,7 @@ const spells: Spell[] = [
 		type: 'Transmutation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -7712,7 +7708,7 @@ const spells: Spell[] = [
 		type: 'Transmutation cantrip'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -7732,7 +7728,7 @@ const spells: Spell[] = [
 		type: 'Transmutation cantrip'
 	},
 	{
-		casting_time: '1 reaction',
+		casting_time: 'reaction',
 		reaction_trigger: 'when you take acid, cold, fire, lightning, or thunder damage',
 		classes: ['druid', 'ranger', 'wizard'],
 		components: {
@@ -7755,7 +7751,7 @@ const spells: Spell[] = [
 		type: '1st-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger'],
 		components: {
 			material: true,
@@ -7777,7 +7773,7 @@ const spells: Spell[] = [
 		type: '1st-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -7800,7 +7796,7 @@ const spells: Spell[] = [
 		type: '1st-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -7821,7 +7817,7 @@ const spells: Spell[] = [
 		type: '2nd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -7845,7 +7841,7 @@ const spells: Spell[] = [
 		type: '2nd-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -7867,7 +7863,7 @@ const spells: Spell[] = [
 		type: '1st-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -7888,7 +7884,7 @@ const spells: Spell[] = [
 		type: '5th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: false,
@@ -7910,7 +7906,7 @@ const spells: Spell[] = [
 		type: '6th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -7933,7 +7929,7 @@ const spells: Spell[] = [
 		type: '3rd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -7956,7 +7952,7 @@ const spells: Spell[] = [
 		type: '4th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'ranger', 'sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -7979,7 +7975,7 @@ const spells: Spell[] = [
 		type: '3rd-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -8000,7 +7996,7 @@ const spells: Spell[] = [
 		type: '6th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -8021,7 +8017,7 @@ const spells: Spell[] = [
 		type: '6th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -8042,7 +8038,7 @@ const spells: Spell[] = [
 		type: '6th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'warlock', 'wizard'],
 		components: {
 			material: false,
@@ -8063,7 +8059,7 @@ const spells: Spell[] = [
 		type: '6th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: true,
@@ -8085,7 +8081,7 @@ const spells: Spell[] = [
 		type: '5th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid'],
 		components: {
 			material: false,
@@ -8106,7 +8102,7 @@ const spells: Spell[] = [
 		type: '6th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'wizard'],
 		components: {
 			material: true,
@@ -8127,7 +8123,7 @@ const spells: Spell[] = [
 		type: '3rd-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'wizard'],
 		components: {
 			material: true,
@@ -8148,7 +8144,7 @@ const spells: Spell[] = [
 		type: '5th-level transmutation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -8170,7 +8166,7 @@ const spells: Spell[] = [
 		type: '3rd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -8192,7 +8188,7 @@ const spells: Spell[] = [
 		type: '4th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['druid', 'wizard'],
 		components: {
 			material: true,
@@ -8214,7 +8210,7 @@ const spells: Spell[] = [
 		type: '7th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -8235,7 +8231,7 @@ const spells: Spell[] = [
 		type: '5th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: false,
@@ -8258,7 +8254,7 @@ const spells: Spell[] = [
 		type: '4th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['sorcerer', 'wizard'],
 		components: {
 			material: true,
@@ -8281,7 +8277,7 @@ const spells: Spell[] = [
 		type: '4th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -8303,7 +8299,7 @@ const spells: Spell[] = [
 		type: '3rd-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -8348,7 +8344,7 @@ const spells: Spell[] = [
 		type: '6th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -8370,7 +8366,7 @@ const spells: Spell[] = [
 		type: '4th-level conjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -8437,7 +8433,7 @@ const spells: Spell[] = [
 		type: '2th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -8506,7 +8502,7 @@ const spells: Spell[] = [
 		type: '4th-level abjuration'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard', 'bard'],
 		components: {
 			material: true,
@@ -8530,7 +8526,7 @@ const spells: Spell[] = [
 		type: '7th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -8551,7 +8547,7 @@ const spells: Spell[] = [
 		type: '2th-level illusion'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard', 'sorcerer'],
 		components: {
 			material: true,
@@ -8574,7 +8570,7 @@ const spells: Spell[] = [
 		type: '6th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,
@@ -8598,7 +8594,7 @@ const spells: Spell[] = [
 		type: '4th-level evocation'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard', 'bard'],
 		components: {
 			material: false,
@@ -8619,7 +8615,7 @@ const spells: Spell[] = [
 		type: '6th-level enchantment'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard', 'bard'],
 		components: {
 			material: true,
@@ -8639,7 +8635,7 @@ const spells: Spell[] = [
 		type: '5th-level divination (ritual)'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard', 'bard'],
 		components: {
 			material: true,
@@ -8660,7 +8656,7 @@ const spells: Spell[] = [
 		type: '1st-level divination'
 	},
 	{
-		casting_time: '1 action',
+		casting_time: 'action',
 		classes: ['wizard'],
 		components: {
 			material: true,

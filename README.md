@@ -19,9 +19,6 @@ npm run dev
     - blindness
     - components
     - searchbox
-  - remove cast column, use badges and icons instead
-    - icon for bonus action and reaction
-    - badges for irregular times
 - normalize spells
   - concentration nonopitonal
   - areas as first class column
