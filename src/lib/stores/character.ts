@@ -162,10 +162,10 @@ function createCharacterStore() {
 					}
 				});
 			},
-			castSpell(spell: Spell) {
+			castSpell(spell: Spell, freeCast = false) {
 				persistentUpdate(({ currentConcentration, spellSlots, ...sheet }) => {
 					const newSlots: SpellSlots = [...spellSlots];
-					if (spell.level > 0 && newSlots[spell.level - 1] > 0) {
+					if (!freeCast && spell.level > 0 && newSlots[spell.level - 1] > 0) {
 						newSlots[spell.level - 1] -= 1;
 					}
 

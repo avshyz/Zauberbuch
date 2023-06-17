@@ -82,11 +82,11 @@
 		cursor: pointer;
 	}
 
-  td {
-    vertical-align: middle;
-  }
+	td {
+		vertical-align: middle;
+	}
 
-  table {
-    width: 95%;
-  }
+	table {
+		width: 95%;
+	}
 </style>

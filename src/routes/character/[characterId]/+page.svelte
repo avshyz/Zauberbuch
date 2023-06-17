@@ -20,13 +20,17 @@
 	function isCantrip(spell: Spell) {
 		return spell.level === 0;
 	}
+
+	function isUnpreparedRitual(spell: Spell) {
+		return !$characterSheet.preparedSpellsIds.includes(spell.name) && spell.ritual;
+	}
 </script>
 
 <div class="padding row flex-edges flex-middle">
 	<h3 class="margin-none">Spellbook</h3>
 	{#if $characterSheet.currentConcentration}
 		<div class="row margin-none" style="gap: 8px">
-			<h4 class="margin-none">{$characterSheet.currentConcentration}</h4>
+			<h4 class="margin-none">Concentrating on: {$characterSheet.currentConcentration}</h4>
 			<button
 				class="btn-small btn-warning"
 				on:click={() => characterSheet.actions.breakConcentration()}
@@ -58,31 +62,44 @@
 
 <SpellTable spells={$characterSheet.playableSpells}>
 	<div slot="action" let:spell>
-		<button
-			class="btn-small"
-			disabled={!isCantrip(spell) && $characterSheet.spellSlots[spell.level - 1] <= 0}
-			title={isConcentrationBreaking(spell)
-				? `Already concentrating on: ${$characterSheet.currentConcentration}`
-				: null}
-			class:btn-danger={isConcentrationBreaking(spell) ? 'danger' : undefined}
-			on:click={() => {
-				characterSheet.actions.castSpell(spell);
-			}}
-		>
-			Cast {#if !isCantrip(spell)}
-				({getSlotsForSpell(spell)}/{getMaxAvailableSlotsForSpell(spell)})
-			{:else}
-				Cantrip
-			{/if}
-		</button>
-		{#if !isCantrip(spell) && getSlotsForSpell(spell) < getMaxAvailableSlotsForSpell(spell)}
+		{#if spell.ritual}
 			<button
-				title={`Regain spell slot lvl ${spell.level}`}
-				class="btn-small"
-				on:click={() => characterSheet.actions.regainSlot(spell.level)}
+				class="btn-small btn-secondary"
+				title="Cast Ritual"
+				on:click={() => characterSheet.actions.castSpell(spell, true)}
 			>
-				⎌
+				R
 			</button>
+		{/if}
+		{#if !isUnpreparedRitual(spell)}
+			<button
+				class="btn-small"
+				class:btn-secondary={isCantrip(spell)}
+				class:btn-danger={isConcentrationBreaking(spell) ? 'danger' : undefined}
+				disabled={!isCantrip(spell) && $characterSheet.spellSlots[spell.level - 1] <= 0}
+				title={isConcentrationBreaking(spell)
+					? `Already concentrating on: ${$characterSheet.currentConcentration}`
+					: null}
+				on:click={() => {
+					characterSheet.actions.castSpell(spell);
+				}}
+			>
+				Cast {#if !isCantrip(spell)}
+					({getSlotsForSpell(spell)}/{getMaxAvailableSlotsForSpell(spell)})
+				{:else}
+					Cantrip
+				{/if}
+			</button>
+
+			{#if !isCantrip(spell) && getSlotsForSpell(spell) < getMaxAvailableSlotsForSpell(spell)}
+				<button
+					title={`Regain spell slot lvl ${spell.level}`}
+					class="btn-small"
+					on:click={() => characterSheet.actions.regainSlot(spell.level)}
+				>
+					⎌
+				</button>
+			{/if}
 		{/if}
 	</div>
 </SpellTable>

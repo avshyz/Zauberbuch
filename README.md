@@ -14,7 +14,6 @@ npm run dev
 
 # TODO
 - Grimoire Reimplementations
-  - ritual casting (add concentration without spending a slot)
   - filters
     - nonconcentration
     - blindness
