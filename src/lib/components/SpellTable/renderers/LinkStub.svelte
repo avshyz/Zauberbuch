@@ -12,4 +12,4 @@
 	});
 </script>
 
-<Annotation bind:visible type="box" color="var(--secondary)">{text}</Annotation>
+<Annotation bind:visible type="box" color="rgb(74, 20, 140)">{text}</Annotation>

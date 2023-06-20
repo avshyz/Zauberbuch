@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Spell } from '$lib/assets/SrdSpells';
-	import { json } from '@sveltejs/kit';
 
 	import Description from './Description.svelte';
 	import Filters from './Filters.svelte';
@@ -14,6 +13,15 @@
 
 	let highlightedRow: string | null = null;
 	let spellElements: { [key: string]: HTMLTableRowElement } = {};
+	let spellElementsDescriptions: { [key: string]: HTMLTableRowElement } = {};
+
+	$: {
+		if (rowExpansion && spellElementsDescriptions[rowExpansion]) {
+			spellElementsDescriptions[rowExpansion].scrollIntoView({
+				block: 'center'
+			});
+		}
+	}
 </script>
 
 <div class="search-container" style="position: sticky; top: 0">
@@ -97,7 +105,7 @@
 				{/if}
 			</tr>
 			{#if rowExpansion === spell.name}
-				<tr>
+				<tr bind:this={spellElementsDescriptions[spell.name]}>
 					<td colspan={$$slots.action ? 5 : 4}>
 						<Description description={spell.description} upcast={spell.higher_levels} />
 					</td>
