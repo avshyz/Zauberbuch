@@ -39,7 +39,7 @@ export const EMPTY_SHEET: CharacterStoreData = {
 // TODO SHOULD THIS BE A CLASS??
 function createCharacterStore() {
     const store = writable<CharacterStoreData>(EMPTY_SHEET);
-    const {set, update} = store;
+    const {set, update, subscribe} = store;
     const derivedStore = derived(store, ($character) => {
         const availableSpellSlots = getSpellSlots($character.characterClass, $character.level);
         const maxAvailableSpellLevel = availableSpellSlots
@@ -63,7 +63,7 @@ function createCharacterStore() {
             getSlotsForSpell: (spell: Spell) => $character.spellSlots[spell.level - 1],
             getMaxAvailableSlotsForSpell: (spell: Spell) => availableSpellSlots[spell.level - 1],
 
-            isConcentrationBreaking: (spell: Spell)=> spell.concentration && !!$character.currentConcentration,
+            isConcentrationBreaking: (spell: Spell) => spell.concentration && !!$character.currentConcentration,
             isUnpreparedRitual: (spell: Spell) => !$character.preparedSpellsIds.includes(spell.name) && spell.ritual,
 
             isSpellLearned: (spell: string) => $character.learnedSpellsIds.includes(spell),
@@ -92,18 +92,10 @@ function createCharacterStore() {
         };
     });
 
-    function persistentUpdate(fn: (sheet: CharacterStoreData) => CharacterStoreData) {
-        update((sheet) => {
-            const res = fn(sheet);
-            const {id, ...character} = res;
-            saveCharacter(character, id);
-            return res;
-        });
-    }
 
     return {
         subscribe: derivedStore.subscribe,
-        update: persistentUpdate,
+        update,
         actions: {
             async listAllCharacters() {
                 const entries = await readDir('characters', {dir: BaseDirectory.AppConfig});
@@ -131,9 +123,15 @@ function createCharacterStore() {
                 const res = JSON.parse(characterData) as CharacterSheet;
                 set({...res, id});
             },
+            init() {
+                subscribe((sheet) => {
+                    const {id, ...character} = sheet;
+                    saveCharacter(character, id);
+                })
+            },
             // TODO DRY LEARN & PREPARE
             toggleLearnSpell(spell: string) {
-                persistentUpdate((sheet) => {
+                update((sheet) => {
                     const learnedSpells = sheet.learnedSpellsIds;
 
                     if (learnedSpells.includes(spell)) {
@@ -152,7 +150,7 @@ function createCharacterStore() {
                 });
             },
             togglePrepareSpell(spell: string) {
-                persistentUpdate((sheet) => {
+                update((sheet) => {
                     const preparedSpells = sheet.preparedSpellsIds;
 
                     if (preparedSpells.includes(spell)) {
@@ -169,7 +167,7 @@ function createCharacterStore() {
                 });
             },
             castSpell(spell: Spell, freeCast = false) {
-                persistentUpdate(({currentConcentration, spellSlots, ...sheet}) => {
+                update(({currentConcentration, spellSlots, ...sheet}) => {
                     const newSlots: SpellSlots = [...spellSlots];
                     if (!freeCast && spell.level > 0 && newSlots[spell.level - 1] > 0) {
                         newSlots[spell.level - 1] -= 1;
@@ -182,14 +180,14 @@ function createCharacterStore() {
                 });
             },
             breakConcentration() {
-                persistentUpdate((sheet) => {
+                update((sheet) => {
                     return {...sheet, currentConcentration: undefined};
                 });
             },
             regainSlot(level: number) {
                 if (level === 0) return;
 
-                persistentUpdate((sheet) => {
+                update((sheet) => {
                     const newSlots: SpellSlots = [...sheet.spellSlots];
                     const max = getSpellSlots(sheet.characterClass, sheet.level)[level - 1];
 
@@ -198,7 +196,7 @@ function createCharacterStore() {
                 });
             },
             rest() {
-                persistentUpdate((sheet) => ({
+                update((sheet) => ({
                     ...sheet,
                     spellSlots: getSpellSlots(sheet.characterClass, sheet.level),
                     // TODO DRY

@@ -4,6 +4,8 @@
 	import { bothPrepareAndLearnStages } from '$lib/mechanics';
 	import { characterSheet } from '$lib/stores/character.js';
 	import { Navbar } from 'spaper';
+
+	characterSheet.actions.init();
 </script>
 
 <h1 class="margin-small">{$characterSheet.name}</h1>
