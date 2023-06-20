@@ -4,19 +4,10 @@
 	import { characterSheet } from '$lib/stores/character.js';
 	import { page } from '$app/stores';
 	import { getSpellSlots } from '$lib/mechanics';
-
-	async function handleDelete() {
-		const { characterId } = $page.params;
-
-		const resp = prompt(`You're going to delete ${$characterSheet.name}. Type DELETE to confirm.`);
-		if (resp !== 'DELETE') return;
-		characterSheet.actions.delete(characterId);
-		goto('/');
-	}
 </script>
 
 <CharacterForm
-	initialValues={$characterSheet}
+	initialValues={characterSheet.actions.getCore()}
 	title="Edit Character"
 	on:submit={(e) => {
 		const { characterId } = $page.params;
@@ -34,5 +25,19 @@
 />
 
 <div class="row flex-center">
-	<button class="btn-danger" on:click={handleDelete}>DELETE CHARACTER</button>
+	<button
+		class="btn-danger"
+		on:click={() => {
+			const { characterId } = $page.params;
+
+			const resp = prompt(
+				`You're going to delete ${$characterSheet.name}. Type DELETE to confirm.`
+			);
+			if (resp !== 'DELETE') return;
+			characterSheet.actions.delete(characterId);
+			goto('/');
+		}}
+	>
+		DELETE CHARACTER
+	</button>
 </div>
