@@ -30,6 +30,8 @@ npm run dev
       - on modal
       - on button
   - character portraits
+  - chatGpt summaries
+  - timers
 - spell description should enrich with elements
   - add Spellcasting Ability?
   - dice roller (threejs)
