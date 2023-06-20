@@ -6,24 +6,10 @@
 
 	let showCharacterInfo = false;
 
-	function getSlotsForSpell(spell: Spell) {
-		return $characterSheet.spellSlots[spell.level - 1];
-	}
-
-	function getMaxAvailableSlotsForSpell(spell: Spell) {
-		return $characterSheet.availableSpellSlots[spell.level - 1];
-	}
-
-	function isConcentrationBreaking(spell: Spell) {
-		return spell.concentration && !!$characterSheet.currentConcentration;
-	}
 	function isCantrip(spell: Spell) {
 		return spell.level === 0;
 	}
 
-	function isUnpreparedRitual(spell: Spell) {
-		return !$characterSheet.preparedSpellsIds.includes(spell.name) && spell.ritual;
-	}
 </script>
 
 <div class="padding row flex-edges flex-middle">
@@ -71,27 +57,25 @@
 				R
 			</button>
 		{/if}
-		{#if !isUnpreparedRitual(spell)}
+		{#if !$characterSheet.isUnpreparedRitual(spell)}
 			<button
 				class="btn-small"
+				disabled={!isCantrip(spell) && ($characterSheet.getSlotsForSpell(spell) <= 0)}
 				class:btn-secondary={isCantrip(spell)}
-				class:btn-danger={isConcentrationBreaking(spell) ? 'danger' : undefined}
-				disabled={!isCantrip(spell) && $characterSheet.spellSlots[spell.level - 1] <= 0}
-				title={isConcentrationBreaking(spell)
+				class:btn-danger={$characterSheet.isConcentrationBreaking(spell)}
+				title={$characterSheet.isConcentrationBreaking(spell)
 					? `Already concentrating on: ${$characterSheet.currentConcentration}`
 					: null}
-				on:click={() => {
-					characterSheet.actions.castSpell(spell);
-				}}
+				on:click={() => characterSheet.actions.castSpell(spell)}
 			>
 				Cast {#if !isCantrip(spell)}
-					({getSlotsForSpell(spell)}/{getMaxAvailableSlotsForSpell(spell)})
+					({$characterSheet.getSlotsForSpell(spell)}/{$characterSheet.getMaxAvailableSlotsForSpell(spell)})
 				{:else}
 					Cantrip
 				{/if}
 			</button>
 
-			{#if !isCantrip(spell) && getSlotsForSpell(spell) < getMaxAvailableSlotsForSpell(spell)}
+			{#if !isCantrip(spell) && $characterSheet.getSlotsForSpell(spell) < $characterSheet.getMaxAvailableSlotsForSpell(spell)}
 				<button
 					title={`Regain spell slot lvl ${spell.level}`}
 					class="btn-small"
@@ -137,7 +121,7 @@
 			{#each $characterSheet.availableSpellSlots.filter((slot) => slot > 0) as slot, i}
 				{i + 1}:
 				<div class="slot-container">
-					{#each Array.from({ length: slot }) as _spellSlot, j}
+					{#each Array.from({ length: slot }) as _, j}
 						<input class="slot" type="checkbox" checked={j < $characterSheet.spellSlots[i]} />
 					{/each}
 				</div>
