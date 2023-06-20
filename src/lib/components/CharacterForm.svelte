@@ -37,7 +37,7 @@
 		onSubmit: (value: CharacterFormResult) => {
 			dispatch('submit', value);
 		},
-		initialValues
+		initialValues: initialValues ?? {}
 	});
 </script>
 
@@ -73,7 +73,7 @@
 			<!-- TODO SWITCH BY CLASS -->
 			<label for="spellCastingAbility">Spell Casting Ability Modifier</label>
 			<input name="spellCastingAbility" required type="number" max="10" min="0" />
-			<ValidationMessage for="level" let:messages>
+			<ValidationMessage for="spellCastingAbility" let:messages>
 				{messages?.[0] || ''}
 			</ValidationMessage>
 		</div>
