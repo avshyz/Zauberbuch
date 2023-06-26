@@ -1,5 +1,4 @@
 <script lang="ts">
-	import spells from '$lib/assets/SrdSpells';
 	import SpellTable from '$lib/components/SpellTable/Table.svelte';
 	import SpellForm from '$lib/components/SpellForm.svelte';
 	import { spellStore } from '$lib/stores/spells';
@@ -14,5 +13,17 @@
 />
 
 {#if $spellStore.length}
-	<SpellTable spells={$spellStore} />
+	<SpellTable spells={$spellStore}>
+		<div slot="action" let:spell>
+			<button
+				class="btn-small btn-danger"
+				on:click={async () => {
+					const resp = prompt(`You're going to delete ${spell.name}. Type DELETE to confirm.`);
+					if (resp === 'DELETE') spellStore.actions.deleteSpell(spell);
+				}}
+			>
+				DELETE
+			</button>
+		</div>
+	</SpellTable>
 {/if}

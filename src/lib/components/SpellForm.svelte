@@ -21,7 +21,7 @@
 	</FormField>
 
 	<div class="secondary-fields">
-		<FormField name="level">
+		<FormField name="level" value="0">
 			<input name="level" type="number" min="0" max="9" required />
 		</FormField>
 		<FormField name="cast">
@@ -31,9 +31,9 @@
 				<option value="bonus action">bonus action</option>
 			</select>
 		</FormField>
-		<FormField name="range"><input name="range" /></FormField>
-		<FormField name="Components"><input name="duration" disabled /></FormField>
-		<FormField name="duration"><input name="duration" /></FormField>
+		<FormField name="range"><input name="range" value="self" /></FormField>
+		<FormField name="Components"><input disabled /></FormField>
+		<FormField name="duration"><input name="duration" value="instant" /></FormField>
 		<FormField name="school">
 			<select name="school">
 				{#each SCHOOLS as school}
