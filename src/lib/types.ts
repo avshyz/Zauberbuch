@@ -16,6 +16,18 @@ export const CHARACTER_CLASSES = [
 ] as const;
 export type CharacterClass = (typeof CHARACTER_CLASSES)[number];
 
+export const SCHOOLS = [
+	'Abjuration',
+	'Conjuration',
+	'Divination',
+	'Enchantment',
+	'Evocation',
+	'Illusion',
+	'Necromancy',
+	'Transmutation'
+];
+type School = (typeof SCHOOLS)[number];
+
 export type CharacterSheet = {
 	name: string;
 	level: number;
@@ -76,7 +88,7 @@ export type Spell = {
 	range: Range;
 	area?: `${number} ${'mile' | 'miles' | 'feet' | 'foot'} ${Area}`;
 	ritual: boolean;
-	school: string;
+	school: School;
 	higher_levels?: string;
 	reaction_trigger?: string;
 	level: number;

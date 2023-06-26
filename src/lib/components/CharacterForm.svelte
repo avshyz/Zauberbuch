@@ -4,9 +4,9 @@
 	import { z } from 'zod';
 	import { createForm } from 'felte';
 	import { createEventDispatcher } from 'svelte';
-	import { reporter, ValidationMessage } from '@felte/reporter-svelte';
+	import { reporter } from '@felte/reporter-svelte';
 	import { CASTER_TYPE_TO_SLOT_TABLE } from '$lib/mechanics';
-	import { Form } from 'spaper';
+
 	import FormField from './FormField.svelte';
 
 	export let title = 'New Character';
