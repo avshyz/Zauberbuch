@@ -9,8 +9,10 @@
 
 <SpellForm
 	on:submit={({ detail: s }) => {
-		spellStore.actions.saveSpell(s.detail);
+		spellStore.actions.saveSpell(s);
 	}}
 />
 
-<!--<SpellTable spells={$spellStore} />-->
+{#if $spellStore.length}
+	<SpellTable spells={$spellStore} />
+{/if}
