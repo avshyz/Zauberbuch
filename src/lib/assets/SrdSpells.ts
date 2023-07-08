@@ -8627,7 +8627,45 @@ const spells: Spell[] = [
 		school: 'conjuration',
 		tags: ['wizard', 'level1'],
 		type: '1st-level conjuration (ritual)'
-	}
+	},
+
+	// TODO DELETE THOSE LATER
+	{
+		casting_time: 'action',
+		classes: ['wizard', 'sorcerer', 'warlock'],
+		components: {
+			material: false,
+			raw: 'V',
+			somatic: false,
+			verbal: true
+		},
+		description:
+			'The air quivers around up to five creatures of your choice that you can see within range. An unwilling creature must succeed on a Wisdom saving throw to resist this spell. You teleport each affected target to an unoccupied space that you can see within 120 feet of you. That space must be on the ground or on a floor.',
+		duration: 'instant',
+		level: 6,
+		name: 'Scatter',
+		range: '30 feet',
+		ritual: false,
+		school: 'conjuration',
+	},
+	{
+		casting_time: 'action',
+		classes: ['wizard', 'sorcerer', 'bard'],
+		components: {
+			material: false,
+			raw: 'V, S',
+			somatic: true,
+			verbal: true
+		},
+		description:
+			'You choose a point within range and cause psychic energy to explode there. Each creature in a 20-foot-radius sphere centered on that point must make an Intelligence saving throw. A creature with an Intelligence score of 2 or lower can’t be affected by this spell. A target takes 8d6 psychic damage on a failed save, or half as much damage on a successful one.\n\nAfter a failed save, a target has muddled thoughts for 1 minute. During that time, it rolls a d6 and subtracts the number rolled from all its attack rolls and ability checks, as well as its Constitution saving throws to maintain concentration. The target can make an Intelligence saving throw at the end of each of its turns, ending the effect on itself on a success.',
+		duration: 'instant',
+		level: 5,
+		name: 'Synaptic Static',
+		range: '120 feet',
+		ritual: false,
+		school: 'enchantment',
+	},
 ];
 
 export default spells;

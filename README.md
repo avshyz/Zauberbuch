@@ -13,6 +13,8 @@ npm run dev
 ```
 
 # TODO
+- fonts from https://fonts.google.com/?category=Handwriting
+- add toasts on concentrations on the left side
 - normalize spells
   - areas as first class column
   - uuid instead of names
@@ -24,6 +26,7 @@ npm run dev
   - add brand, somewhere.
   - add splash screen illusory dragon
   - cool icons like [these](https://donjon.bin.sh/5e/quickref/)
+    - filter icon near the filters (and individual icons per filter)
     - status icons
     - range area indicators
     - better spell slot indicators

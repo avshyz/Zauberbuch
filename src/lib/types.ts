@@ -92,6 +92,6 @@ export type Spell = {
 	higher_levels?: string;
 	reaction_trigger?: string;
 	level: number;
-	tags: string[];
-	type: string;
+	tags?: string[];
+	type?: string;
 };
